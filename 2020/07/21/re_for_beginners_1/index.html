@@ -119,19 +119,19 @@
 <meta property="og:url" content="http://yoursite.com/2020/07/21/re_for_beginners_1/index.html">
 <meta property="og:site_name" content="最终你来到了这里">
 <meta property="og:description" content="re for beginners 1">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_1.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_2.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_3.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_4.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_5.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_6.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_7.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb8825.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb8820.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb881a.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb8820.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb8822.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3b414195aa594cb91e8.png">
+<meta property="og:image" content="https://pic.downk.cc/item/5f16b3b414195aa594cb91ea.png">
 <meta property="article:published_time" content="2020-07-21T07:08:00.000Z">
-<meta property="article:modified_time" content="2020-07-21T09:16:33.044Z">
+<meta property="article:modified_time" content="2020-07-21T09:25:22.000Z">
 <meta property="article:author" content="Zaraxon">
 <meta property="article:tag" content="re for beginners">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/21/assets/re/re_3_1.png">
+<meta name="twitter:image" content="https://pic.downk.cc/item/5f16b3ad14195aa594cb8825.png">
 
 
 
@@ -366,8 +366,8 @@
 
       
         <h3 id="三种架构：-ARM，x86（暂时只看这个架构，其他的指令集没接触看不懂），MIPS"><a href="#三种架构：-ARM，x86（暂时只看这个架构，其他的指令集没接触看不懂），MIPS" class="headerlink" title="三种架构：    ARM，x86（暂时只看这个架构，其他的指令集没接触看不懂），MIPS"></a>三种架构：    ARM，x86（暂时只看这个架构，其他的指令集没接触看不懂），MIPS</h3><h3 id="第二章："><a href="#第二章：" class="headerlink" title="第二章："></a>第二章：</h3><p>​    1.返回值看起来通常会存进EAX中（如果是64位则是RAX）</p>
-<h3 id="第三章：简单的例子（32位）"><a href="#第三章：简单的例子（32位）" class="headerlink" title="第三章：简单的例子（32位）"></a>第三章：简单的例子（32位）</h3><p>​    <img src="../assets/re/re_3_1.png" alt="image-20200721151806360"></p>
-<h4 id="3-1-：MSVC（使用Intel汇编语法）"><a href="#3-1-：MSVC（使用Intel汇编语法）" class="headerlink" title="3.1 ：MSVC（使用Intel汇编语法）"></a>3.1 ：MSVC（使用Intel汇编语法）</h4><p>​        <img src="../assets/re/re_3_2.png" alt="image-20200721151845196"></p>
+<h3 id="第三章：简单的例子（32位）"><a href="#第三章：简单的例子（32位）" class="headerlink" title="第三章：简单的例子（32位）"></a>第三章：简单的例子（32位）</h3><p>​    <img src="https://pic.downk.cc/item/5f16b3ad14195aa594cb8825.png" alt="image-20200721151806360"></p>
+<h4 id="3-1-：MSVC（使用Intel汇编语法）"><a href="#3-1-：MSVC（使用Intel汇编语法）" class="headerlink" title="3.1 ：MSVC（使用Intel汇编语法）"></a>3.1 ：MSVC（使用Intel汇编语法）</h4><p>​        <img src="https://pic.downk.cc/item/5f16b3ad14195aa594cb8820.png" alt="image-20200721151845196"></p>
 <p>​        MSVC由于环境原因我没模拟这个过程。</p>
 <p>​        1.代码分为两个部分：CONST常量部分和_TEXT代码部分</p>
 <p>​        2.”hello, world”是一个const char（C/C++）类型字符串，代码中未指定名字（但编译器需要用），于是编译器给它起了个名字</p>
@@ -376,8 +376,8 @@
 <p>​        5.XOR EAX,EAX（2字节）相比于MOV或者SUB都要省字节</p>
 <h4 id="3-2-GCC（试了但是编译出了64位程序，可能是gcc版本问题，我没深究）"><a href="#3-2-GCC（试了但是编译出了64位程序，可能是gcc版本问题，我没深究）" class="headerlink" title="3.2 GCC（试了但是编译出了64位程序，可能是gcc版本问题，我没深究）"></a>3.2 GCC（试了但是编译出了64位程序，可能是gcc版本问题，我没深究）</h4><p>​        3.2.1 Intel语法</p>
 <p>​        先分别贴一下书的代码和我的代码</p>
-<p><img src="../assets/re/re_3_3.png" alt="image-20200721153504616"></p>
-<p>​        <img src="../assets/re/re_3_4.png" alt="image-20200721153309409"></p>
+<p><img src="https://pic.downk.cc/item/5f16b3ad14195aa594cb881a.png" alt="image-20200721153504616"></p>
+<p>​        <img src="https://pic.downk.cc/item/5f16b3ad14195aa594cb8820.png" alt="image-20200721153309409"></p>
 <p>​        主要围绕书的代码</p>
 <p>​        可以看到起始代码是一样的</p>
 <p>​        1.将后4位置零，这是一个小技巧，堆栈中的数据将以16字节对齐。</p>
@@ -385,7 +385,7 @@
 <p>​        3.这里字符串地址使用var_10（也是printf的参数），一个局部变量存储。而不是向上面那样直接push进栈。</p>
 <p>​        4.这里gcc不优化会用MOV EAX,0</p>
 <p>​    3.2.2（AT&amp;T语法）</p>
-<p>​        <img src="../assets/re/re_3_5.png" alt="image-20200721155319690"></p>
+<p>​        <img src="https://pic.downk.cc/item/5f16b3ad14195aa594cb8822.png" alt="image-20200721155319690"></p>
 <p>​        一些区别：</p>
 <p>​            1.AT&amp;T源操作数在左边，目的操作数在右边即S-&gt;D，Intel则是D&lt;-S</p>
 <p>​            2.AT&amp;T：寄存器前需要%，数字前面需要$，用圆括号代替方括号。</p>
@@ -394,13 +394,13 @@
 <p>​                                -l –long （32位）</p>
 <p>​                                -w –word （16位）</p>
 <p>​                                -b –byte（8位）</p>
-<h3 id="第三章：简单的例子（64位）"><a href="#第三章：简单的例子（64位）" class="headerlink" title="第三章：简单的例子（64位）"></a>第三章：简单的例子（64位）</h3><h4 id="3-2-1-MSVC"><a href="#3-2-1-MSVC" class="headerlink" title="3.2.1 MSVC"></a>3.2.1 MSVC</h4><p>​    <img src="../assets/re/re_3_6.png" alt="image-20200721160023203"></p>
+<h3 id="第三章：简单的例子（64位）"><a href="#第三章：简单的例子（64位）" class="headerlink" title="第三章：简单的例子（64位）"></a>第三章：简单的例子（64位）</h3><h4 id="3-2-1-MSVC"><a href="#3-2-1-MSVC" class="headerlink" title="3.2.1 MSVC"></a>3.2.1 MSVC</h4><p>​    <img src="https://pic.downk.cc/item/5f16b3b414195aa594cb91e8.png" alt="image-20200721160023203"></p>
 <p>​        1.e前缀换成了r前缀（64位寄存器）</p>
 <p>​        2.部分参数依靠寄存器传递（我觉得是因为会快一点，不知道有无其他原因）</p>
 <p>​        3.为了兼顾兼容问题和可移植性最后使用eax而不是rax</p>
 <p>​        4.开始分配的40字节被称作“影子空间”</p>
 <h4 id="3-2-2-GCC"><a href="#3-2-2-GCC" class="headerlink" title="3.2.2 GCC"></a>3.2.2 GCC</h4><p>​        刚刚我蠢了哈哈哈哈哈哈哈哈哈哈哈哈</p>
-<p>​    <img src="../assets/re/re_3_7.png" alt="image-20200721161827478"></p>
+<p>​    <img src="https://pic.downk.cc/item/5f16b3b414195aa594cb91ea.png" alt="image-20200721161827478"></p>
 <p>​        1.前6个参数使用RDI，RSI，RDX，RCX，R8，R9传递，剩下的用栈。</p>
 <p>​        2.MOV指令在64位模式下对低32位进行写入的时候会清空高32内容（相当于对整个R进行操作，将源数高32位视为0）</p>
 <p>​        3.这里将edi写入64的相同值也是可以的，但是没必要，而且写32位值省空间（32：5字节，64：7字节）</p>
