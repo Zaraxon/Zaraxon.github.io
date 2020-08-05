@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="感觉好复杂，但仔细想想好像又不复杂QWQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf-re-2">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/buuctf-re-2/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="感觉好复杂，但仔细想想好像又不复杂QWQ">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a517b14195aa594d044f4">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a533514195aa594d12a8a">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a536b14195aa594d14640">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a576614195aa594d3506f">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a578414195aa594d3610a">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a5dc514195aa594d6af29">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2a5e2114195aa594d6dd95">
+<meta property="article:published_time" content="2020-08-05T06:26:00.000Z">
+<meta property="article:modified_time" content="2020-08-05T07:25:55.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f2a517b14195aa594d044f4">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/05/buuctf-re-2/"/>
+
+
+
+
+
+  <title>buuctf-re-2 | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/buuctf-re-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">buuctf-re-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-05T14:26:00+08:00">
+                2020-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  感觉好复杂，但仔细想想好像又不复杂QWQ
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查壳先</p>
+<p><img src="https://www.superbed.cn/item/5f2a517b14195aa594d044f4" alt="img"></p>
+<p>好像没壳，那直接丢IDA反编译：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __stdcall <span class="title">WinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, <span class="keyword">int</span> nShowCmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  DialogBoxParamA(hInstance, (LPCSTR)<span class="number">0x67</span>, <span class="number">0</span>, DialogFunc, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>没看到什么有用的，又看到DialogBoxParamA是调用的接口，不是要找的地方。</p>
+<p>注意到有个DialogFunc函数，点进去：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL __stdcall <span class="title">DialogFunc</span><span class="params">(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *v4; <span class="comment">// esi</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *v5; <span class="comment">// edi</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// [esp+8h] [ebp-20030h]</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// [esp+Ch] [ebp-2002Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// [esp+10h] [ebp-20028h]</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// [esp+14h] [ebp-20024h]</span></span><br><span class="line">  <span class="keyword">int</span> v11; <span class="comment">// [esp+18h] [ebp-20020h]</span></span><br><span class="line">  <span class="keyword">int</span> v12; <span class="comment">// [esp+1Ch] [ebp-2001Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v13; <span class="comment">// [esp+20h] [ebp-20018h]</span></span><br><span class="line">  <span class="keyword">int</span> v14; <span class="comment">// [esp+24h] [ebp-20014h]</span></span><br><span class="line">  <span class="keyword">int</span> v15; <span class="comment">// [esp+28h] [ebp-20010h]</span></span><br><span class="line">  <span class="keyword">int</span> v16; <span class="comment">// [esp+2Ch] [ebp-2000Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v17; <span class="comment">// [esp+30h] [ebp-20008h]</span></span><br><span class="line">  CHAR <span class="keyword">String</span>; <span class="comment">// [esp+34h] [ebp-20004h]</span></span><br><span class="line">  <span class="keyword">char</span> v19; <span class="comment">// [esp+35h] [ebp-20003h]</span></span><br><span class="line">  <span class="keyword">char</span> v20; <span class="comment">// [esp+36h] [ebp-20002h]</span></span><br><span class="line">  <span class="keyword">char</span> v21; <span class="comment">// [esp+37h] [ebp-20001h]</span></span><br><span class="line">  <span class="keyword">char</span> v22; <span class="comment">// [esp+38h] [ebp-20000h]</span></span><br><span class="line">  <span class="keyword">char</span> v23; <span class="comment">// [esp+39h] [ebp-1FFFFh]</span></span><br><span class="line">  <span class="keyword">char</span> v24; <span class="comment">// [esp+3Ah] [ebp-1FFFEh]</span></span><br><span class="line">  <span class="keyword">char</span> v25; <span class="comment">// [esp+3Bh] [ebp-1FFFDh]</span></span><br><span class="line">  <span class="keyword">char</span> v26; <span class="comment">// [esp+10034h] [ebp-10004h]</span></span><br><span class="line">  <span class="keyword">char</span> v27; <span class="comment">// [esp+10035h] [ebp-10003h]</span></span><br><span class="line">  <span class="keyword">char</span> v28; <span class="comment">// [esp+10036h] [ebp-10002h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( a2 == <span class="number">272</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( a2 != <span class="number">273</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (_WORD)a3 == <span class="number">1001</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(&amp;<span class="keyword">String</span>, <span class="number">0</span>, <span class="number">0xFFFF</span>u);</span><br><span class="line">    GetDlgItemTextA(hDlg, <span class="number">1000</span>, &amp;<span class="keyword">String</span>, <span class="number">0xFFFF</span>);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">strlen</span>(&amp;<span class="keyword">String</span>) == <span class="number">8</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v7 = <span class="number">90</span>;</span><br><span class="line">      v8 = <span class="number">74</span>;</span><br><span class="line">      v9 = <span class="number">83</span>;</span><br><span class="line">      v10 = <span class="number">69</span>;</span><br><span class="line">      v11 = <span class="number">67</span>;</span><br><span class="line">      v12 = <span class="number">97</span>;</span><br><span class="line">      v13 = <span class="number">78</span>;</span><br><span class="line">      v14 = <span class="number">72</span>;</span><br><span class="line">      v15 = <span class="number">51</span>;</span><br><span class="line">      v16 = <span class="number">110</span>;</span><br><span class="line">      v17 = <span class="number">103</span>;</span><br><span class="line">      sub_4010F0(&amp;v7, <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">      <span class="built_in">memset</span>(&amp;v26, <span class="number">0</span>, <span class="number">0xFFFF</span>u);</span><br><span class="line">      v26 = v23;</span><br><span class="line">      v28 = v25;</span><br><span class="line">      v27 = v24;</span><br><span class="line">      v4 = sub_401000((<span class="keyword">int</span>)&amp;v26, <span class="built_in">strlen</span>(&amp;v26));</span><br><span class="line">      <span class="built_in">memset</span>(&amp;v26, <span class="number">0</span>, <span class="number">0xFFFF</span>u);</span><br><span class="line">      v27 = v21;</span><br><span class="line">      v26 = v20;</span><br><span class="line">      v28 = v22;</span><br><span class="line">      v5 = sub_401000((<span class="keyword">int</span>)&amp;v26, <span class="built_in">strlen</span>(&amp;v26));</span><br><span class="line">      <span class="keyword">if</span> ( <span class="keyword">String</span> == v7 + <span class="number">34</span></span><br><span class="line">        &amp;&amp; v19 == v11</span><br><span class="line">        &amp;&amp; <span class="number">4</span> * v20 - <span class="number">141</span> == <span class="number">3</span> * v9</span><br><span class="line">        &amp;&amp; v21 / <span class="number">4</span> == <span class="number">2</span> * (v14 / <span class="number">9</span>)</span><br><span class="line">        &amp;&amp; !<span class="built_in">strcmp</span>(v4, <span class="string">"ak1w"</span>)</span><br><span class="line">        &amp;&amp; !<span class="built_in">strcmp</span>(v5, <span class="string">"V1Ax"</span>) )</span><br><span class="line">      &#123;</span><br><span class="line">        MessageBoxA(hDlg, <span class="string">"U g3t 1T!"</span>, <span class="string">"@_@"</span>, <span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( (_WORD)a3 != <span class="number">1</span> &amp;&amp; (_WORD)a3 != <span class="number">2</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  EndDialog(hDlg, (<span class="keyword">unsigned</span> __int16)a3);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单扫一眼，仍旧没看到任何与flag有关的字样。</p>
+<p>点进两个sub函数，仍旧没有直接的发现。</p>
+<p>再进strings视图扫一眼，有了一点点小收获：</p>
+<p><img src="https://www.superbed.cn/item/5f2a533514195aa594d12a8a" alt="img"></p>
+<p>base64的标志性常量字符串（少个A）！点进去</p>
+<p><img src="https://www.superbed.cn/item/5f2a536b14195aa594d14640" alt="img"></p>
+<p>可以看到前面单独定义了一个41h（字符A）应该是用来混淆的。</p>
+<p>顺藤摸瓜，byte_407830的调用处正是之前看到的两个子函数中的一个：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v4 = sub_401000((<span class="keyword">int</span>)&amp;v26, <span class="built_in">strlen</span>(&amp;v26));</span><br><span class="line">v5 = sub_401000((<span class="keyword">int</span>)&amp;v26, <span class="built_in">strlen</span>(&amp;v26));</span><br></pre></td></tr></table></figure>
+
+<p>并且后边又有对v4，v5的字符串比较（strcmp），暂时猜测是对v26附近的字符做base64加密，具体情况还要从v26反向分析。</p>
+<p>向前观察，发现有两组这样的操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(&amp;v26, <span class="number">0</span>, <span class="number">0xFFFF</span>u); </span><br><span class="line">v27 = v21;</span><br><span class="line">v26 = v20;</span><br><span class="line">v28 = v22;</span><br><span class="line">v5 = sub_401000((<span class="keyword">int</span>)&amp;v26, <span class="built_in">strlen</span>(&amp;v26));</span><br></pre></td></tr></table></figure>
+
+<p>将v26, v27, v28当作缓冲区，每次复制3个字符进行base64加密（这里的思路是顺理成章的，因为base64大致就是每次将3个字符切成4段按表查找的）。</p>
+<p>那么每次复制的3个字符从哪里来？还需要向前寻找，发现根本没有对v20~v25的直接操作，那总不能是操作随机值吧？只好再看一看哪里可能改变了这些值。</p>
+<p>注意到两个东西：那个定义成CHAR的String和调用的接口GetDlgItemTextA。</p>
+<p>我这里先看的GetDlgItemTextA。</p>
+<p>不认识，搜一下。</p>
+<p><img src="https://www.superbed.cn/item/5f2a576614195aa594d3506f" alt="img"></p>
+<p><img src="https://www.superbed.cn/item/5f2a578414195aa594d3610a" alt="img"></p>
+<p>注意到第三个参数是用来接受对话框中的字符串的，这正好对应String。</p>
+<p>那么String就有了解释：它是个数组，String连带着后面v19~v28很可能就是一个字符串。</p>
+<p>代码中又没看到直接的flag相关的字符串，那么很有可能这个接受的String就是判断flag用的！</p>
+<p>然后注意到一个比较字符串长度（可能之前就应该注意到）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( <span class="built_in">strlen</span>(&amp;<span class="keyword">String</span>) == <span class="number">8</span> )</span><br></pre></td></tr></table></figure>
+
+<p>限制输入长度为8。</p>
+<p>接下来对v7~v17挨个赋值，有了之前的经验，说不定这也是个字符串（或者数组），接下来就不得不面对之前的另一个函数sub_4010F0。</p>
+<p>点进去简单浏览，只能猜测是对v7 ~ v17这个串做了某些操作。具体是什么操作还不急着看，先看看操作完之后用它干了什么。仔细看一下，其实只有最后MessageBoxA前面的判断用到了：</p>
+<p>1.要判断输入字符串的第一个字符（String） = v7 + 34</p>
+<p>2.要判断输入字符串的第二个字符（v19） = v11</p>
+<p>3.要判断 v21 和 v14有一个数学关系，但注意到v21其实在后面另有限制，因此这个条件相当于没有。</p>
+<p>我们突然发现：齐了！</p>
+<p>String + v19 + v20<del>v22 + v23</del>v25 = 8</p>
+<p>到此为止对输入的判断结束了。</p>
+<p>那么最后来看String和v19以及base64的解密。</p>
+<p>先看对v7~v17的处理。</p>
+<p>这里我在wp中学到了一个小技巧：<strong>只需要知道输入和输出的话，静态分析是没必要的，直接带入变量运行一下即可</strong></p>
+<p>这里需要注意的是：IDA的反汇编并不完美，有时候需要表现为地址会表现成诸如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(_DWORD *)(a1 + <span class="number">4</span> * i) <span class="comment">// a1[i]  a1是int数组</span></span><br></pre></td></tr></table></figure>
+
+<p>这个样子，需要手动替换一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">sub_4010F0</span><span class="params">(<span class="keyword">char</span> *a1, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// esi</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v6; <span class="comment">// edx</span></span><br><span class="line"></span><br><span class="line">  result = a3;</span><br><span class="line">  <span class="keyword">for</span> ( i = a2; i &lt;= a3; a2 = i )</span><br><span class="line">  &#123;</span><br><span class="line">    v5 = i;</span><br><span class="line">    v6 = a1[i];</span><br><span class="line">    <span class="keyword">if</span> ( a2 &lt; result &amp;&amp; i &lt; result )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v6 &gt;a1[result])</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span> ( i &gt;= result )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          ++i;</span><br><span class="line">          a1[v5] = a1[result];</span><br><span class="line">          <span class="keyword">if</span> ( i &gt;= result )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">while</span> ( a1[i] &lt;= v6 )</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> ( ++i &gt;= result )</span><br><span class="line">              <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> ( i &gt;= result )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          v5 = i;</span><br><span class="line">          a1[result] = a1[i];</span><br><span class="line">        &#125;</span><br><span class="line">        --result;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( i &lt; result );</span><br><span class="line">    &#125;</span><br><span class="line">LABEL_13:</span><br><span class="line">    a1[result] = v6;</span><br><span class="line">    sub_4010F0(a1, a2, i - <span class="number">1</span>);</span><br><span class="line">    result = a3;</span><br><span class="line">    ++i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> str[] = &#123;<span class="number">90</span>,<span class="number">74</span>,<span class="number">83</span>,<span class="number">69</span>,<span class="number">67</span>,<span class="number">97</span>,<span class="number">78</span>,<span class="number">72</span>,<span class="number">51</span>,<span class="number">110</span>,<span class="number">103</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	<span class="built_in">cout</span> &lt;&lt; <span class="string">"origin : "</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	sub_4010F0(str, <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line"> 	<span class="built_in">cout</span> &lt;&lt; <span class="string">"afterp : "</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) <span class="built_in">cout</span> &lt;&lt; str[i];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="https://www.superbed.cn/item/5f2a5dc514195aa594d6af29" alt="img"></p>
+<p>前两个字符（U和J）就都找到了。</p>
+<p>最后进行base64解密（注意代码里的顺序是反的）：</p>
+<p><img src="https://www.superbed.cn/item/5f2a5e2114195aa594d6dd95" alt="img"></p>
+<p>得到flag{UJWP1jMp}</p>
+<p><strong>牢骚</strong></p>
+<p>​    由于MessageBoxA里面的内容我没翻译出来，所以做的时候是十分迷茫的，完全不知道方向对不对，只能走一步是一步QWQ。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/04/buuctf-re-1/" rel="next" title="buuctf-re-1">
+                <i class="fa fa-chevron-left"></i> buuctf-re-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
