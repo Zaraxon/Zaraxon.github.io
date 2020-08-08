@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="百度能力++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF reverse 爆破 文件头">
+<meta property="og:url" content="http://yoursite.com/2020/08/06/buuctf-re-4/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="百度能力++">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2e507714195aa59451ae69">
+<meta property="og:image" content="https://www.superbed.cn/item/5f2e541514195aa594536eb2">
+<meta property="article:published_time" content="2020-08-06T07:47:00.000Z">
+<meta property="article:modified_time" content="2020-08-08T07:29:24.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f2e507714195aa59451ae69">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/06/buuctf-re-4/"/>
+
+
+
+
+
+  <title>BUUCTF reverse 爆破 文件头 | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/buuctf-re-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF reverse 爆破 文件头</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T15:47:00+08:00">
+                2020-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  百度能力++
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先查壳，没查到不贴了。</p>
+<p>丢进IDA反汇编一下看main_0函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main_0</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  DWORD v0; <span class="comment">// eax</span></span><br><span class="line">  DWORD v1; <span class="comment">// eax</span></span><br><span class="line">  CHAR <span class="keyword">String</span>; <span class="comment">// [esp+4Ch] [ebp-310h]</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// [esp+150h] [ebp-20Ch]</span></span><br><span class="line">  CHAR String1; <span class="comment">// [esp+154h] [ebp-208h]</span></span><br><span class="line">  BYTE pbData; <span class="comment">// [esp+258h] [ebp-104h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(&amp;pbData, <span class="number">0</span>, <span class="number">0x104</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(&amp;String1, <span class="number">0</span>, <span class="number">0x104</span>u);</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"pls input the first passwd(1): "</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;pbData);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>((<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;pbData) != <span class="number">6</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Must be 6 characters!\n"</span>);</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  v4 = atoi((<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;pbData);</span><br><span class="line">  <span class="keyword">if</span> ( v4 &lt; <span class="number">100000</span> )</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">  <span class="built_in">strcat</span>((<span class="keyword">char</span> *)&amp;pbData, <span class="string">"@DBApp"</span>);</span><br><span class="line">  v0 = <span class="built_in">strlen</span>((<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;pbData);</span><br><span class="line">  sub_40100A(&amp;pbData, v0, &amp;String1);</span><br><span class="line">  <span class="keyword">if</span> ( !_strcmpi(&amp;String1, <span class="string">"6E32D0943418C2C33385BC35A1470250DD8923A9"</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"continue...\n\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"pls input the first passwd(2): "</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;<span class="keyword">String</span>, <span class="number">0</span>, <span class="number">0x104</span>u);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;<span class="keyword">String</span>);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">strlen</span>(&amp;<span class="keyword">String</span>) != <span class="number">6</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"Must be 6 characters!\n"</span>);</span><br><span class="line">      ExitProcess(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">strcat</span>(&amp;<span class="keyword">String</span>, (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;pbData);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;String1, <span class="number">0</span>, <span class="number">0x104</span>u);</span><br><span class="line">    v1 = <span class="built_in">strlen</span>(&amp;<span class="keyword">String</span>);</span><br><span class="line">    sub_401019((BYTE *)&amp;<span class="keyword">String</span>, v1, &amp;String1);</span><br><span class="line">    <span class="keyword">if</span> ( !_strcmpi(<span class="string">"27019e688a4e62a649fd99cadaafdb4e"</span>, &amp;String1) )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( !sub_40100F(&amp;<span class="keyword">String</span>) )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Error!!\n"</span>);</span><br><span class="line">        ExitProcess(<span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"bye ~~\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        从头往后看，发现第一部分让输入一个密码，密码长度必须是6位，并且atoi函数保证了这个密码是个数字。但之后将密码后面接上””@DBApp”并经过了sub_40100A函数的处理并且给String1赋值了（这里看到，输入的是密码比较的却是String1，二者之间肯定有关联）。点进去看一下做了什么操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">sub_401230</span><span class="params">(BYTE *pbData, DWORD dwDataLen, LPSTR lpString1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  DWORD i; <span class="comment">// [esp+4Ch] [ebp-28h]</span></span><br><span class="line">  CHAR String2; <span class="comment">// [esp+50h] [ebp-24h]</span></span><br><span class="line">  BYTE v6[<span class="number">20</span>]; <span class="comment">// [esp+54h] [ebp-20h]</span></span><br><span class="line">  DWORD pdwDataLen; <span class="comment">// [esp+68h] [ebp-Ch]</span></span><br><span class="line">  HCRYPTHASH phHash; <span class="comment">// [esp+6Ch] [ebp-8h]</span></span><br><span class="line">  HCRYPTPROV phProv; <span class="comment">// [esp+70h] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( !CryptAcquireContextA(&amp;phProv, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1u</span>, <span class="number">0xF0000000</span>) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( CryptCreateHash(phProv, <span class="number">0x8004</span>u, <span class="number">0</span>, <span class="number">0</span>, &amp;phHash) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( CryptHashData(phHash, pbData, dwDataLen, <span class="number">0</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      CryptGetHashParam(phHash, <span class="number">2u</span>, v6, &amp;pdwDataLen, <span class="number">0</span>);</span><br><span class="line">      *lpString1 = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; pdwDataLen; ++i )</span><br><span class="line">      &#123;</span><br><span class="line">        wsprintfA(&amp;String2, <span class="string">"%02X"</span>, v6[i]);</span><br><span class="line">        lstrcatA(lpString1, &amp;String2);</span><br><span class="line">      &#125;</span><br><span class="line">      CryptDestroyHash(phHash);</span><br><span class="line">      CryptReleaseContext(phProv, <span class="number">0</span>);</span><br><span class="line">      result = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      CryptDestroyHash(phHash);</span><br><span class="line">      CryptReleaseContext(phProv, <span class="number">0</span>);</span><br><span class="line">      result = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    CryptReleaseContext(phProv, <span class="number">0</span>);</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        一眼看过去七八个没见过的函数，害怕。</p>
+<p>​        只好慢慢百度。</p>
+<p>​        查到的结果是，CryptCreateHash是创建哈希对象，其中的0x8004控制使用的哈希算法为sha1，CryptHashData用来哈希数据，CryptGetHashParam用来得到哈希后的值简单看一下中间的for循环，里面把得到的哈希值（存在v6中）转成字符串的形式存进lpString1即之前的String1中。</p>
+<p>​        那么第一部分问题就明晰了，程序做的事情就是把输入的密码哈希一下存进String1然后比较哈希值，那么下一步就是写脚本爆破，简单算一下时间复杂度大约1e6，就算写python问题也不大：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">for</span> i int range(<span class="number">100000</span>, <span class="number">1000000</span>) : </span><br><span class="line">	sh1 = sha1(str(i).encode(<span class="string">'utf-8'</span>))</span><br><span class="line">	<span class="keyword">if</span> (sh1.hexdigest() == <span class="string">'6e32d0943418c2c33385bc35a1470250dd8923a9'</span>) : </span><br><span class="line">        print(str(i))</span><br></pre></td></tr></table></figure>
+
+<p>得到第一个密码 ： 123321</p>
+<p>过了第一关来看第二关</p>
+<p>观察前一部分发现还是要输入一个密码，但这次没有了数字限制，没有其他操作的话直接爆破肯定行不通。往下看，看到了讲之前的字符串接在第二个密码后面传进了sub_401019，点进去，很遗憾是跟上一个加密函数一样的东西，这意味着爆破这条路是堵死了。</p>
+<p>那么接下来，只剩下了最后一个函数还没看：sub_40100F。点进去</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> __cdecl <span class="title">sub_4014D0</span><span class="params">(LPCSTR lpString)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  LPCVOID lpBuffer; <span class="comment">// [esp+50h] [ebp-1Ch]</span></span><br><span class="line">  DWORD NumberOfBytesWritten; <span class="comment">// [esp+58h] [ebp-14h]</span></span><br><span class="line">  DWORD nNumberOfBytesToWrite; <span class="comment">// [esp+5Ch] [ebp-10h]</span></span><br><span class="line">  HGLOBAL hResData; <span class="comment">// [esp+60h] [ebp-Ch]</span></span><br><span class="line">  HRSRC hResInfo; <span class="comment">// [esp+64h] [ebp-8h]</span></span><br><span class="line">  HANDLE hFile; <span class="comment">// [esp+68h] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  hFile = <span class="number">0</span>;</span><br><span class="line">  hResData = <span class="number">0</span>;</span><br><span class="line">  nNumberOfBytesToWrite = <span class="number">0</span>;</span><br><span class="line">  NumberOfBytesWritten = <span class="number">0</span>;</span><br><span class="line">  hResInfo = FindResourceA(<span class="number">0</span>, (LPCSTR)<span class="number">0x65</span>, <span class="string">"AAA"</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !hResInfo )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  nNumberOfBytesToWrite = SizeofResource(<span class="number">0</span>, hResInfo);</span><br><span class="line">  hResData = LoadResource(<span class="number">0</span>, hResInfo);</span><br><span class="line">  <span class="keyword">if</span> ( !hResData )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  lpBuffer = LockResource(hResData);</span><br><span class="line">  sub_401005(lpString, (<span class="keyword">int</span>)lpBuffer, nNumberOfBytesToWrite);</span><br><span class="line">  hFile = CreateFileA(<span class="string">"dbapp.rtf"</span>, <span class="number">0x10000000</span>u, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2u</span>, <span class="number">0x80</span>u, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( hFile == (HANDLE)<span class="number">-1</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( !WriteFile(hFile, lpBuffer, nNumberOfBytesToWrite, &amp;NumberOfBytesWritten, <span class="number">0</span>) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  CloseHandle(hFile);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        又是一堆没见过的函数，但这次的功能还比较显而易见，简单百度一下发现除了传进来的内容之外其他参数对于内容没什么影响，就是读取一个叫AAA的文件（句柄为lpBuffer），然后执行sub_401005，最后讲经过处理的传进来的内容写进文件。</p>
+<p>sub_401005，点进去：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> __cdecl <span class="title">sub_401420</span><span class="params">(LPCSTR lpString, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> i; <span class="comment">// [esp+4Ch] [ebp-Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// [esp+54h] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  v5 = lstrlenA(lpString);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; ; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    result = i;</span><br><span class="line">    <span class="keyword">if</span> ( i &gt;= a3 )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    *(_BYTE *)(i + a2) ^= lpString[i % v5];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现就是将传进来的字符串（密码2 + 123321 + @DBApp）和文件AAA中的数据依次做异或。</p>
+<p>从dalao博客中找到了一个好用的工具resource hacker，用它打开题目找到AAA</p>
+<p>​        <img src="https://www.superbed.cn/item/5f2e507714195aa59451ae69" alt="img"></p>
+<p>到此为止，我们的根本问题还是没解决：密码2是什么？</p>
+<p>这里，注意到CreateFile中，文件后缀是.rtf，如果我们将它作为一个rtf文件打开，那么它的文件头必然是rtf的文件头</p>
+<p>也就是说，只要rtf的文件头够6位，那么我们就得到了密码2跟一些固定数据异或的结果，就等于得到了密码。</p>
+<p>看一下rtf的文件头：{\rtfl</p>
+<p>写个脚本尝试一下（其实就6个数据手动也不费劲）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AAA = [<span class="number">0x05</span>, <span class="number">0x7d</span>, <span class="number">0x41</span>, <span class="number">0x15</span>, <span class="number">0x26</span>, <span class="number">0x01</span>]</span><br><span class="line">rtf = <span class="string">'&#123;\\rtfl'</span> <span class="comment">##这里注意转义问题</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">6</span>) :</span><br><span class="line">    print(chr(ord(rtf[i]) ^ AAA[i]))</span><br></pre></td></tr></table></figure>
+
+<p>得到六个字符 ~!3a@0</p>
+<p>输入进去，成功了，得到的dbapp.rtf中的flag：<img src="https://www.superbed.cn/item/5f2e541514195aa594536eb2" alt="img"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/05/buuctf-re-2/" rel="next" title="buuctf-re-2">
+                <i class="fa fa-chevron-left"></i> buuctf-re-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/06/buuctf-re-3/" rel="prev" title="BUUCTF reverse NOP 代码段与数据段">
+                BUUCTF reverse NOP 代码段与数据段 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
