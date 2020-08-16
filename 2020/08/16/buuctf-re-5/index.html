@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="妹想到的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF reverse .fini">
+<meta property="og:url" content="http://yoursite.com/2020/08/16/buuctf-re-5/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="妹想到的">
+<meta property="og:image" content="https://www.superbed.cn/item/5f391f4314195aa594577a44">
+<meta property="og:image" content="https://www.superbed.cn/item/5f3922a514195aa59458486a">
+<meta property="og:image" content="https://www.superbed.cn/item/5f39248414195aa59458ab6c">
+<meta property="og:image" content="https://www.superbed.cn/item/5f3925b814195aa59458fc49">
+<meta property="og:image" content="https://www.superbed.cn/item/5f39287314195aa59459bf2f">
+<meta property="article:published_time" content="2020-08-16T11:47:00.000Z">
+<meta property="article:modified_time" content="2020-08-16T12:45:24.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f391f4314195aa594577a44">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/16/buuctf-re-5/"/>
+
+
+
+
+
+  <title>BUUCTF reverse .fini | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/16/buuctf-re-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF reverse .fini</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-16T19:47:00+08:00">
+                2020-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  妹想到的
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2019红帽杯-easyRE"><a href="#2019红帽杯-easyRE" class="headerlink" title="[2019红帽杯]easyRE"></a>[2019红帽杯]easyRE</h2><p>查壳没查到不贴了，拖进ida64</p>
+<p><img src="https://www.superbed.cn/item/5f391f4314195aa594577a44" alt="img"></p>
+<p>十分可疑，点进交叉引用找到调用者：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">signed</span> __int64 <span class="title">sub_4009C6</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> *v0; <span class="comment">// rsi</span></span><br><span class="line">  <span class="keyword">char</span> *v1; <span class="comment">// rdi</span></span><br><span class="line">  __int64 v2; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v4; <span class="comment">// rax</span></span><br><span class="line">  __int64 v5; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v6; <span class="comment">// ST10_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v7; <span class="comment">// ST18_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v8; <span class="comment">// ST20_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v9; <span class="comment">// ST28_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v10; <span class="comment">// ST30_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v11; <span class="comment">// ST38_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v12; <span class="comment">// ST40_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v13; <span class="comment">// ST48_8</span></span><br><span class="line">  <span class="keyword">const</span> __m128i *v14; <span class="comment">// ST50_8</span></span><br><span class="line">  __int64 v15; <span class="comment">// ST58_8</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+Ch] [rbp-114h]</span></span><br><span class="line">  <span class="keyword">char</span> v17; <span class="comment">// [rsp+60h] [rbp-C0h]</span></span><br><span class="line">  <span class="keyword">char</span> v18; <span class="comment">// [rsp+61h] [rbp-BFh]</span></span><br><span class="line">  <span class="keyword">char</span> v19; <span class="comment">// [rsp+62h] [rbp-BEh]</span></span><br><span class="line">  <span class="keyword">char</span> v20; <span class="comment">// [rsp+63h] [rbp-BDh]</span></span><br><span class="line">  <span class="keyword">char</span> v21; <span class="comment">// [rsp+64h] [rbp-BCh]</span></span><br><span class="line">  <span class="keyword">char</span> v22; <span class="comment">// [rsp+65h] [rbp-BBh]</span></span><br><span class="line">  <span class="keyword">char</span> v23; <span class="comment">// [rsp+66h] [rbp-BAh]</span></span><br><span class="line">  <span class="keyword">char</span> v24; <span class="comment">// [rsp+67h] [rbp-B9h]</span></span><br><span class="line">  <span class="keyword">char</span> v25; <span class="comment">// [rsp+68h] [rbp-B8h]</span></span><br><span class="line">  <span class="keyword">char</span> v26; <span class="comment">// [rsp+69h] [rbp-B7h]</span></span><br><span class="line">  <span class="keyword">char</span> v27; <span class="comment">// [rsp+6Ah] [rbp-B6h]</span></span><br><span class="line">  <span class="keyword">char</span> v28; <span class="comment">// [rsp+6Bh] [rbp-B5h]</span></span><br><span class="line">  <span class="keyword">char</span> v29; <span class="comment">// [rsp+6Ch] [rbp-B4h]</span></span><br><span class="line">  <span class="keyword">char</span> v30; <span class="comment">// [rsp+6Dh] [rbp-B3h]</span></span><br><span class="line">  <span class="keyword">char</span> v31; <span class="comment">// [rsp+6Eh] [rbp-B2h]</span></span><br><span class="line">  <span class="keyword">char</span> v32; <span class="comment">// [rsp+6Fh] [rbp-B1h]</span></span><br><span class="line">  <span class="keyword">char</span> v33; <span class="comment">// [rsp+70h] [rbp-B0h]</span></span><br><span class="line">  <span class="keyword">char</span> v34; <span class="comment">// [rsp+71h] [rbp-AFh]</span></span><br><span class="line">  <span class="keyword">char</span> v35; <span class="comment">// [rsp+72h] [rbp-AEh]</span></span><br><span class="line">  <span class="keyword">char</span> v36; <span class="comment">// [rsp+73h] [rbp-ADh]</span></span><br><span class="line">  <span class="keyword">char</span> v37; <span class="comment">// [rsp+74h] [rbp-ACh]</span></span><br><span class="line">  <span class="keyword">char</span> v38; <span class="comment">// [rsp+75h] [rbp-ABh]</span></span><br><span class="line">  <span class="keyword">char</span> v39; <span class="comment">// [rsp+76h] [rbp-AAh]</span></span><br><span class="line">  <span class="keyword">char</span> v40; <span class="comment">// [rsp+77h] [rbp-A9h]</span></span><br><span class="line">  <span class="keyword">char</span> v41; <span class="comment">// [rsp+78h] [rbp-A8h]</span></span><br><span class="line">  <span class="keyword">char</span> v42; <span class="comment">// [rsp+79h] [rbp-A7h]</span></span><br><span class="line">  <span class="keyword">char</span> v43; <span class="comment">// [rsp+7Ah] [rbp-A6h]</span></span><br><span class="line">  <span class="keyword">char</span> v44; <span class="comment">// [rsp+7Bh] [rbp-A5h]</span></span><br><span class="line">  <span class="keyword">char</span> v45; <span class="comment">// [rsp+7Ch] [rbp-A4h]</span></span><br><span class="line">  <span class="keyword">char</span> v46; <span class="comment">// [rsp+7Dh] [rbp-A3h]</span></span><br><span class="line">  <span class="keyword">char</span> v47; <span class="comment">// [rsp+7Eh] [rbp-A2h]</span></span><br><span class="line">  <span class="keyword">char</span> v48; <span class="comment">// [rsp+7Fh] [rbp-A1h]</span></span><br><span class="line">  <span class="keyword">char</span> v49; <span class="comment">// [rsp+80h] [rbp-A0h]</span></span><br><span class="line">  <span class="keyword">char</span> v50; <span class="comment">// [rsp+81h] [rbp-9Fh]</span></span><br><span class="line">  <span class="keyword">char</span> v51; <span class="comment">// [rsp+82h] [rbp-9Eh]</span></span><br><span class="line">  <span class="keyword">char</span> v52; <span class="comment">// [rsp+83h] [rbp-9Dh]</span></span><br><span class="line">  <span class="keyword">char</span> v53[<span class="number">32</span>]; <span class="comment">// [rsp+90h] [rbp-90h]</span></span><br><span class="line">  <span class="keyword">int</span> v54; <span class="comment">// [rsp+B0h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">char</span> v55; <span class="comment">// [rsp+B4h] [rbp-6Ch]</span></span><br><span class="line">  <span class="keyword">char</span> v56; <span class="comment">// [rsp+C0h] [rbp-60h]</span></span><br><span class="line">  <span class="keyword">char</span> v57; <span class="comment">// [rsp+E7h] [rbp-39h]</span></span><br><span class="line">  <span class="keyword">char</span> v58; <span class="comment">// [rsp+100h] [rbp-20h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v59; <span class="comment">// [rsp+108h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  v59 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v17 = <span class="number">73</span>;</span><br><span class="line">  v18 = <span class="number">111</span>;</span><br><span class="line">  v19 = <span class="number">100</span>;</span><br><span class="line">  v20 = <span class="number">108</span>;</span><br><span class="line">  v21 = <span class="number">62</span>;</span><br><span class="line">  v22 = <span class="number">81</span>;</span><br><span class="line">  v23 = <span class="number">110</span>;</span><br><span class="line">  v24 = <span class="number">98</span>;</span><br><span class="line">  v25 = <span class="number">40</span>;</span><br><span class="line">  v26 = <span class="number">111</span>;</span><br><span class="line">  v27 = <span class="number">99</span>;</span><br><span class="line">  v28 = <span class="number">121</span>;</span><br><span class="line">  v29 = <span class="number">127</span>;</span><br><span class="line">  v30 = <span class="number">121</span>;</span><br><span class="line">  v31 = <span class="number">46</span>;</span><br><span class="line">  v32 = <span class="number">105</span>;</span><br><span class="line">  v33 = <span class="number">127</span>;</span><br><span class="line">  v34 = <span class="number">100</span>;</span><br><span class="line">  v35 = <span class="number">96</span>;</span><br><span class="line">  v36 = <span class="number">51</span>;</span><br><span class="line">  v37 = <span class="number">119</span>;</span><br><span class="line">  v38 = <span class="number">125</span>;</span><br><span class="line">  v39 = <span class="number">119</span>;</span><br><span class="line">  v40 = <span class="number">101</span>;</span><br><span class="line">  v41 = <span class="number">107</span>;</span><br><span class="line">  v42 = <span class="number">57</span>;</span><br><span class="line">  v43 = <span class="number">123</span>;</span><br><span class="line">  v44 = <span class="number">105</span>;</span><br><span class="line">  v45 = <span class="number">121</span>;</span><br><span class="line">  v46 = <span class="number">61</span>;</span><br><span class="line">  v47 = <span class="number">126</span>;</span><br><span class="line">  v48 = <span class="number">121</span>;</span><br><span class="line">  v49 = <span class="number">76</span>;</span><br><span class="line">  v50 = <span class="number">64</span>;</span><br><span class="line">  v51 = <span class="number">69</span>;</span><br><span class="line">  v52 = <span class="number">67</span>;</span><br><span class="line">  <span class="built_in">memset</span>(v53, <span class="number">0</span>, <span class="keyword">sizeof</span>(v53));</span><br><span class="line">  v54 = <span class="number">0</span>;</span><br><span class="line">  v55 = <span class="number">0</span>;</span><br><span class="line">  v0 = v53;</span><br><span class="line">  sub_4406E0(<span class="number">0L</span>L, (__int64)v53);</span><br><span class="line">  v55 = <span class="number">0</span>;</span><br><span class="line">  v1 = v53;</span><br><span class="line">  LODWORD(v2) = sub_424BA0((<span class="keyword">const</span> __m128i *)v53);</span><br><span class="line">  <span class="keyword">if</span> ( v2 == <span class="number">36</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; ; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      v1 = v53;</span><br><span class="line">      LODWORD(v4) = sub_424BA0((<span class="keyword">const</span> __m128i *)v53);</span><br><span class="line">      <span class="keyword">if</span> ( i &gt;= v4 )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int8)(v53[i] ^ i) != *(&amp;v17 + i) )</span><br><span class="line">      &#123;</span><br><span class="line">        result = <span class="number">4294967294L</span>L;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sub_410CC0(<span class="string">"continue!"</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;v56, <span class="number">0</span>, <span class="number">0x40</span>uLL);</span><br><span class="line">    v58 = <span class="number">0</span>;</span><br><span class="line">    v0 = &amp;v56;</span><br><span class="line">    sub_4406E0(<span class="number">0L</span>L, (__int64)&amp;v56);</span><br><span class="line">    v57 = <span class="number">0</span>;</span><br><span class="line">    v1 = &amp;v56;</span><br><span class="line">    LODWORD(v5) = sub_424BA0((<span class="keyword">const</span> __m128i *)&amp;v56);</span><br><span class="line">    <span class="keyword">if</span> ( v5 == <span class="number">39</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v6 = (<span class="keyword">const</span> __m128i *)sub_400E44((<span class="keyword">const</span> __m128i *)&amp;v56);</span><br><span class="line">      v7 = (<span class="keyword">const</span> __m128i *)sub_400E44(v6);</span><br><span class="line">      v8 = (<span class="keyword">const</span> __m128i *)sub_400E44(v7);</span><br><span class="line">      v9 = (<span class="keyword">const</span> __m128i *)sub_400E44(v8);</span><br><span class="line">      v10 = (<span class="keyword">const</span> __m128i *)sub_400E44(v9);</span><br><span class="line">      v11 = (<span class="keyword">const</span> __m128i *)sub_400E44(v10);</span><br><span class="line">      v12 = (<span class="keyword">const</span> __m128i *)sub_400E44(v11);</span><br><span class="line">      v13 = (<span class="keyword">const</span> __m128i *)sub_400E44(v12);</span><br><span class="line">      v14 = (<span class="keyword">const</span> __m128i *)sub_400E44(v13);</span><br><span class="line">      v15 = sub_400E44(v14);</span><br><span class="line">      v0 = off_6CC090;</span><br><span class="line">      v1 = (<span class="keyword">char</span> *)v15;</span><br><span class="line">      <span class="keyword">if</span> ( !(<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_400360(v15, off_6CC090) )</span><br><span class="line">      &#123;</span><br><span class="line">        sub_410CC0(<span class="string">"You found me!!!"</span>);</span><br><span class="line">        v1 = <span class="string">"bye bye~"</span>;</span><br><span class="line">        sub_410CC0(<span class="string">"bye bye~"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      result = <span class="number">0L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      result = <span class="number">4294967293L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    result = <span class="number">0xFFFFFFFF</span>LL;</span><br><span class="line">  &#125;</span><br><span class="line">LABEL_13:</span><br><span class="line">  <span class="keyword">if</span> ( __readfsqword(<span class="number">0x28</span>u) != v59 )</span><br><span class="line">    sub_444020(v1, v0);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单看一遍，代码分两层，continue之前和之后。</p>
+<p>并且两部分分别有一轮异或+比较的操作</p>
+<p>先看第一部分，明显v17~v52是一个字符串，只要按照for循环里面进行逆操作应该就没问题。</p>
+<p>sub_424BA0没看懂，但从v4在for中的作用看来大概率是个类似strlen的函数，不做细究</p>
+<p>sub_4406E0里面有linux的sys_call因此大概率是一个输入函数，不做细究</p>
+<p>那么简单写个脚本得出第一部分输入（我自己的脚本不小心删了又懒得重新抄一堆数字就只写了个结果）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Info:The first four chars are &#39;flag&#39;</span><br></pre></td></tr></table></figure>
+
+<p>没啥用，来到第二部分，v56是个字符串输入，现在疑点在于sub_400E44上，点进去注意到base64的标志性字符串：</p>
+<p><img src="https://www.superbed.cn/item/5f3922a514195aa59458486a" alt="img"></p>
+<p>点进去确认一下没有什么猫腻，那么暂时就假设这部分就是一个base64加密</p>
+<p>返回，那么这部分的逻辑就是把输入字符串进行10次base64加密，我们只要解密就好了</p>
+<p>于是解密得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;bbs.pediy.com&#x2F;thread-254172.htm</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.superbed.cn/item/5f39248414195aa59458ab6c" alt="img"></p>
+<p>好吧那我点进去</p>
+<p>本来我以为，这可能是什么梦幻联动？或者可能在网页源代码里面？</p>
+<p>事实证明我还是太天真了</p>
+<p>以下内容参见 ：blog.csdn.net/Palmer9/article/details/103940709</p>
+<p>问题在于这个常量（鬼知道是怎么发现的）：</p>
+<p><img src="https://www.superbed.cn/item/5f3925b814195aa59458fc49" alt="img"></p>
+<p>从这个常量入手，点进去是这样一段代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_400D35</span><span class="params">(__int64 a1, __int64 a2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v2; <span class="comment">// rdi</span></span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v4; <span class="comment">// rt1</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// [rsp+Ch] [rbp-24h]</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> i; <span class="comment">// [rsp+10h] [rbp-20h]</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> j; <span class="comment">// [rsp+14h] [rbp-1Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v8; <span class="comment">// [rsp+24h] [rbp-Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v9; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v9 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  v2 = <span class="number">0L</span>L;</span><br><span class="line">  v5 = sub_43FD20(<span class="number">0L</span>L) - qword_6CEE38;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">1233</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = v5;</span><br><span class="line">    sub_40F790(v5);</span><br><span class="line">    sub_40FE60();</span><br><span class="line">    sub_40FE60();</span><br><span class="line">    v5 = (<span class="keyword">unsigned</span> __int64)sub_40FE60() ^ <span class="number">0x98765432</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  v8 = v5;</span><br><span class="line">  <span class="keyword">if</span> ( ((<span class="keyword">unsigned</span> __int8)v5 ^ byte_6CC0A0[<span class="number">0</span>]) == <span class="number">102</span> &amp;&amp; (HIBYTE(v8) ^ (<span class="keyword">unsigned</span> __int8)byte_6CC0A3) == <span class="number">103</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt;= <span class="number">24</span>; ++j )</span><br><span class="line">    &#123;</span><br><span class="line">      v2 = (<span class="keyword">unsigned</span> __int8)(byte_6CC0A0[j] ^ *((_BYTE *)&amp;v8 + j % <span class="number">4</span>));</span><br><span class="line">      sub_410E90(v2);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  result = v4 ^ v9;</span><br><span class="line">  <span class="keyword">if</span> ( v4 != v9 )</span><br><span class="line">    sub_444020(v2, a2);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到一处比较：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( ((<span class="keyword">unsigned</span> __int8)v5 ^ byte_6CC0A0[<span class="number">0</span>]) == <span class="number">102</span> &amp;&amp; (HIBYTE(v8) ^ (<span class="keyword">unsigned</span> __int8)byte_6CC0A3) == <span class="number">103</span> )</span><br></pre></td></tr></table></figure>
+
+<p>102和103即f和g，那么就可以适当的猜测：v5这4个字节就是”flag”和一些常量的异或值</p>
+<p>下一步的循环中sub_410E90没有传地址，那么几乎不可能对现在的逻辑产生影响，忽略</p>
+<p>注意到v5本来就是flag和byte_6CC0A0的异或，循环中再异或就得到了flag，之前的信息中也提到前四个字符是flag，那么可以确定<strong>循环结果即是flag</strong></p>
+<p>那么循环逻辑即是，得到v8（即v5）和byte_6CC0A0每一位依次异或的值，逆向写脚本解出所有的字符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> v5[] = &#123;<span class="string">'f'</span>,<span class="string">'l'</span>,<span class="string">'a'</span>,<span class="string">'g'</span>&#125;;</span><br><span class="line">	<span class="keyword">unsigned</span> b0[] = &#123;<span class="number">0x40</span>,<span class="number">0x35</span>,<span class="number">0x20</span>,<span class="number">0x56</span>,<span class="number">0x5d</span>,</span><br><span class="line">	<span class="number">0x18</span>,<span class="number">0x22</span>,<span class="number">0x45</span>,<span class="number">0x17</span>,<span class="number">0x2f</span>,<span class="number">0x24</span>,<span class="number">0x6e</span>,<span class="number">0x62</span></span><br><span class="line">	,<span class="number">0x3c</span>,<span class="number">0x27</span>,<span class="number">0x54</span>,</span><br><span class="line">	<span class="number">0x48</span>,<span class="number">0x6c</span>,<span class="number">0x24</span>,<span class="number">0x6e</span>,<span class="number">0x72</span>,<span class="number">0x3c</span>,<span class="number">0x32</span>,</span><br><span class="line">	<span class="number">0x45</span>,<span class="number">0x5b</span>,<span class="number">0x00</span>,<span class="number">0x00</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) v5[i] = v5[i] ^ b0[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">24</span>; ++j )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%c"</span>, (<span class="keyword">char</span>)b0[j] ^ v5[j % <span class="number">4</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.superbed.cn/item/5f39287314195aa59459bf2f" alt="img"></p>
+<p><strong>后话</strong></p>
+<p>之后看wp的时候发现该函数为.fini段的调用。</p>
+<p>.fini段是程序正常结束时执行的代码，是进程终止代码的一部分</p>
+<p>感觉完全没有理由去注意这段数据，所以只能靠慢慢找？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/08/%E6%96%87%E4%BB%B6%E5%A4%B4s/" rel="next" title="各种文件的文件头">
+                <i class="fa fa-chevron-left"></i> 各种文件的文件头
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019红帽杯-easyRE"><span class="nav-text">[2019红帽杯]easyRE</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
