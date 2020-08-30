@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="bjB0IHNpTXAxZSBhdCBhMTEgUVdR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF simple CPP">
+<meta property="og:url" content="http://yoursite.com/2020/08/30/buuctf-re-6/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="bjB0IHNpTXAxZSBhdCBhMTEgUVdR">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b4d77160a154a6764bdd1">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b507d160a154a6765a24e">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b532e160a154a6766641e">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b5355160a154a67667323">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b53f4160a154a67669f77">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b555c160a154a67670571">
+<meta property="og:image" content="https://www.superbed.cn/item/5f4b58dc160a154a6768574a">
+<meta property="article:published_time" content="2020-08-30T06:48:00.000Z">
+<meta property="article:modified_time" content="2020-08-30T07:48:54.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f4b4d77160a154a6764bdd1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/30/buuctf-re-6/"/>
+
+
+
+
+
+  <title>BUUCTF simple CPP | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/30/buuctf-re-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF simple CPP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T14:48:00+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  bjB0IHNpTXAxZSBhdCBhMTEgUVdR
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查壳没查到就不放了，既然说了是个cpp就用ida64打开，通过提示字符串找到关键函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">sub_140001290</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">bool</span> v0; <span class="comment">// si</span></span><br><span class="line">  __int64 v1; <span class="comment">// rax</span></span><br><span class="line">  __int64 v2; <span class="comment">// r8</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 *v3; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 *Memory_xor; <span class="comment">// rbx</span></span><br><span class="line">  <span class="keyword">int</span> j; <span class="comment">// er10</span></span><br><span class="line">  __int64 i; <span class="comment">// r11</span></span><br><span class="line">  _BYTE *v7; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">void</span> **_Dst; <span class="comment">// r8</span></span><br><span class="line">  __int64 v9; <span class="comment">// rdi</span></span><br><span class="line">  __int64 v10; <span class="comment">// r15</span></span><br><span class="line">  __int64 v11; <span class="comment">// r12</span></span><br><span class="line">  __int64 v12; <span class="comment">// rbp</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> i1; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 *_Memory_xor; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v15; <span class="comment">// rdi</span></span><br><span class="line">  __int64 *v16; <span class="comment">// r14</span></span><br><span class="line">  __int64 v17; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v18; <span class="comment">// r13</span></span><br><span class="line">  _QWORD *v19; <span class="comment">// rdi</span></span><br><span class="line">  __int64 v20; <span class="comment">// r12</span></span><br><span class="line">  __int64 v21; <span class="comment">// r15</span></span><br><span class="line">  __int64 v22; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v23; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v24; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v25; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v26; <span class="comment">// r10</span></span><br><span class="line">  __int64 v27; <span class="comment">// rdi</span></span><br><span class="line">  __int64 v28; <span class="comment">// r8</span></span><br><span class="line">  <span class="keyword">bool</span> v29; <span class="comment">// dl</span></span><br><span class="line">  __int64 v30; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">void</span> *v31; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v32; <span class="comment">// rax</span></span><br><span class="line">  __int64 v33; <span class="comment">// rax</span></span><br><span class="line">  _BYTE *v34; <span class="comment">// rcx</span></span><br><span class="line">  __int64 v36; <span class="comment">// [rsp+20h] [rbp-68h]</span></span><br><span class="line">  <span class="keyword">void</span> *Memory; <span class="comment">// [rsp+30h] [rbp-58h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 _lim?; <span class="comment">// [rsp+40h] [rbp-48h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v39; <span class="comment">// [rsp+48h] [rbp-40h]</span></span><br><span class="line"></span><br><span class="line">  v0 = <span class="number">0</span>;</span><br><span class="line">  _lim? = <span class="number">0</span>i64;</span><br><span class="line">  v39 = <span class="number">15</span>i64;</span><br><span class="line">  LOBYTE(Memory) = <span class="number">0</span>;</span><br><span class="line">  v1 = sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"I'm a first timer of Logic algebra , how about you?"</span>);</span><br><span class="line">  <span class="built_in">std</span>::basic_ostream&lt;<span class="keyword">char</span>,<span class="built_in">std</span>::char_traits&lt;<span class="keyword">char</span>&gt;&gt;::<span class="keyword">operator</span>&lt;&lt;(v1, sub_140001B90);</span><br><span class="line">  sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"Let's start our game,Please input your flag:"</span>);</span><br><span class="line">  sub_140001DE0(<span class="built_in">std</span>::<span class="built_in">cin</span>, &amp;Memory, v2);</span><br><span class="line">  <span class="built_in">std</span>::basic_ostream&lt;<span class="keyword">char</span>,<span class="built_in">std</span>::char_traits&lt;<span class="keyword">char</span>&gt;&gt;::<span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::<span class="built_in">cout</span>, sub_140001B90);</span><br><span class="line">  <span class="keyword">if</span> ( _lim? - <span class="number">5</span> &gt; <span class="number">0x19</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v33 = sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"Wrong input ,no GXY&#123;&#125; in input words"</span>);</span><br><span class="line">    <span class="built_in">std</span>::basic_ostream&lt;<span class="keyword">char</span>,<span class="built_in">std</span>::char_traits&lt;<span class="keyword">char</span>&gt;&gt;::<span class="keyword">operator</span>&lt;&lt;(v33, sub_140001B90);</span><br><span class="line">    <span class="keyword">goto</span> LABEL_45;</span><br><span class="line">  &#125;</span><br><span class="line">  v3 = (<span class="keyword">unsigned</span> __int8 *)j__malloc(<span class="number">0x20</span>ui64);</span><br><span class="line">  Memory_xor = v3;</span><br><span class="line">  <span class="keyword">if</span> ( v3 )</span><br><span class="line">  &#123;</span><br><span class="line">    *(_QWORD *)v3 = <span class="number">0</span>i64;</span><br><span class="line">    *((_QWORD *)v3 + <span class="number">1</span>) = <span class="number">0</span>i64;</span><br><span class="line">    *((_QWORD *)v3 + <span class="number">2</span>) = <span class="number">0</span>i64;</span><br><span class="line">    *((_QWORD *)v3 + <span class="number">3</span>) = <span class="number">0</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    Memory_xor = <span class="number">0</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( _lim? &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    i = <span class="number">0</span>i64;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      v7 = &amp;Memory;</span><br><span class="line">      <span class="keyword">if</span> ( v39 &gt;= <span class="number">0x10</span> )</span><br><span class="line">        v7 = Memory;</span><br><span class="line">      _Dst = &amp;Dst;</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int64)qword_140006060 &gt;= <span class="number">0x10</span> )</span><br><span class="line">        _Dst = (<span class="keyword">void</span> **)Dst;</span><br><span class="line">      Memory_xor[i] = v7[i] ^ *((_BYTE *)_Dst + j++ % <span class="number">27</span>);</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( j &lt; _lim? );</span><br><span class="line">  &#125;</span><br><span class="line">  v9 = <span class="number">0</span>i64;</span><br><span class="line">  v10 = <span class="number">0</span>i64;</span><br><span class="line">  v11 = <span class="number">0</span>i64;</span><br><span class="line">  v12 = <span class="number">0</span>i64;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">signed</span> <span class="keyword">int</span>)_lim? &gt; <span class="number">30</span> )</span><br><span class="line">    <span class="keyword">goto</span> LABEL_28;</span><br><span class="line">  i1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">signed</span> <span class="keyword">int</span>)_lim? &lt;= <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">goto</span> LABEL_28;</span><br><span class="line">  _Memory_xor = Memory_xor;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    v15 = *_Memory_xor + v9;</span><br><span class="line">    ++i1;</span><br><span class="line">    ++_Memory_xor;</span><br><span class="line">    <span class="keyword">switch</span> ( i1 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">        v12 = v15;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_24;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">16</span>:</span><br><span class="line">        v11 = v15;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_24;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">24</span>:</span><br><span class="line">        v10 = v15;</span><br><span class="line">LABEL_24:</span><br><span class="line">        v15 = <span class="number">0</span>i64;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">32</span>:</span><br><span class="line">        sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"ERRO,out of range"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    v9 = v15 &lt;&lt; <span class="number">8</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( i1 &lt; (<span class="keyword">signed</span> <span class="keyword">int</span>)_lim? );</span><br><span class="line">  <span class="keyword">if</span> ( v12 )</span><br><span class="line">  &#123;</span><br><span class="line">    v16 = (__int64 *)j__malloc(<span class="number">0x20</span>ui64);</span><br><span class="line">    *v16 = v12;</span><br><span class="line">    v16[<span class="number">1</span>] = v11;</span><br><span class="line">    v16[<span class="number">2</span>] = v10;</span><br><span class="line">    v16[<span class="number">3</span>] = v9;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_29;</span><br><span class="line">  &#125;</span><br><span class="line">LABEL_28:</span><br><span class="line">  v16 = <span class="number">0</span>i64;</span><br><span class="line">LABEL_29:</span><br><span class="line">  v36 = v16[<span class="number">2</span>];</span><br><span class="line">  v17 = v16[<span class="number">1</span>];</span><br><span class="line">  v18 = *v16;</span><br><span class="line">  v19 = <span class="built_in">malloc</span>(<span class="number">0x20</span>ui64);</span><br><span class="line">  <span class="keyword">if</span> ( IsDebuggerPresent() )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"Hi , DO not debug me !"</span>);</span><br><span class="line">    Sleep(<span class="number">0x7D0</span>u);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  v20 = v17 &amp; v18;</span><br><span class="line">  *v19 = v17 &amp; v18;</span><br><span class="line">  v21 = v36 &amp; ~v18;</span><br><span class="line">  v19[<span class="number">1</span>] = v21;</span><br><span class="line">  v22 = ~v17;</span><br><span class="line">  v23 = v36 &amp; v22;</span><br><span class="line">  v19[<span class="number">2</span>] = v36 &amp; v22;</span><br><span class="line">  v24 = v18 &amp; v22;</span><br><span class="line">  v19[<span class="number">3</span>] = v24;</span><br><span class="line">  <span class="keyword">if</span> ( v21 != <span class="number">1176889593874</span>i64 )</span><br><span class="line">  &#123;</span><br><span class="line">    v19[<span class="number">1</span>] = <span class="number">0</span>i64;</span><br><span class="line">    v21 = <span class="number">0</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  v25 = v21 | v20 | v23 | v24;</span><br><span class="line">  v26 = v16[<span class="number">1</span>];</span><br><span class="line">  v27 = v16[<span class="number">2</span>];</span><br><span class="line">  v28 = v23 &amp; *v16 | v27 &amp; (v20 | v26 &amp; ~*v16 | ~(v26 | *v16));</span><br><span class="line">  v29 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( v28 == <span class="number">577031497978884115</span>i64 )</span><br><span class="line">    v29 = v25 == <span class="number">4483974544037412639</span>i64;</span><br><span class="line">  <span class="keyword">if</span> ( (v25 ^ v16[<span class="number">3</span>]) == <span class="number">4483974543195470111</span>i64 )</span><br><span class="line">    v0 = v29;</span><br><span class="line">  <span class="keyword">if</span> ( (v21 | v20 | v26 &amp; v27) != (~*v16 &amp; v27 | <span class="number">0xC00020130082C0C</span>i64) || v0 != <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"Wrong answer!try again"</span>);</span><br><span class="line">    j_j_free(Memory_xor);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    v30 = sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"Congratulations!flag is GXY&#123;"</span>);</span><br><span class="line">    v31 = &amp;Memory;</span><br><span class="line">    <span class="keyword">if</span> ( v39 &gt;= <span class="number">0x10</span> )</span><br><span class="line">      v31 = Memory;</span><br><span class="line">    v32 = sub_140001FD0(v30, v31, _lim?);</span><br><span class="line">    sub_1400019C0(v32, <span class="string">"&#125;"</span>);</span><br><span class="line">    j_j_free(Memory_xor);</span><br><span class="line">  &#125;</span><br><span class="line">LABEL_45:</span><br><span class="line">  <span class="keyword">if</span> ( v39 &gt;= <span class="number">0x10</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v34 = Memory;</span><br><span class="line">    <span class="keyword">if</span> ( v39 + <span class="number">1</span> &gt;= <span class="number">0x1000</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v34 = (_BYTE *)*((_QWORD *)Memory - <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int64)((_BYTE *)Memory - v34 - <span class="number">8</span>) &gt; <span class="number">0x1F</span> )</span><br><span class="line">        invalid_parameter_noinfo_noreturn();</span><br><span class="line">    &#125;</span><br><span class="line">    j_j_free(v34);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>i64;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>啊这，有些变量已经被我分析后改了名字QWQ</p>
+<p>简单浏览一下：</p>
+<p>1.输入部分，虽然调用了一些谜之函数但暂且猜测就是简单的输入函数</p>
+<p>2.中间的循环部分不知道有没有什么谜之处理</p>
+<p>3.最后有一段看起来会让人高速脱发的逻辑：</p>
+<p><img src="https://www.superbed.cn/item/5f4b4d77160a154a6764bdd1" alt="img"></p>
+<p>我个人习惯从正解的逻辑入手，先反推一部分，等到开始遇到难以反推的部分时再从前面开始看，因此我是先反推了这部分复杂的逻辑</p>
+<p>其实没有太好的方法，就是一点一点推</p>
+<p>不过有一个小小小小的技巧就是，分析复杂逻辑的时候，先找比较和赋值操作，一般来说赋值操作确定一个基准，然后经过一系列变换（通常是），最后得到结果进行比较。ida自带的高亮对于寻找某个变量的运算链十分好用，选中某个变量，然后从下往上找找到第一个赋值操作然后观察在从赋值操作到最后比较的这段代码中的所有赋值操作里面哪里出现了现在观察的这个变量在 = 左边，这样就找到了一个变量的运算链，将这个最后的比较运算式抄下来，不断替换掉运算式里面的变量（利用之前代码中的赋值操作）最后得到一个（可能很长的）由几个基准变量运算组成的算式（自己的忘保存了就套一下别人的）</p>
+<p>画风大致如下</p>
+<p><img src="https://www.superbed.cn/item/5f4b507d160a154a6765a24e" alt="img"></p>
+<p>可以看到，我先把最后的式子抄下来，然后先每次找一个变量，找到哪里对它赋值，用赋值运算的右边部分替换最后式子中对应的变量，如此往复，就可以得到最后那（几）个很长的式子</p>
+<p>最后将这些算式用z3求解：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">a,b,c,d = BitVecs(<span class="string">'a b c d'</span>,<span class="number">64</span>)</span><br><span class="line">s = Solver()</span><br><span class="line">s.add( c &amp; ~a == <span class="number">1176889593874</span> )</span><br><span class="line">s.add((<span class="number">1176889593874</span> | b &amp; a | b &amp; c) == (~a &amp; c | <span class="number">0xC00020130082C0C</span>))</span><br><span class="line">s.add((c &amp; ~a | (b &amp; a) | (c &amp; ~b) | (a &amp; ~b)) == <span class="number">4483974544037412639</span>)</span><br><span class="line">s.add((<span class="number">4483974544037412639</span> ^ d) == <span class="number">4483974543195470111</span>)</span><br><span class="line">s.add((c &amp; ~b) &amp; a | c &amp; ((b &amp; a) | b &amp; ~a | ~(b | a)) ==<span class="number">577031497978884115</span>)</span><br><span class="line"></span><br><span class="line">print(s.check())</span><br><span class="line">print(s.model())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##以下是运行结果</span></span><br><span class="line">sat</span><br><span class="line">[c = <span class="number">577031497978884115</span>,</span><br><span class="line"> a = <span class="number">4483973367147818765</span>,</span><br><span class="line"> b = <span class="number">919036181546085516</span>,</span><br><span class="line"> d = <span class="number">842073600</span>]</span><br></pre></td></tr></table></figure>
+
+<p>先拿着这个结果放一放，再往前碰到了一个循环，逆着分析不方便于是从前面开始看：</p>
+<p>观察一番后，重点落在了第一个循环处：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( _lim? &gt; <span class="number">0</span> )</span><br><span class="line">&#123;</span><br><span class="line">  i = <span class="number">0</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    v7 = &amp;Memory;</span><br><span class="line">    <span class="keyword">if</span> ( v39 &gt;= <span class="number">0x10</span> )</span><br><span class="line">      v7 = Memory;</span><br><span class="line">    _Dst = &amp;Dst;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int64)qword_140006060 &gt;= <span class="number">0x10</span> )</span><br><span class="line">      _Dst = (<span class="keyword">void</span> **)Dst;</span><br><span class="line">    Memory_xor[i] = v7[i] ^ *((_BYTE *)_Dst + j++ % <span class="number">27</span>);</span><br><span class="line">    ++i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( j &lt; _lim? );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑上基本就是一个按位异或没什么可说的，注意到_lim?变量没有看到任何修改，这很奇怪，后来看wp发现是由于地址相邻所以在输入函数中修改的</p>
+<p>但即使不知道这个我们也可以从他起的作用来猜出它大概是扮演了一个输入长度的角色</p>
+<p>现在Dst这个字符串常量令人好奇，点进去发现：</p>
+<p><img src="https://www.superbed.cn/item/5f4b532e160a154a6766641e" alt="img"></p>
+<p><img src="https://www.superbed.cn/item/5f4b5355160a154a67667323" alt="img"></p>
+<p>看一下xref发现不那么简单，看起来是动态生成的</p>
+<p>（其实从string窗口也可以发现猫腻，那个<img src="https://www.superbed.cn/item/5f4b53f4160a154a67669f77" alt="img">和Dst在某个函数中同时被调用，从Dst的xref_to中可以得知，不过难度要大很多）</p>
+<p>这里我用了x64dbg的反动调插件ScyllaHide绕过了反调试</p>
+<p>从输入部分开始观察，慢慢跟踪可以找到这个与输入字符串异或的字符串：<img src="https://www.superbed.cn/item/5f4b555c160a154a67670571" alt="img"></p>
+<p>ok那么这部分就解决了，看下一部分，也就是下一个循环：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    v15 = *_Memory_xor + v9;</span><br><span class="line">    ++i1;</span><br><span class="line">    ++_Memory_xor;</span><br><span class="line">    <span class="keyword">switch</span> ( i1 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">        v12 = v15;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_24;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">16</span>:</span><br><span class="line">        v11 = v15;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_24;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">24</span>:</span><br><span class="line">        v10 = v15;</span><br><span class="line">LABEL_24:</span><br><span class="line">        v15 = <span class="number">0</span>i64;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">32</span>:</span><br><span class="line">        sub_1400019C0(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"ERRO,out of range"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    v9 = v15 &lt;&lt; <span class="number">8</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>联系到后面对v16的几个部分的赋值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( v12 )</span><br><span class="line">&#123;</span><br><span class="line">  v16 = (__int64 *)j__malloc(<span class="number">0x20</span>ui64);</span><br><span class="line">  *v16 = v12;</span><br><span class="line">  v16[<span class="number">1</span>] = v11;</span><br><span class="line">  v16[<span class="number">2</span>] = v10;</span><br><span class="line">  v16[<span class="number">3</span>] = v9;</span><br><span class="line">  <span class="keyword">goto</span> LABEL_29;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以得知，这部分的逻辑是：</p>
+<p>每次将一个字节推进v15，满8个赋一次值，结果就是将之前异或得到的字符串原封不动的复制进v16而已</p>
+<p>结合之前解出来的v16各部分的值，最终异或一下得到结果（记得用0补满8个字节）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flag = [<span class="number">0x3e</span>,<span class="number">0x3a</span>,<span class="number">0x46</span>,<span class="number">0x05</span>,<span class="number">0x33</span>,<span class="number">0x28</span>,<span class="number">0x6f</span>,<span class="number">0x0d</span>,...,<span class="number">0x08</span>,<span class="number">0x02</span>,<span class="number">0x07</span>,<span class="number">0x17</span>,<span class="number">0x15</span>,<span class="number">0x3e</span>,<span class="number">0x30</span>,<span class="number">0x13</span>,<span class="number">0x32</span>,<span class="number">0x31</span>,<span class="number">0x06</span>,<span class="number">0x00</span>]</span><br><span class="line">s = <span class="string">''</span></span><br><span class="line">Dst = <span class="string">'i_will_check_is_debug_or_not'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(flag))</span><br><span class="line">	s += chr(ord(Dst[i]) ^ flag[i])</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+
+<p>得到：<img src="https://www.superbed.cn/item/5f4b58dc160a154a6768574a" alt="img"></p>
+<p>尬住了，仔细看一下发现正好是第二个部分出现了问题</p>
+<p>看wp发现第二部分有多解…比赛时给出了第二部分的填充 : e!P0or_a，填进去之后变成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We1l_D0ne!P0or_algebra_am_i</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/29/CSAPP-2-%E4%B9%A0%E9%A2%98/" rel="next" title="CSAPP 第二章及其习题">
+                <i class="fa fa-chevron-left"></i> CSAPP 第二章及其习题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
