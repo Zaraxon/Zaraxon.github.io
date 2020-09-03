@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="没学过密码学的我眼泪掉下来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF 红帽杯 xx">
+<meta property="og:url" content="http://yoursite.com/2020/09/03/buuctf-re-9/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="没学过密码学的我眼泪掉下来">
+<meta property="og:image" content="https://www.superbed.cn/item/5f50492e160a154a67177fc9">
+<meta property="og:image" content="https://www.superbed.cn/item/5f505173160a154a671939fc">
+<meta property="og:image" content="https://www.superbed.cn/item/5f5051b5160a154a6719475b">
+<meta property="article:published_time" content="2020-09-03T02:46:00.245Z">
+<meta property="article:modified_time" content="2020-09-03T02:41:33.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f50492e160a154a67177fc9">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/03/buuctf-re-9/"/>
+
+
+
+
+
+  <title>BUUCTF 红帽杯 xx | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/03/buuctf-re-9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF 红帽杯 xx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T10:46:00+08:00">
+                2020-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  没学过密码学的我眼泪掉下来
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查壳…蒜了不说了</p>
+<p>拖进ida</p>
+<p><img src="https://www.superbed.cn/item/5f50492e160a154a67177fc9" alt="img"></p>
+<p>从这里可以确定出main函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_1400011A0</span><span class="params">(__int64 a1, __int64 a2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> __int64 v2; <span class="comment">// rbx</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v3; <span class="comment">// rax</span></span><br><span class="line">  __int64 v4; <span class="comment">// rax</span></span><br><span class="line">  __int64 v5; <span class="comment">// r11</span></span><br><span class="line">  __int128 *v6; <span class="comment">// r14</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// edi</span></span><br><span class="line">  _BYTE *v8; <span class="comment">// rsi</span></span><br><span class="line">  <span class="keyword">char</span> v9; <span class="comment">// r10</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// edx</span></span><br><span class="line">  __int64 v11; <span class="comment">// r8</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v12; <span class="comment">// rcx</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v13; <span class="comment">// rcx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v14; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 i; <span class="comment">// rax</span></span><br><span class="line">  __int64 v16; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">size_t</span> v17; <span class="comment">// rsi</span></span><br><span class="line">  _BYTE *v18; <span class="comment">// rbx</span></span><br><span class="line">  _BYTE *v19; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> v20; <span class="comment">// er11</span></span><br><span class="line">  <span class="keyword">char</span> *v21; <span class="comment">// r8</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v22; <span class="comment">// rcx</span></span><br><span class="line">  <span class="keyword">char</span> v23; <span class="comment">// al</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v24; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v25; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v26; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">size_t</span> Size; <span class="comment">// [rsp+20h] [rbp-48h]</span></span><br><span class="line">  __int128 v29; <span class="comment">// [rsp+28h] [rbp-40h]</span></span><br><span class="line">  <span class="keyword">int</span> v30; <span class="comment">// [rsp+38h] [rbp-30h]</span></span><br><span class="line">  <span class="keyword">int</span> v31; <span class="comment">// [rsp+3Ch] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">int</span> Code[<span class="number">4</span>]; <span class="comment">// [rsp+40h] [rbp-28h]</span></span><br><span class="line">  <span class="keyword">int</span> v33; <span class="comment">// [rsp+50h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  *(_OWORD *)Code = <span class="number">0</span>i64;</span><br><span class="line">  v33 = <span class="number">0</span>;</span><br><span class="line">  sub_1400018C0(<span class="built_in">std</span>::<span class="built_in">cin</span>, a2, Code);</span><br><span class="line">  v2 = <span class="number">-1</span>i64;</span><br><span class="line">  v3 = <span class="number">-1</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++v3;</span><br><span class="line">  <span class="keyword">while</span> ( *((_BYTE *)Code + v3) );</span><br><span class="line">  <span class="keyword">if</span> ( v3 != <span class="number">19</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_140001620(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"error\n"</span>);</span><br><span class="line">    _exit((<span class="keyword">unsigned</span> __int64)Code);</span><br><span class="line">  &#125;</span><br><span class="line">  v4 = sub_140001E5C(<span class="number">5u</span>i64);</span><br><span class="line">  v5 = *(_QWORD *)&amp;::Code;</span><br><span class="line">  v6 = (__int128 *)v4;</span><br><span class="line">  v7 = <span class="number">0</span>;</span><br><span class="line">  v8 = (_BYTE *)v4;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    v9 = v8[(_QWORD)Code - v4];</span><br><span class="line">    v10 = <span class="number">0</span>;</span><br><span class="line">    *v8 = v9;</span><br><span class="line">    v11 = <span class="number">0</span>i64;</span><br><span class="line">    v12 = <span class="number">-1</span>i64;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">      ++v12;</span><br><span class="line">    <span class="keyword">while</span> ( *(_BYTE *)(v5 + v12) );</span><br><span class="line">    <span class="keyword">if</span> ( v12 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v9 == *(_BYTE *)(v5 + v11) )</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        ++v10;</span><br><span class="line">        ++v11;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( v10 &lt; v12 );</span><br><span class="line">    &#125;</span><br><span class="line">    v13 = <span class="number">-1</span>i64;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">      ++v13;</span><br><span class="line">    <span class="keyword">while</span> ( *(_BYTE *)(v5 + v13) );</span><br><span class="line">    <span class="keyword">if</span> ( v10 == v13 )</span><br><span class="line">      _exit(v5);</span><br><span class="line">    ++v8;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( (<span class="keyword">signed</span> __int64)&amp;v8[-v4] &lt; <span class="number">4</span> );</span><br><span class="line">  *(_BYTE *)(v4 + <span class="number">4</span>) = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++v2;</span><br><span class="line">  <span class="keyword">while</span> ( *((_BYTE *)Code + v2) );</span><br><span class="line">  v14 = <span class="number">0</span>i64;</span><br><span class="line">  v29 = *v6;</span><br><span class="line">  <span class="keyword">while</span> ( *((_BYTE *)&amp;v29 + v14) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">1</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      ++v14;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">2</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      v14 += <span class="number">2</span>i64;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">3</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      v14 += <span class="number">3</span>i64;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    v14 += <span class="number">4</span>i64;</span><br><span class="line">    <span class="keyword">if</span> ( v14 &gt;= <span class="number">0x10</span> )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( i = v14 + <span class="number">1</span>; i &lt; <span class="number">0x10</span>; ++i )</span><br><span class="line">    *((_BYTE *)&amp;v29 + i) = <span class="number">0</span>;</span><br><span class="line">  v16 = sub_140001AB0(Code, v2, &amp;v29, &amp;Size);</span><br><span class="line">  v17 = Size;</span><br><span class="line">  v18 = (_BYTE *)v16;</span><br><span class="line">  v19 = (_BYTE *)sub_140001E5C(Size);</span><br><span class="line">  v20 = <span class="number">1</span>;</span><br><span class="line">  *v19 = v18[<span class="number">2</span>];</span><br><span class="line">  v21 = v19 + <span class="number">1</span>;</span><br><span class="line">  v19[<span class="number">1</span>] = *v18;</span><br><span class="line">  v19[<span class="number">2</span>] = v18[<span class="number">3</span>];</span><br><span class="line">  v19[<span class="number">3</span>] = v18[<span class="number">1</span>];</span><br><span class="line">  v19[<span class="number">4</span>] = v18[<span class="number">6</span>];</span><br><span class="line">  v19[<span class="number">5</span>] = v18[<span class="number">4</span>];</span><br><span class="line">  v19[<span class="number">6</span>] = v18[<span class="number">7</span>];</span><br><span class="line">  v19[<span class="number">7</span>] = v18[<span class="number">5</span>];</span><br><span class="line">  v19[<span class="number">8</span>] = v18[<span class="number">10</span>];</span><br><span class="line">  v19[<span class="number">9</span>] = v18[<span class="number">8</span>];</span><br><span class="line">  v19[<span class="number">10</span>] = v18[<span class="number">11</span>];</span><br><span class="line">  v19[<span class="number">11</span>] = v18[<span class="number">9</span>];</span><br><span class="line">  v19[<span class="number">12</span>] = v18[<span class="number">14</span>];</span><br><span class="line">  v19[<span class="number">13</span>] = v18[<span class="number">12</span>];</span><br><span class="line">  v19[<span class="number">14</span>] = v18[<span class="number">15</span>];</span><br><span class="line">  v19[<span class="number">15</span>] = v18[<span class="number">13</span>];</span><br><span class="line">  v19[<span class="number">16</span>] = v18[<span class="number">18</span>];</span><br><span class="line">  v19[<span class="number">17</span>] = v18[<span class="number">16</span>];</span><br><span class="line">  v19[<span class="number">18</span>] = v18[<span class="number">19</span>];</span><br><span class="line">  v19[<span class="number">19</span>] = v18[<span class="number">17</span>];</span><br><span class="line">  v19[<span class="number">20</span>] = v18[<span class="number">22</span>];</span><br><span class="line">  v19[<span class="number">21</span>] = v18[<span class="number">20</span>];</span><br><span class="line">  v19[<span class="number">22</span>] = v18[<span class="number">23</span>];</span><br><span class="line">  <span class="keyword">for</span> ( v19[<span class="number">23</span>] = v18[<span class="number">21</span>]; v20 &lt; v17; ++v21 )</span><br><span class="line">  &#123;</span><br><span class="line">    v22 = <span class="number">0</span>i64;</span><br><span class="line">    <span class="keyword">if</span> ( v20 / <span class="number">3</span> &gt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v23 = *v21;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        v23 ^= v19[v22++];</span><br><span class="line">        *v21 = v23;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( v22 &lt; v20 / <span class="number">3</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    ++v20;</span><br><span class="line">  &#125;</span><br><span class="line">  *(_QWORD *)&amp;v29 = <span class="number">-4569681940847739698</span>i64;</span><br><span class="line">  v24 = v19 - (_BYTE *)&amp;v29;</span><br><span class="line">  *((_QWORD *)&amp;v29 + <span class="number">1</span>) = <span class="number">3819887636644928495</span>i64;</span><br><span class="line">  v25 = <span class="number">0</span>i64;</span><br><span class="line">  v30 = <span class="number">-939386845</span>;</span><br><span class="line">  v31 = <span class="number">-95004953</span>;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *((_BYTE *)&amp;v29 + v25) != *((_BYTE *)&amp;v29 + v25 + v24) )</span><br><span class="line">      _exit(v7 * v7);</span><br><span class="line">    ++v7;</span><br><span class="line">    ++v25;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( v25 &lt; <span class="number">24</span> );</span><br><span class="line">  v26 = sub_140001620(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"You win!"</span>);</span><br><span class="line">  <span class="built_in">std</span>::basic_ostream&lt;<span class="keyword">char</span>,<span class="built_in">std</span>::char_traits&lt;<span class="keyword">char</span>&gt;&gt;::<span class="keyword">operator</span>&lt;&lt;(v26, sub_1400017F0);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>i64;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从You Win开始倒着分析</p>
+<p>首先是一轮比较：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( *((_BYTE *)&amp;v29 + v25) != *((_BYTE *)&amp;v29 + v25 + v24) )</span><br><span class="line">    _exit(v7 * v7);</span><br><span class="line">  ++v7;</span><br><span class="line">  ++v25;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> ( v25 &lt; <span class="number">24</span> );</span><br></pre></td></tr></table></figure>
+
+<p>再往前看可以找到正确的最终结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*(_QWORD *)&amp;v29 = <span class="number">-4569681940847739698</span>i64;</span><br><span class="line">v24 = v19 - (_BYTE *)&amp;v29;</span><br><span class="line">*((_QWORD *)&amp;v29 + <span class="number">1</span>) = <span class="number">3819887636644928495</span>i64;</span><br><span class="line">v25 = <span class="number">0</span>i64;</span><br><span class="line">v30 = <span class="number">-939386845</span>;</span><br><span class="line">v31 = <span class="number">-95004953</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里注意反编译不总是完美的，v30和v31同样属于v29，看一下汇编就可以知道他们的地址是连续的</p>
+<p>因此可以得知v25有24个字节</p>
+<p>再往前看，是一轮简单的打乱顺序和一轮异或的混淆：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">*v19 = v18[<span class="number">2</span>];</span><br><span class="line">v19[<span class="number">1</span>] = *v18;</span><br><span class="line">v19[<span class="number">2</span>] = v18[<span class="number">3</span>];</span><br><span class="line">v19[<span class="number">3</span>] = v18[<span class="number">1</span>];</span><br><span class="line">v19[<span class="number">4</span>] = v18[<span class="number">6</span>];</span><br><span class="line">v19[<span class="number">5</span>] = v18[<span class="number">4</span>];</span><br><span class="line">v19[<span class="number">6</span>] = v18[<span class="number">7</span>];</span><br><span class="line">v19[<span class="number">7</span>] = v18[<span class="number">5</span>];</span><br><span class="line">v19[<span class="number">8</span>] = v18[<span class="number">10</span>];</span><br><span class="line">v19[<span class="number">9</span>] = v18[<span class="number">8</span>];</span><br><span class="line">v19[<span class="number">10</span>] = v18[<span class="number">11</span>];</span><br><span class="line">v19[<span class="number">11</span>] = v18[<span class="number">9</span>];</span><br><span class="line">v19[<span class="number">12</span>] = v18[<span class="number">14</span>];</span><br><span class="line">v19[<span class="number">13</span>] = v18[<span class="number">12</span>];</span><br><span class="line">v19[<span class="number">14</span>] = v18[<span class="number">15</span>];</span><br><span class="line">v19[<span class="number">15</span>] = v18[<span class="number">13</span>];</span><br><span class="line">v19[<span class="number">16</span>] = v18[<span class="number">18</span>];</span><br><span class="line">v19[<span class="number">17</span>] = v18[<span class="number">16</span>];</span><br><span class="line">v19[<span class="number">18</span>] = v18[<span class="number">19</span>];</span><br><span class="line">v19[<span class="number">19</span>] = v18[<span class="number">17</span>];</span><br><span class="line">v19[<span class="number">20</span>] = v18[<span class="number">22</span>];</span><br><span class="line">v19[<span class="number">21</span>] = v18[<span class="number">20</span>];</span><br><span class="line">v19[<span class="number">22</span>] = v18[<span class="number">23</span>];</span><br><span class="line"><span class="keyword">for</span> ( v19[<span class="number">23</span>] = v18[<span class="number">21</span>]; v20 &lt; v17; ++v21 )</span><br><span class="line">&#123;</span><br><span class="line">  v22 = <span class="number">0</span>i64;</span><br><span class="line">  <span class="keyword">if</span> ( v20 / <span class="number">3</span> &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v23 = *v21;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      v23 ^= v19[v22++];</span><br><span class="line">      *v21 = v23;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v22 &lt; v20 / <span class="number">3</span> );</span><br><span class="line">  &#125;</span><br><span class="line">  ++v20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>异或的操作具体来说就是：v19[4]开始，将每个字节与v19[0] ~ v19[v20 / 3 - 1]依次异或。这部分的逆也很好写</p>
+<p>再往前是一轮打乱顺序，简单来说就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v19[i + 0] &#x3D; v18[i + 2]</span><br><span class="line">v19[i + 1] &#x3D; v18[i + 0]</span><br><span class="line">v19[i + 2] &#x3D; v18[i + 3]</span><br><span class="line">v19[i + 3] &#x3D; v18[i + 1]</span><br></pre></td></tr></table></figure>
+
+<p>同样可以很简单的写出逆</p>
+<p>往前看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v19 = (_BYTE *)sub_140001E5C(Size);</span><br></pre></td></tr></table></figure>
+
+<p>这里基本可以猜测是个alloc系列的函数，开空间用的</p>
+<p>再往前</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v16 = sub_140001AB0(Code, v2, &amp;v29, &amp;Size);</span><br></pre></td></tr></table></figure>
+
+<p>这里出大问题，有很多变量是不知道的，从头往后看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sub_1400018C0(<span class="built_in">std</span>::<span class="built_in">cin</span>, a2, Code);</span><br><span class="line">v2 = <span class="number">-1</span>i64;</span><br><span class="line">v3 = <span class="number">-1</span>i64;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  ++v3;</span><br><span class="line"><span class="keyword">while</span> ( *((_BYTE *)Code + v3) );</span><br><span class="line"><span class="keyword">if</span> ( v3 != <span class="number">19</span> )</span><br><span class="line">&#123;</span><br><span class="line">  sub_140001620(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">"error\n"</span>);</span><br><span class="line">  _exit((<span class="keyword">unsigned</span> __int64)Code);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里确定输入一共是19字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">  v9 = v8[(_QWORD)Code - v4];</span><br><span class="line">  v10 = <span class="number">0</span>;</span><br><span class="line">  *v8 = v9;</span><br><span class="line">  v11 = <span class="number">0</span>i64;</span><br><span class="line">  v12 = <span class="number">-1</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++v12;</span><br><span class="line">  <span class="keyword">while</span> ( *(_BYTE *)(v5 + v12) );</span><br><span class="line">  <span class="keyword">if</span> ( v12 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v9 == *(_BYTE *)(v5 + v11) )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      ++v10;</span><br><span class="line">      ++v11;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v10 &lt; v12 );</span><br><span class="line">  &#125;</span><br><span class="line">  v13 = <span class="number">-1</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++v13;</span><br><span class="line">  <span class="keyword">while</span> ( *(_BYTE *)(v5 + v13) );</span><br><span class="line">  <span class="keyword">if</span> ( v10 == v13 )</span><br><span class="line">    _exit(v5);</span><br><span class="line">  ++v8;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> ( (<span class="keyword">signed</span> __int64)&amp;v8[-v4] &lt; <span class="number">4</span> );</span><br><span class="line">*(_BYTE *)(v4 + <span class="number">4</span>) = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  ++v2;</span><br><span class="line"><span class="keyword">while</span> ( *((_BYTE *)Code + v2) );</span><br></pre></td></tr></table></figure>
+
+<p>这一部分保证输入必须是Code里面的字符(26个小写字母和0~9)</p>
+<p>继续</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ( *((_BYTE *)&amp;v29 + v14) )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">1</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    ++v14;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">2</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    v14 += <span class="number">2</span>i64;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( !*((_BYTE *)&amp;v29 + v14 + <span class="number">3</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    v14 += <span class="number">3</span>i64;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  v14 += <span class="number">4</span>i64;</span><br><span class="line">  <span class="keyword">if</span> ( v14 &gt;= <span class="number">0x10</span> )</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> ( i = v14 + <span class="number">1</span>; i &lt; <span class="number">0x10</span>; ++i )</span><br><span class="line">  *((_BYTE *)&amp;v29 + i) = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这一部分将输入的前四个字节放进v29并将后面清零</p>
+<p>又到了刚刚的地方，这次点进去，又出现了大段的逻辑：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_BYTE *__fastcall <span class="title">sub_140001AB0</span><span class="params">(__int64 a1, <span class="keyword">unsigned</span> __int64 a2, <span class="keyword">unsigned</span> __int8 *a3, <span class="keyword">unsigned</span> __int64 *a4)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> __int64 *v4; <span class="comment">// r13</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 *v5; <span class="comment">// rbp</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v6; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v7; <span class="comment">// rsi</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v8; <span class="comment">// rdi</span></span><br><span class="line">  <span class="keyword">size_t</span> v9; <span class="comment">// rcx</span></span><br><span class="line">  _DWORD *v10; <span class="comment">// rax</span></span><br><span class="line">  _DWORD *v11; <span class="comment">// r15</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v12; <span class="comment">// r14</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v13; <span class="comment">// rdi</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v14; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">int</span> v15; <span class="comment">// edx</span></span><br><span class="line">  _DWORD *v16; <span class="comment">// r8</span></span><br><span class="line">  <span class="keyword">char</span> v17; <span class="comment">// cl</span></span><br><span class="line">  _DWORD *v18; <span class="comment">// r12</span></span><br><span class="line">  <span class="keyword">int</span> v19; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v20; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v21; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v22; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v23; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v24; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v25; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v26; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v27; <span class="comment">// ebp</span></span><br><span class="line">  __int64 v28; <span class="comment">// rcx</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v29; <span class="comment">// er10</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v30; <span class="comment">// eax</span></span><br><span class="line">  __int64 v31; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> *v32; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v33; <span class="comment">// r11</span></span><br><span class="line">  _DWORD *v34; <span class="comment">// rax</span></span><br><span class="line">  __int64 v35; <span class="comment">// rsi</span></span><br><span class="line">  __int64 v36; <span class="comment">// r14</span></span><br><span class="line">  <span class="keyword">char</span> v37; <span class="comment">// r13</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v38; <span class="comment">// er8</span></span><br><span class="line">  __int64 v39; <span class="comment">// rcx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v40; <span class="comment">// rbx</span></span><br><span class="line">  <span class="keyword">size_t</span> v41; <span class="comment">// rcx</span></span><br><span class="line">  _BYTE *v42; <span class="comment">// rax</span></span><br><span class="line">  _BYTE *v43; <span class="comment">// rsi</span></span><br><span class="line">  _BYTE *result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">char</span> v45; <span class="comment">// [rsp+20h] [rbp-58h]</span></span><br><span class="line">  __int64 v46; <span class="comment">// [rsp+28h] [rbp-50h]</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v47; <span class="comment">// [rsp+30h] [rbp-48h]</span></span><br><span class="line">  <span class="keyword">int</span> v48; <span class="comment">// [rsp+88h] [rbp+10h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 *v49; <span class="comment">// [rsp+98h] [rbp+20h]</span></span><br><span class="line"></span><br><span class="line">  v49 = a4;</span><br><span class="line">  v4 = a4;</span><br><span class="line">  v5 = a3;</span><br><span class="line">  v6 = a2;</span><br><span class="line">  v7 = a1;</span><br><span class="line">  <span class="keyword">if</span> ( !a2 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>i64;</span><br><span class="line">  v8 = a2 &gt;&gt; <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span> ( a2 &amp; <span class="number">3</span> )</span><br><span class="line">    v8 = (a2 &gt;&gt; <span class="number">2</span>) + <span class="number">1</span>;</span><br><span class="line">  v9 = v8 + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( v8 &gt;= <span class="number">0xFFFFFFFFFFFFFFFF</span>ui64 )</span><br><span class="line">    v9 = <span class="number">-1</span>i64;</span><br><span class="line">  v10 = <span class="built_in">calloc</span>(v9, <span class="number">4u</span>i64);</span><br><span class="line">  v11 = v10;</span><br><span class="line">  <span class="keyword">if</span> ( !v10 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>i64;</span><br><span class="line">  v12 = v8 + <span class="number">1</span>;</span><br><span class="line">  v10[v8] = v6;</span><br><span class="line">  v13 = <span class="number">0</span>i64;</span><br><span class="line">  v47 = v12;</span><br><span class="line">  v14 = <span class="number">0</span>i64;</span><br><span class="line">  <span class="keyword">if</span> ( v6 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      v15 = *(<span class="keyword">unsigned</span> __int8 *)(v14 + v7);</span><br><span class="line">      v16 = &amp;v10[v14 &gt;&gt; <span class="number">2</span>];</span><br><span class="line">      v17 = v14++ &amp; <span class="number">3</span>;</span><br><span class="line">      *v16 |= v15 &lt;&lt; <span class="number">8</span> * v17;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v14 &lt; v6 );</span><br><span class="line">  &#125;</span><br><span class="line">  v18 = <span class="built_in">calloc</span>(<span class="number">4u</span>i64, <span class="number">4u</span>i64);</span><br><span class="line">  <span class="keyword">if</span> ( v18 )</span><br><span class="line">  &#123;</span><br><span class="line">    v19 = v5[<span class="number">7</span>] &lt;&lt; <span class="number">8</span>;</span><br><span class="line">    v20 = v5[<span class="number">6</span>];</span><br><span class="line">    *v18 |= *v5 | ((v5[<span class="number">1</span>] | (*((<span class="keyword">unsigned</span> __int16 *)v5 + <span class="number">1</span>) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    v21 = v5[<span class="number">4</span>] | ((v5[<span class="number">5</span>] | ((v20 | v19) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    v22 = v5[<span class="number">10</span>];</span><br><span class="line">    v18[<span class="number">1</span>] |= v21;</span><br><span class="line">    v23 = v5[<span class="number">8</span>] | ((v5[<span class="number">9</span>] | ((v22 | (v5[<span class="number">11</span>] &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    v24 = v5[<span class="number">14</span>];</span><br><span class="line">    v18[<span class="number">2</span>] |= v23;</span><br><span class="line">    v25 = v5[<span class="number">13</span>] | ((v24 | (v5[<span class="number">15</span>] &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    v26 = v5[<span class="number">12</span>];</span><br><span class="line">    v27 = <span class="number">0</span>;</span><br><span class="line">    v18[<span class="number">3</span>] |= v26 | (v25 &lt;&lt; <span class="number">8</span>);</span><br><span class="line">    v28 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v12 - <span class="number">1</span>);</span><br><span class="line">    v29 = v11[v28];</span><br><span class="line">    v30 = <span class="number">0x34</span> / (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v12 + <span class="number">6</span>;</span><br><span class="line">    v31 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v12 - <span class="number">1</span>);</span><br><span class="line">    v45 = v12 - <span class="number">1</span>;</span><br><span class="line">    v46 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v12 - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v28 &gt;= <span class="number">1</span> &amp;&amp; <span class="number">0x34</span> / (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v12 != <span class="number">-6</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        v32 = v11 + <span class="number">1</span>;</span><br><span class="line">        v27 -= <span class="number">1640531527</span>;</span><br><span class="line">        v48 = v30 - <span class="number">1</span>;</span><br><span class="line">        v33 = <span class="number">0</span>i64;</span><br><span class="line">        v34 = v11;</span><br><span class="line">        v35 = (v27 &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">        v36 = v31;</span><br><span class="line">        v37 = v28;</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">          v38 = *v32;</span><br><span class="line">          ++v32;</span><br><span class="line">          ++v34;</span><br><span class="line">          v39 = v35 ^ v33++ &amp; <span class="number">3</span>;</span><br><span class="line">          *(v34 - <span class="number">1</span>) += ((v27 ^ v38) + (v29 ^ v18[v39])) ^ ((<span class="number">16</span> * v29 ^ (v38 &gt;&gt; <span class="number">3</span>)) + ((v29 &gt;&gt; <span class="number">5</span>) ^ <span class="number">4</span> * v38));</span><br><span class="line">          v29 = *(v34 - <span class="number">1</span>);</span><br><span class="line">          --v36;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> ( v36 );</span><br><span class="line">        v31 = v46;</span><br><span class="line">        LOBYTE(v28) = v45;</span><br><span class="line">        v30 = v48;</span><br><span class="line">        v11[v31] += ((v27 ^ *v11) + (v29 ^ v18[v35 ^ v37 &amp; <span class="number">3</span>])) ^ ((<span class="number">4</span> * *v11 ^ (v29 &gt;&gt; <span class="number">5</span>)) + ((*v11 &gt;&gt; <span class="number">3</span>) ^ <span class="number">16</span> * v29));</span><br><span class="line">        v29 = v11[v46];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( v48 );</span><br><span class="line">      v12 = v47;</span><br><span class="line">      v4 = v49;</span><br><span class="line">    &#125;</span><br><span class="line">    v40 = <span class="number">4</span> * v12;</span><br><span class="line">    v41 = <span class="number">4</span> * v12 + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int64)(<span class="number">4</span> * v12) &gt;= <span class="number">0xFFFFFFFFFFFFFFFF</span>ui64 )</span><br><span class="line">      v41 = <span class="number">-1</span>i64;</span><br><span class="line">    v42 = <span class="built_in">malloc</span>(v41);</span><br><span class="line">    v43 = v42;</span><br><span class="line">    <span class="keyword">if</span> ( v40 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        v42[v13] = v11[v13 &gt;&gt; <span class="number">2</span>] &gt;&gt; <span class="number">8</span> * (v13 &amp; <span class="number">3</span>);</span><br><span class="line">        ++v13;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( v13 &lt; v40 );</span><br><span class="line">    &#125;</span><br><span class="line">    v42[v40] = <span class="number">0</span>;</span><br><span class="line">    *v4 = v40;</span><br><span class="line">    <span class="built_in">free</span>(v11);</span><br><span class="line">    <span class="built_in">free</span>(v18);</span><br><span class="line">    result = v43;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">free</span>(v11);</span><br><span class="line">    result = <span class="number">0</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>耐心分析一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">v19 = v5[<span class="number">7</span>] &lt;&lt; <span class="number">8</span>;</span><br><span class="line">   v20 = v5[<span class="number">6</span>];</span><br><span class="line">   *v18 |= *v5 | ((v5[<span class="number">1</span>] | (*((<span class="keyword">unsigned</span> __int16 *)v5 + <span class="number">1</span>) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">   v21 = v5[<span class="number">4</span>] | ((v5[<span class="number">5</span>] | ((v20 | v19) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">   v22 = v5[<span class="number">10</span>];</span><br><span class="line">   v18[<span class="number">1</span>] |= v21;</span><br><span class="line">   v23 = v5[<span class="number">8</span>] | ((v5[<span class="number">9</span>] | ((v22 | (v5[<span class="number">11</span>] &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">   v24 = v5[<span class="number">14</span>];</span><br><span class="line">   v18[<span class="number">2</span>] |= v23;</span><br><span class="line">   v25 = v5[<span class="number">13</span>] | ((v24 | (v5[<span class="number">15</span>] &lt;&lt; <span class="number">8</span>)) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">   v26 = v5[<span class="number">12</span>];</span><br><span class="line">   v27 = <span class="number">0</span>;</span><br><span class="line">   v18[<span class="number">3</span>] |= v26 | (v25 &lt;&lt; <span class="number">8</span>);</span><br><span class="line">   v28 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v12 - <span class="number">1</span>);</span><br><span class="line">   v29 = v11[v28];</span><br></pre></td></tr></table></figure>
+
+<p>这一部分其实就是相当于memcpy，只需注意字节序问题</p>
+<p>接下来的部分看起来很复杂</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v28 &gt;= <span class="number">1</span> &amp;&amp; <span class="number">0x34</span> / (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v12 != <span class="number">-6</span> )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    v32 = v11 + <span class="number">1</span>;</span><br><span class="line">    v27 -= <span class="number">1640531527</span>;</span><br><span class="line">    v48 = v30 - <span class="number">1</span>;</span><br><span class="line">    v33 = <span class="number">0</span>i64;</span><br><span class="line">    v34 = v11;</span><br><span class="line">    v35 = (v27 &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span>;</span><br><span class="line">    v36 = v31;</span><br><span class="line">    v37 = v28;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      v38 = *v32;</span><br><span class="line">      ++v32;</span><br><span class="line">      ++v34;</span><br><span class="line">      v39 = v35 ^ v33++ &amp; <span class="number">3</span>;</span><br><span class="line">      *(v34 - <span class="number">1</span>) += ((v27 ^ v38) + (v29 ^ v18[v39])) ^ ((<span class="number">16</span> * v29 ^ (v38 &gt;&gt; <span class="number">3</span>)) + ((v29 &gt;&gt; <span class="number">5</span>) ^ <span class="number">4</span> * v38));</span><br><span class="line">      v29 = *(v34 - <span class="number">1</span>);</span><br><span class="line">      --v36;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v36 );</span><br><span class="line">    v31 = v46;</span><br><span class="line">    LOBYTE(v28) = v45;</span><br><span class="line">    v30 = v48;</span><br><span class="line">    v11[v31] += ((v27 ^ *v11) + (v29 ^ v18[v35 ^ v37 &amp; <span class="number">3</span>])) ^ ((<span class="number">4</span> * *v11 ^ (v29 &gt;&gt; <span class="number">5</span>)) + ((*v11 &gt;&gt; <span class="number">3</span>) ^ <span class="number">16</span> * v29));</span><br><span class="line">    v29 = v11[v46];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( v48 );</span><br><span class="line">  v12 = v47;</span><br><span class="line">  v4 = v49;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要具体分析的话我水平不够办不到，但这里的操作很像是加密/解密，那么能不能找到些蛛丝马迹？</p>
+<p>还真找到了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v27 -&#x3D; 1640531527;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.superbed.cn/item/5f505173160a154a671939fc" alt="img"></p>
+<p>如果对这个数字敏感的话可以直接知道如下结果：</p>
+<p><img src="https://www.superbed.cn/item/5f5051b5160a154a6719475b" alt="img"></p>
+<p>不敏感的话也可以看到v27不断加/减一个数字，这正是tea的特征</p>
+<p>然鹅我卡在了不会密码学，这是xxtea，我一顿分析寻找他到底怎么魔改了tea，事实证明没学过密码学的小菜鸡要和Roger Needham&amp;David Wheeler对抗无异于痴人说梦</p>
+<p>百度了一份TEA家族的加解密脚本：（由于我对python不很熟悉所以是C版本）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;  </span></span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tea_encrypt</span> <span class="params">(<span class="keyword">uint32_t</span>* v, <span class="keyword">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=<span class="number">0</span>, i;           <span class="comment">/* set up */</span>  </span><br><span class="line">    <span class="keyword">uint32_t</span> delta=<span class="number">0x9e3779b9</span>;                     <span class="comment">/* a key schedule constant */</span>  </span><br><span class="line">    <span class="keyword">uint32_t</span> k0=k[<span class="number">0</span>], k1=k[<span class="number">1</span>], k2=k[<span class="number">2</span>], k3=k[<span class="number">3</span>];   <span class="comment">/* cache key */</span>  </span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;                       <span class="comment">/* basic cycle start */</span>  </span><br><span class="line">        sum += delta;  </span><br><span class="line">        v0 += ((v1&lt;&lt;<span class="number">4</span>) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k1);  </span><br><span class="line">        v1 += ((v0&lt;&lt;<span class="number">4</span>) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k3);  </span><br><span class="line">    &#125;                                              <span class="comment">/* end cycle */</span>  </span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tea_decrypt</span> <span class="params">(<span class="keyword">uint32_t</span>* v, <span class="keyword">uint32_t</span>* k)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=<span class="number">0xC6EF3720</span>, i;  <span class="comment">/* set up */</span>  </span><br><span class="line">    <span class="keyword">uint32_t</span> delta=<span class="number">0x9e3779b9</span>;                     <span class="comment">/* a key schedule constant */</span>  </span><br><span class="line">    <span class="keyword">uint32_t</span> k0=k[<span class="number">0</span>], k1=k[<span class="number">1</span>], k2=k[<span class="number">2</span>], k3=k[<span class="number">3</span>];   <span class="comment">/* cache key */</span>  </span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++) &#123;                         <span class="comment">/* basic cycle start */</span>  </span><br><span class="line">        v1 -= ((v0&lt;&lt;<span class="number">4</span>) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k3);  </span><br><span class="line">        v0 -= ((v1&lt;&lt;<span class="number">4</span>) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k1);  </span><br><span class="line">        sum -= delta;  </span><br><span class="line">    &#125;                                              <span class="comment">/* end cycle */</span>  </span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xtea_encipher</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> num_rounds, <span class="keyword">uint32_t</span> v[<span class="number">2</span>], <span class="keyword">uint32_t</span> <span class="keyword">const</span> key[<span class="number">4</span>])</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;  </span><br><span class="line">    <span class="keyword">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=<span class="number">0</span>, delta=<span class="number">0x9E3779B9</span>;  </span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; num_rounds; i++) &#123;  </span><br><span class="line">        v0 += (((v1 &lt;&lt; <span class="number">4</span>) ^ (v1 &gt;&gt; <span class="number">5</span>)) + v1) ^ (sum + key[sum &amp; <span class="number">3</span>]);  </span><br><span class="line">        sum += delta;  </span><br><span class="line">        v1 += (((v0 &lt;&lt; <span class="number">4</span>) ^ (v0 &gt;&gt; <span class="number">5</span>)) + v0) ^ (sum + key[(sum&gt;&gt;<span class="number">11</span>) &amp; <span class="number">3</span>]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xtea_decipher</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> num_rounds, <span class="keyword">uint32_t</span> v[<span class="number">2</span>], <span class="keyword">uint32_t</span> <span class="keyword">const</span> key[<span class="number">4</span>])</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;  </span><br><span class="line">    <span class="keyword">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], delta=<span class="number">0x9E3779B9</span>, sum=delta*num_rounds;  </span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; num_rounds; i++) &#123;  </span><br><span class="line">        v1 -= (((v0 &lt;&lt; <span class="number">4</span>) ^ (v0 &gt;&gt; <span class="number">5</span>)) + v0) ^ (sum + key[(sum&gt;&gt;<span class="number">11</span>) &amp; <span class="number">3</span>]);  </span><br><span class="line">        sum -= delta;  </span><br><span class="line">        v0 -= (((v1 &lt;&lt; <span class="number">4</span>) ^ (v1 &gt;&gt; <span class="number">5</span>)) + v1) ^ (sum + key[sum &amp; <span class="number">3</span>]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xxtea</span><span class="params">(<span class="keyword">uint32_t</span> *v, <span class="keyword">int</span> n, <span class="keyword">uint32_t</span> <span class="keyword">const</span> key[<span class="number">4</span>])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">uint32_t</span> y, z, sum;  </span><br><span class="line">    <span class="keyword">unsigned</span> p, rounds, e;  </span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">1</span>)            <span class="comment">/* Coding Part */</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">        rounds = <span class="number">6</span> + <span class="number">52</span>/n;  </span><br><span class="line">        sum = <span class="number">0</span>;  </span><br><span class="line">        z = v[n<span class="number">-1</span>];  </span><br><span class="line">        <span class="keyword">do</span>  </span><br><span class="line">        &#123;  </span><br><span class="line">            sum += DELTA;  </span><br><span class="line">            e = (sum &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span>;  </span><br><span class="line">            <span class="keyword">for</span> (p=<span class="number">0</span>; p&lt;n<span class="number">-1</span>; p++)  </span><br><span class="line">            &#123;  </span><br><span class="line">                y = v[p+<span class="number">1</span>];  </span><br><span class="line">                z = v[p] += MX;  </span><br><span class="line">            &#125;  </span><br><span class="line">            y = v[<span class="number">0</span>];  </span><br><span class="line">            z = v[n<span class="number">-1</span>] += MX;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">while</span> (--rounds);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n &lt; <span class="number">-1</span>)      <span class="comment">/* Decoding Part */</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">        n = -n;  </span><br><span class="line">        rounds = <span class="number">6</span> + <span class="number">52</span>/n;  </span><br><span class="line">        sum = rounds*DELTA;  </span><br><span class="line">        y = v[<span class="number">0</span>];  </span><br><span class="line">        <span class="keyword">do</span>  </span><br><span class="line">        &#123;  </span><br><span class="line">            e = (sum &gt;&gt; <span class="number">2</span>) &amp; <span class="number">3</span>;  </span><br><span class="line">            <span class="keyword">for</span> (p=n<span class="number">-1</span>; p&gt;<span class="number">0</span>; p--)  </span><br><span class="line">            &#123;  </span><br><span class="line">                z = v[p<span class="number">-1</span>];  </span><br><span class="line">                y = v[p] -= MX;  </span><br><span class="line">            &#125;  </span><br><span class="line">            z = v[n<span class="number">-1</span>];  </span><br><span class="line">            y = v[<span class="number">0</span>] -= MX;  </span><br><span class="line">            sum -= DELTA;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">while</span> (--rounds);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结一下流程:</p>
+<p>1.逆那个异或</p>
+<p>2.恢复顺序</p>
+<p>3.xxtea解密（输入的前四个字符，很可能就是flag），得到flag</p>
+<p><strong>总结</strong></p>
+<p>模块化的思维逐渐形成，看代码要一块一块看</p>
+<p>最近经常见到用各种花里胡哨的操作进行内存复制的操作QWQ</p>
+<p>密码学可能需要多了解一些，这部分总是感到力不从心</p>
+<p>密码学类的算法看起来比较容易识别，因为总是一大坨异或和加减法操作，如果不能直接看懂的话去找特征值是个不错的办法</p>
+<p>另外逆向的题目似乎不太常见魔改一些算法的，而且对称加密十分常见，因此即是不能识别也可以试着去写出解密函数，对称加密算法的加解密函数总是很相似</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/01/buuctf-re-8/" rel="next" title="BUUCTF Overlong">
+                <i class="fa fa-chevron-left"></i> BUUCTF Overlong
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
