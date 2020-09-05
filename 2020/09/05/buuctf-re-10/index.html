@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="难顶，这里主要卡在了编码和密码学上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF 安洵杯 crackMe">
+<meta property="og:url" content="http://yoursite.com/2020/09/05/buuctf-re-10/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="难顶，这里主要卡在了编码和密码学上">
+<meta property="og:image" content="https://www.superbed.cn/item/5f534cd9160a154a67c1f544">
+<meta property="og:image" content="https://www.superbed.cn/item/5f534dc3160a154a67c22b91">
+<meta property="article:published_time" content="2020-09-05T08:26:00.000Z">
+<meta property="article:modified_time" content="2020-09-05T09:29:53.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f534cd9160a154a67c1f544">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/05/buuctf-re-10/"/>
+
+
+
+
+
+  <title>BUUCTF 安洵杯 crackMe | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF 安洵杯 crackMe</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T16:26:00+08:00">
+                2020-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/05/buuctf-re-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/09/05/buuctf-re-10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  难顶，这里主要卡在了编码和密码学上
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查壳没查到</p>
+<p>首先在这里说一下，由于不是很会动调（并且因为缺dll懒得整）所以我极度头铁的从头到尾硬看ida，看来是时候练习动调了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __noreturn <span class="title">main_0</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"please Input the flag:\n"</span>);</span><br><span class="line">  scanf_s(<span class="string">"%s"</span>, &amp;unk_41A1E4, <span class="number">50</span>);</span><br><span class="line">  MessageBoxW(<span class="number">0</span>, <span class="string">L"Exception"</span>, <span class="string">L"Warning"</span>, <span class="number">0</span>);</span><br><span class="line">  MEMORY[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">  sub_411136();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接点进main里面没看到任何东西，，果然没那么简单，发现Str1并没给出，也不是输入的Buffer</p>
+<p>sub_411136里面就是个简单的比较</p>
+<p>没想到太好的办法，只好从start开始看，发现start调用了__tmainCRTStartup()，点进去有很多没见过的东西</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// write access to const memory has been detected, the output may be wrong!</span></span><br><span class="line"><span class="keyword">signed</span> <span class="keyword">int</span> __tmainCRTStartup()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> v1; <span class="comment">// [esp+18h] [ebp-24h]</span></span><br><span class="line">  <span class="keyword">signed</span> __int32 v2; <span class="comment">// [esp+1Ch] [ebp-20h]</span></span><br><span class="line">  <span class="keyword">signed</span> __int32 v3; <span class="comment">// [esp+20h] [ebp-1Ch]</span></span><br><span class="line"></span><br><span class="line">  v2 = *((_DWORD *)j__NtCurrentTeb() + <span class="number">1</span>);</span><br><span class="line">  v1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = _InterlockedCompareExchange((<span class="keyword">volatile</span> <span class="keyword">signed</span> __int32 *)&amp;unk_41A6EC, v2, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( !v3 )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( v3 == v2 )</span><br><span class="line">    &#123;</span><br><span class="line">      v1 = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( dword_41A6FC == <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    j__amsg_exit(<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( dword_41A6FC )</span><br><span class="line">  &#123;</span><br><span class="line">    dword_41A2DC = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">  &#125;</span><br><span class="line">  dword_41A6FC = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( !j__initterm_e(&amp;unk_41730C, &amp;unk_417820) )</span><br><span class="line">  &#123;</span><br><span class="line">LABEL_13:</span><br><span class="line">    <span class="keyword">if</span> ( dword_41A6FC == <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      j__initterm(&amp;unk_417000, &amp;unk_417208);</span><br><span class="line">      dword_41A6FC = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( dword_41A6FC != <span class="number">2</span></span><br><span class="line">      &amp;&amp; CrtDbgReportW(</span><br><span class="line">           <span class="number">2</span>,</span><br><span class="line">           <span class="string">L"f:\\dd\\vctools\\crt\\crtw32\\dllstuff\\crtexe.c"</span>,</span><br><span class="line">           <span class="number">553</span>,</span><br><span class="line">           <span class="number">0</span>,</span><br><span class="line">           (<span class="keyword">const</span> <span class="keyword">char</span> *)<span class="string">L"%s"</span>,</span><br><span class="line">           <span class="string">L"__native_startup_state == __initialized"</span>) == <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      __debugbreak();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !v1 )</span><br><span class="line">      _InterlockedExchange((<span class="keyword">volatile</span> <span class="keyword">signed</span> __int32 *)&amp;unk_41A6EC, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( dword_41A714 &amp;&amp; j___IsNonwritableInCurrentImage(&amp;dword_41A714) )</span><br><span class="line">      dword_41A714(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">    CrtSetCheckCount(<span class="number">1</span>);</span><br><span class="line">    _initenv = envp;</span><br><span class="line">    main(argc, (<span class="keyword">const</span> <span class="keyword">char</span> **)argv, (<span class="keyword">const</span> <span class="keyword">char</span> **)envp);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">255</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单看了一下之后，值（wei）得（yi）注（ren）意（shi）的就是初始化函数，点进去之后也没发现什么</p>
+<p>似乎走入了死胡同，但哪个MEMORY[0]  = 1有点奇怪，一开始我当成它是类似检测标志位之类的操作，于是翻出汇编看一看：</p>
+<p><img src="https://www.superbed.cn/item/5f534cd9160a154a67c1f544" alt="img"></p>
+<p>有问题，那个sub_41100F被push而不是call，点进去看看</p>
+<p>点了一路下去发现了大段的逻辑，只能看出是由unk_41A218和输入字符串生成了byte_41A180（后来知道这是sm4加密）</p>
+<p>仍然说不通，又进入String窗口找找有没有什么蛛丝马迹</p>
+<p><img src="https://www.superbed.cn/item/5f534dc3160a154a67c22b91" alt="img"></p>
+<p>首先注意到base64的表和一个看起来是经过加密的字符串</p>
+<p>先点进base64表</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __stdcall <span class="title">sub_412AB0</span><span class="params">(<span class="keyword">int</span> a1, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3, <span class="keyword">int</span> a4)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">size_t</span> i; <span class="comment">// [esp+D8h] [ebp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; j_strlen(Str); ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( Str[i] &lt;= <span class="number">122</span> &amp;&amp; Str[i] &gt;= <span class="number">97</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      Str[i] -= <span class="number">32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( Str[i] &lt;= <span class="number">90</span> &amp;&amp; Str[i] &gt;= <span class="number">65</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      Str[i] += <span class="number">32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  MessageBoxA(<span class="number">0</span>, <span class="string">"hooked"</span>, <span class="string">"successed"</span>, <span class="number">0</span>);</span><br><span class="line">  AddVectoredExceptionHandler(<span class="number">0</span>, Handler);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是一个对表的简单变换，接下来是一个VEH的函数，从名字就能看出是要注册一个异常处理函数</p>
+<p>不急，先找这个函数的xref</p>
+<p>往上找了一路，最后追溯到了j_initterm附近（后来看wp发现是hook）</p>
+<p>猜测是初始化阶段执行了这个函数，回过来看handler</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __stdcall <span class="title">Handler_0</span><span class="params">(_DWORD **a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> v2; <span class="comment">// [esp+D0h] [ebp-18h]</span></span><br><span class="line">  <span class="keyword">char</span> v3; <span class="comment">// [esp+D1h] [ebp-17h]</span></span><br><span class="line">  <span class="keyword">char</span> v4; <span class="comment">// [esp+D2h] [ebp-16h]</span></span><br><span class="line">  <span class="keyword">char</span> v5; <span class="comment">// [esp+D3h] [ebp-15h]</span></span><br><span class="line">  <span class="keyword">char</span> v6; <span class="comment">// [esp+D4h] [ebp-14h]</span></span><br><span class="line">  <span class="keyword">char</span> v7; <span class="comment">// [esp+D5h] [ebp-13h]</span></span><br><span class="line">  <span class="keyword">char</span> v8; <span class="comment">// [esp+D6h] [ebp-12h]</span></span><br><span class="line">  <span class="keyword">char</span> v9; <span class="comment">// [esp+D7h] [ebp-11h]</span></span><br><span class="line">  <span class="keyword">char</span> v10; <span class="comment">// [esp+D8h] [ebp-10h]</span></span><br><span class="line">  <span class="keyword">char</span> v11; <span class="comment">// [esp+D9h] [ebp-Fh]</span></span><br><span class="line">  <span class="keyword">char</span> v12; <span class="comment">// [esp+DAh] [ebp-Eh]</span></span><br><span class="line">  <span class="keyword">char</span> v13; <span class="comment">// [esp+DBh] [ebp-Dh]</span></span><br><span class="line">  <span class="keyword">char</span> v14; <span class="comment">// [esp+DCh] [ebp-Ch]</span></span><br><span class="line">  <span class="keyword">char</span> v15; <span class="comment">// [esp+DDh] [ebp-Bh]</span></span><br><span class="line">  <span class="keyword">char</span> v16; <span class="comment">// [esp+DEh] [ebp-Ah]</span></span><br><span class="line">  <span class="keyword">char</span> v17; <span class="comment">// [esp+DFh] [ebp-9h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( **a1 == <span class="number">-1073741819</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = <span class="number">119</span>;</span><br><span class="line">    v3 = <span class="number">104</span>;</span><br><span class="line">    v4 = <span class="number">101</span>;</span><br><span class="line">    v5 = <span class="number">114</span>;</span><br><span class="line">    v6 = <span class="number">101</span>;</span><br><span class="line">    v7 = <span class="number">95</span>;</span><br><span class="line">    v8 = <span class="number">97</span>;</span><br><span class="line">    v9 = <span class="number">114</span>;</span><br><span class="line">    v10 = <span class="number">101</span>;</span><br><span class="line">    v11 = <span class="number">95</span>;</span><br><span class="line">    v12 = <span class="number">117</span>;</span><br><span class="line">    v13 = <span class="number">95</span>;</span><br><span class="line">    v14 = <span class="number">110</span>;</span><br><span class="line">    v15 = <span class="number">111</span>;</span><br><span class="line">    v16 = <span class="number">119</span>;</span><br><span class="line">    v17 = <span class="number">63</span>;</span><br><span class="line">    sub_411172(&amp;unk_41A218, &amp;v2);</span><br><span class="line">    SetUnhandledExceptionFilter(TopLevelExceptionFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>sub_411172只能看出是由v2（即字符串”where_are_u_now?”）生成的并且逻辑上跟前边差不多</p>
+<p>接下来是交给TopLevelExceptionFilter即异常过滤程序处理，点进去</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">signed</span> <span class="keyword">int</span> __cdecl <span class="title">sub_412C30</span><span class="params">(_DWORD *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> v2; <span class="comment">// STD7_1</span></span><br><span class="line">  <span class="keyword">size_t</span> i; <span class="comment">// [esp+DCh] [ebp-8h]</span></span><br><span class="line"></span><br><span class="line">  result = (<span class="keyword">signed</span> <span class="keyword">int</span>)a1;</span><br><span class="line">  <span class="keyword">if</span> ( *(_DWORD *)*a1 == <span class="number">-1073741819</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; j_strlen(Str2); i += <span class="number">2</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v2 = Str2[i];</span><br><span class="line">      Str2[i] = Str2[i + <span class="number">1</span>];</span><br><span class="line">      Str2[i + <span class="number">1</span>] = v2;</span><br><span class="line">    &#125;</span><br><span class="line">    Str1 = (<span class="keyword">char</span> *)sub_41126C(byte_41A180);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">176</span>) = *(_DWORD *)(*a1 + <span class="number">20</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">164</span>) = *(_DWORD *)(*a1 + <span class="number">24</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">172</span>) = *(_DWORD *)(*a1 + <span class="number">28</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">168</span>) = *(_DWORD *)(*a1 + <span class="number">32</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">156</span>) = *(_DWORD *)(*a1 + <span class="number">36</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">160</span>) = *(_DWORD *)(*a1 + <span class="number">40</span>);</span><br><span class="line">    *(_DWORD *)(a1[<span class="number">1</span>] + <span class="number">184</span>) = sub_411136;</span><br><span class="line">    result = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现了一个对Str2的简单变换，并且由Byte_41A180生成Str1，sub_411136就是最后Str1和Str2的比较</p>
+<p>由于不熟悉SEH，百度TopLevelExceptionFilter，发现了它的返回值-1即EXCEPTION_EXECUTE_EXECUTION使程序在异常发生处继续执行</p>
+<p>sub_41126C看起来是个base64（不完全是，是个变种的）</p>
+<p>那么这样基本上就连起来了：</p>
+<p>1.首先初始化程序中变表，并且注册异常</p>
+<p>2.在main函数中对常量地址赋值很可能就是故意造的异常</p>
+<p>3.被捕获之后生成unk_41A218，然后交给异常过滤程序即TopLevelExceptionFilter</p>
+<p>4.异常过滤程序对Str2进行变换，然后由byte_41A180生成Str1</p>
+<p>但发现不对劲，一是提示框hooked是在输入之后弹出的，二是unk_41A218和输入联合生成的byte_41A180，那么它对应的部分就只可能在输入结束到异常过滤程序之间执行</p>
+<p>最后卡在了变种base64和sm4（即两处生成方式上）</p>
+<p>附一份解密脚本</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="comment">//第一部分：将变种的加密结果还原成base64的加密结果</span></span><br><span class="line"><span class="keyword">char</span> base64_1[] = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span>;</span><br><span class="line"><span class="keyword">char</span> base64_2[] = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span>;</span><br><span class="line"><span class="keyword">char</span> Str2[] = <span class="string">"1UTAOIkpyOSWGv/mOYFY4R!!"</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="built_in">strlen</span>(Str2); i += <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">char</span> tmp = Str2[i];</span><br><span class="line">		Str2[i] = Str2[i - <span class="number">1</span>];</span><br><span class="line">		Str2[i - <span class="number">1</span>] = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(base64_2); i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (base64_2[i]&gt;=<span class="string">'A'</span>&amp;&amp;base64_2[i]&lt;=<span class="string">'Z'</span>) base64_2[i] += <span class="string">'a'</span>-<span class="string">'A'</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (base64_2[i]&gt;=<span class="string">'a'</span>&amp;&amp;base64_2[i]&lt;=<span class="string">'z'</span>) base64_2[i] -= <span class="string">'a'</span>-<span class="string">'A'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="built_in">strlen</span>(Str2) - <span class="number">2</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="built_in">strlen</span>(base64_2); j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (base64_2[j] == Str2[i]) &#123;</span><br><span class="line">				<span class="keyword">int</span> k = j;</span><br><span class="line">				Str2[i] = base64_2[(k + <span class="number">40</span>)%<span class="number">64</span>];</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt; <span class="built_in">strlen</span>(Str2) - <span class="number">2</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Str2[i]&gt;=<span class="string">'A'</span>&amp;&amp;Str2[i]&lt;=<span class="string">'Z'</span>) Str2[i] += <span class="string">'a'</span>-<span class="string">'A'</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (Str2[i]&gt;=<span class="string">'a'</span>&amp;&amp;Str2[i]&lt;=<span class="string">'z'</span>) Str2[i] -= <span class="string">'a'</span>-<span class="string">'A'</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	Str2[<span class="built_in">strlen</span>(Str2) - <span class="number">2</span>] = Str2[<span class="built_in">strlen</span>(Str2) - <span class="number">1</span>] = <span class="string">'='</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s"</span>,Str2);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//运行结果：WdCVKQ3yQAYU9I0naQaHTg==</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#第二部分：将结果经过base64解密之后连起来，再使用pysm4解密</span></span><br><span class="line"><span class="keyword">import</span> pysm4</span><br><span class="line">key = <span class="number">0x77686572655f6172655f755f6e6f773f</span></span><br><span class="line">for_decry =<span class="number">0x59d095290df2400614f48d276906874e</span></span><br><span class="line">decry_num = pysm4.decrypt(for_decry,key)</span><br><span class="line">print(hex(decry_num))</span><br><span class="line"><span class="comment">#运行结果：0x534d34666f524578636570696f4e3f21</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第三部分：将最终结果转成字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[] = <span class="string">"534d34666f524578636570696f4e3f21"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="built_in">strlen</span>(s); i+= <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">char</span> ch;</span><br><span class="line">		<span class="keyword">if</span> (s[i<span class="number">-1</span>]&gt;<span class="string">'9'</span>) ch = <span class="number">16</span> * (s[i<span class="number">-1</span>]-<span class="string">'a'</span>+<span class="number">10</span>);</span><br><span class="line">		<span class="keyword">else</span> ch = <span class="number">16</span> * (s[i<span class="number">-1</span>]-<span class="string">'0'</span>);</span><br><span class="line">		<span class="keyword">if</span> (s[i]&gt;<span class="string">'9'</span>) ch += (s[i]-<span class="string">'a'</span>+<span class="number">10</span>);</span><br><span class="line">		<span class="keyword">else</span> ch += s[i]-<span class="string">'0'</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,ch);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//运行结果（flag）：SM4foRExcepioN?!</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong></p>
+<p>1.在做的时候可以边做猜题意：</p>
+<p>在发现题目在异常上做文章的时候就基本可以猜个八九不离十了：故意造出异常然后在异常中执行某些函数再返回（或者不返回）主函数中继续执行</p>
+<p>2.加解密部分还是应该多了解一些，接下来会单独出一篇blog来记录各种常见的加解密</p>
+<p>3.之后应该多用动调，这题别的dalao用od之类的很容易就发现了hook</p>
+<p>4.说到hook之后也会单独（或者不单独）记录一下</p>
+<p>5.写的时候就发现了一个矛盾：我就算发现了这里可能是个加解密算法，在看ida的时候我也很难精确的找到是从哪里开始加密的</p>
+<p>​    对于这个我暂时想到两个办法：</p>
+<p>​        静态：看参数，一般来说应该是只传一个key一个明文就大概率是入口</p>
+<p>​        动调：注意内存里的明文，一旦开始变化就说明入口就在附近，并且可以在内存中找一找特征值</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/03/buuctf-re-9/" rel="next" title="BUUCTF 红帽杯 xx">
+                <i class="fa fa-chevron-left"></i> BUUCTF 红帽杯 xx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pr0ject0ne.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/09/05/buuctf-re-10/';
+          this.page.identifier = '2020/09/05/buuctf-re-10/';
+          this.page.title = 'BUUCTF 安洵杯 crackMe';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pr0ject0ne.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
