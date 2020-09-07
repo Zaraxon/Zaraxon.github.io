@@ -113,20 +113,17 @@
 
 
 
-<meta name="description" content="我就是不知道它是那么对应的，那咋办嘛">
+<meta name="description" content="RSA|SM4|RC4|MD5|Tea|AES">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BUUCTF BabyBriver 设备驱动">
-<meta property="og:url" content="http://yoursite.com/2020/09/01/buuctf-re-7/index.html">
+<meta property="og:title" content="Re常见加密算法">
+<meta property="og:url" content="http://yoursite.com/2020/09/05/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="最终你来到了这里">
-<meta property="og:description" content="我就是不知道它是那么对应的，那咋办嘛">
-<meta property="og:image" content="https://www.superbed.cn/item/5f4e0859160a154a678534b5">
-<meta property="og:image" content="https://www.superbed.cn/item/5f4e0aa8160a154a6785b867">
-<meta property="article:published_time" content="2020-09-01T08:32:00.000Z">
-<meta property="article:modified_time" content="2020-09-01T08:52:28.000Z">
+<meta property="og:description" content="RSA|SM4|RC4|MD5|Tea|AES">
+<meta property="article:published_time" content="2020-09-05T10:52:00.000Z">
+<meta property="article:modified_time" content="2020-09-07T07:20:21.000Z">
 <meta property="article:author" content="Zaraxon">
 <meta property="article:tag" content="re">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.superbed.cn/item/5f4e0859160a154a678534b5">
 
 
 
@@ -155,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/09/01/buuctf-re-7/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/09/05/加密算法整理/"/>
 
 
 
 
 
-  <title>BUUCTF BabyBriver 设备驱动 | 最终你来到了这里</title>
+  <title>Re常见加密算法 | 最终你来到了这里</title>
   
 
 
@@ -284,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/buuctf-re-7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zaraxon">
@@ -301,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BUUCTF BabyBriver 设备驱动</h1>
+          <h1 class="post-title" itemprop="name headline">Re常见加密算法</h1>
         
 
         <div class="post-meta">
@@ -313,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T16:32:00+08:00">
-                2020-09-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T18:52:00+08:00">
+                2020-09-05
               </time>
             
 
@@ -332,9 +329,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/01/buuctf-re-7/#comments" itemprop="discussionUrl">
+                <a href="/2020/09/05/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/09/01/buuctf-re-7/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/09/05/加密算法整理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -354,7 +351,7 @@
 
           
               <div class="post-description">
-                  我就是不知道它是那么对应的，那咋办嘛
+                  RSA|SM4|RC4|MD5|Tea|AES
               </div>
           
 
@@ -371,19 +368,54 @@
       
 
       
-        <p>拿到手的是一个.sys文件，幸好之前有接触过一丁丁点儿windows kernel知道这是windows的驱动，暂且可以把它看作一个.exe文件</p>
-<p>可以直接拖进ida，暂且不方便运行就先看看string里面有些什么</p>
-<p><img src="https://www.superbed.cn/item/5f4e0859160a154a678534b5" alt="img"></p>
-<p>一点都没让我失望，基本就可以猜它个八九不离十了，走迷宫</p>
-<p>又看到success那里是要md5一下</p>
-<p>这些都问题不大</p>
-<p>点进迷宫的调用：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_140001380</span><span class="params">(__int64 a1, __int64 a2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v2; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v3; <span class="comment">// rdi</span></span><br><span class="line">  __int64 v4; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// ecx</span></span><br><span class="line">  __int16 *v6; <span class="comment">// rsi</span></span><br><span class="line">  __int64 v7; <span class="comment">// rbp</span></span><br><span class="line">  __int16 v8; <span class="comment">// dx</span></span><br><span class="line">  <span class="keyword">char</span> now_char; <span class="comment">// dl</span></span><br><span class="line">  CHAR *output_string; <span class="comment">// rcx</span></span><br><span class="line"></span><br><span class="line">  v2 = a2;</span><br><span class="line">  <span class="keyword">if</span> ( *(_DWORD *)(a2 + <span class="number">48</span>) &gt;= <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v3 = *(_QWORD *)(a2 + <span class="number">24</span>);</span><br><span class="line">    v4 = *(_QWORD *)(a2 + <span class="number">56</span>) &gt;&gt; <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span> ( (_DWORD)v4 )</span><br><span class="line">    &#123;</span><br><span class="line">      v5 = last_step;</span><br><span class="line">      v6 = (__int16 *)(v3 + <span class="number">2</span>);</span><br><span class="line">      v7 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v4;</span><br><span class="line">      <span class="keyword">while</span> ( *(_WORD *)(v3 + <span class="number">4</span>) )</span><br><span class="line">      &#123;</span><br><span class="line">LABEL_28:</span><br><span class="line">        v6 += <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">if</span> ( !--v7 )</span><br><span class="line">          <span class="keyword">goto</span> LABEL_29;</span><br><span class="line">      &#125;</span><br><span class="line">      aO[v5] = <span class="number">46</span>;</span><br><span class="line">      v8 = *v6;</span><br><span class="line">      <span class="keyword">if</span> ( *v6 == <span class="number">23</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v5 &amp; <span class="number">0xFFFFFFF0</span> )                  <span class="comment">// 检测是不是在第一行 应该是对应上</span></span><br><span class="line">        &#123;</span><br><span class="line">          v5 -= <span class="number">16</span>;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">        &#125;</span><br><span class="line">        v5 += <span class="number">208</span>;</span><br><span class="line">        last_step = v5;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( v8 == <span class="number">37</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( (v5 &amp; <span class="number">0xFFFFFFF0</span>) != <span class="number">208</span> )         <span class="comment">// 检测是不是在最后一行 应该是对应下</span></span><br><span class="line">        &#123;</span><br><span class="line">          v5 += <span class="number">16</span>;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">        &#125;</span><br><span class="line">        v5 -= <span class="number">208</span>;</span><br><span class="line">        last_step = v5;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( v8 == <span class="number">36</span> )                           <span class="comment">// 检测是不是在最左边 应该是对应左</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v5 &amp; <span class="number">0xF</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          --v5;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">        &#125;</span><br><span class="line">        v5 += <span class="number">15</span>;</span><br><span class="line">        last_step = v5;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( v8 != <span class="number">38</span> )                           <span class="comment">// 那么这个应该就是右没跑了</span></span><br><span class="line">        <span class="keyword">goto</span> LABEL_22;</span><br><span class="line">      <span class="keyword">if</span> ( (v5 &amp; <span class="number">0xF</span>) == <span class="number">15</span> )</span><br><span class="line">        v5 -= <span class="number">15</span>;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        ++v5;</span><br><span class="line">LABEL_21:</span><br><span class="line">      last_step = v5;</span><br><span class="line">LABEL_22:</span><br><span class="line">      now_char = aO[v5];</span><br><span class="line">      <span class="keyword">if</span> ( now_char == <span class="number">42</span> )                     <span class="comment">// 42 '*' 可能是撞墙了</span></span><br><span class="line">      &#123;</span><br><span class="line">        output_string = <span class="string">"failed!\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( now_char != <span class="number">35</span> )                   <span class="comment">// 35 '#' 可能是终点</span></span><br><span class="line">        &#123;</span><br><span class="line">LABEL_27:</span><br><span class="line">          aO[v5] = <span class="number">111</span>;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_28;</span><br><span class="line">        &#125;</span><br><span class="line">        output_string = <span class="string">"success! flag is flag&#123;md5(input)&#125;\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      last_step = <span class="number">16</span>;</span><br><span class="line">      DbgPrint(output_string);</span><br><span class="line">      v5 = last_step;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">LABEL_29:</span><br><span class="line">  <span class="keyword">if</span> ( *(_BYTE *)(v2 + <span class="number">65</span>) )</span><br><span class="line">    *(_BYTE *)(*(_QWORD *)(v2 + <span class="number">184</span>) + <span class="number">3</span>i64) |= <span class="number">1u</span>;</span><br><span class="line">  <span class="keyword">return</span> *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(v2 + <span class="number">48</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>参考链接：<a href="https://blog.csdn.net/Palmer9/article/details/104210259" target="_blank" rel="noopener">https://blog.csdn.net/Palmer9/article/details/104210259</a></p>
+<p>密码学书籍中的一点点内容（《密码编码学与网络安全》）</p>
+<h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>RSA基于这样的思想：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C &#x3D; M ^ E mod N</span><br><span class="line">M &#x3D; C ^ D mod N</span><br></pre></td></tr></table></figure>
 
-<p>我已经一边分析一边做了标注，全局变量last_step用于和外界做信息交互，可以看到代码中使用了&amp;0xf和&amp;0xfffffff0来判断是不是在边界，因此知道了这个迷宫一行为16个字符（其实就把整个迷宫长度质因数分解一下随缘试一试长和宽也可以，就那么一种还是两种是有解的）</p>
-<p>最后问题就在输入上了，我真的不知道这里是通过键盘过滤驱动获取键盘扫描码来控制的，而不是ascii码QWQ<img src="https://www.superbed.cn/item/5f4e0aa8160a154a6785b867" alt="img"></p>
-<p>因此是IJKL控制，得到LKKKLLKLKKKLLLKKKLLLLLL，MD5（32位小写）一下就可以了</p>
-<p>flag{403950a6f64f7fc4b655dea696997851}</p>
+<p>其中：C是密文，M是明文，(E,N)为公钥，(D,N)为密钥</p>
+<p>于是有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">M &#x3D; C ^ D mod N </span><br><span class="line">  &#x3D; (M ^ E mod N) ^ D mod N </span><br><span class="line">  &#x3D; (M ^(E * D))mod N</span><br></pre></td></tr></table></figure>
+
+<p>没查到很能理解的原理，书里只说：</p>
+<p>当ED互为模ф(N)意义下的乘法逆元时（即E * D mod ф(N)  = 1）上述等式成立</p>
+<p>ф为欧拉函数</p>
+<h3 id="欧拉函数性质，欧拉定理"><a href="#欧拉函数性质，欧拉定理" class="headerlink" title="欧拉函数性质，欧拉定理"></a>欧拉函数性质，欧拉定理</h3><p>重要性质1：ф(N) = N - 1（N为质数）</p>
+<p>重要性质2：ф(p * q) = ф(p) * ф(q) （pq互质）</p>
+<p>定理：</p>
+<p>欧拉定理：</p>
+<p>如果两个正整数a和n互质，则n的欧拉函数 φ(n) 可以让下面的等式成立：<br>a ^ ф(n)≡1(mod n)</p>
+<p>费马小定理：<br>假设正整数a与质数p互质，因为质数p的φ§等于p-1，则欧拉定理可以写成<br>a ^ (p-1)≡1(mod p)</p>
+<h3 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h3><p>如果两个正整数a和n互质，那么一定可以找到整数b，使得 ab-1 被n整除，或者说ab被n除的余数是1。<br>ab≡1(mod n)<br>这时候b就叫做a的”模反元素”</p>
+<p>于是，假设求乘法逆元操作是已知的，那么解密需要做的就是</p>
+<p>1.<strong>已知N求ф(N)</strong></p>
+<p>2.求模ф(N)意义下E的乘法逆元即得D</p>
+<p><strong>RSA核心</strong>：E * D mod ф(N)  = 1</p>
+<h2 id="RC4流密码"><a href="#RC4流密码" class="headerlink" title="RC4流密码"></a>RC4流密码</h2><p>RC4思路：</p>
+<p>1.初始化s盒为0 ~ 255， 将密钥循环赋值给k</p>
+<p>2.打乱s盒：</p>
+<p>​    每次交换s盒中的两字节（s[i]和另一字节，另一字节由密钥来确定）</p>
+<p>3.加密部分：</p>
+<p>​    每次取s盒中的两字节（s[i]和另一字节，另一字节由s[i]来确定）交换位置，取两字节之和对256取模得到要取的下标，将该下标对应的字节与DATA异或</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> * <span class="title">RC4_KSA</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> * key,<span class="keyword">unsigned</span> <span class="keyword">long</span> key_len)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> * sbox = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">256</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> k[<span class="number">256</span>];</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++) &#123;</span><br><span class="line">        sbox[i] = i;</span><br><span class="line">        k[i] = key[i % key_len];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++) &#123;</span><br><span class="line">        j = (j + sbox[i] + k[i]) % <span class="number">256</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">char</span> tmp;</span><br><span class="line">        tmp = sbox[i];</span><br><span class="line">        sbox[i] = sbox[j];</span><br><span class="line">        sbox[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sbox;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RC4_CRYPT</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> * Data, <span class="keyword">unsigned</span> <span class="keyword">long</span> Data_len,<span class="keyword">unsigned</span> <span class="keyword">char</span> * key, <span class="keyword">unsigned</span> <span class="keyword">long</span> key_len)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        key的长度不能大于256字节</span></span><br><span class="line"><span class="comment">        DATA长度不能大于256字节</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> * sbox = RC4_KSA(key, key_len);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; Data_len; k++) &#123;</span><br><span class="line">        i = (i + <span class="number">1</span>) % <span class="number">256</span>;</span><br><span class="line">        j = (j + sbox[i]) % <span class="number">256</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">char</span> tmp = sbox[i];</span><br><span class="line">        sbox[i] = sbox[j];</span><br><span class="line">        sbox[j] = tmp;</span><br><span class="line">        t = (sbox[i] + sbox[j]) % <span class="number">256</span>;</span><br><span class="line">        Data[k] ^= sbox[t];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RC4特征：</p>
+<p>1.初始化0 ~ 255</p>
+<p>2.打乱S盒的操作</p>
+<p>3.密钥只在打乱s盒的部分使用，加密部分不需要</p>
+<h2 id="MD5-SHA系列"><a href="#MD5-SHA系列" class="headerlink" title="MD5 / SHA系列"></a>MD5 / SHA系列</h2><p>在此仅记录md5的基本特征/识别方式，因为对四个线性函数理解不深刻所以无法详细记录</p>
+<p>sha系列函数由MD5衍生而来，sha1和MD5的填充方式相同</p>
+<p>特征1：</p>
+<p>​    四个幻数：0x67452310 0xefcdab89 0x98badcfe 0x10325476</p>
+<p>​    即物理存储上的0 ~ f 和 f ~ 0</p>
+<p>特征2：</p>
+<p>​    数据长度填充：</p>
+<p>​        数据长度对512bit取模等于448，如果不足448用一个1和若干个0补齐</p>
+<h2 id="tea系列"><a href="#tea系列" class="headerlink" title="tea系列"></a>tea系列</h2><p>tea系列函数：</p>
+<p>特征1：待加密的数据为两个32位无符号整数，密钥为4个32位无符号整数</p>
+<p>特征2：tea（非改进版）根据需要使用2 ^ k轮循环，一般是32轮</p>
+<p>特征3：tea系列函数都使用了一个共同的特征值0x9e3779b9（似乎与黄金分割有关），同时注意它的补码0x61C88647也是可能出现的，在每一轮循环中sum都会加上这个值</p>
+<p>特征4：xxtea具有两层循环</p>
 
       
     </div>
@@ -414,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/30/buuctf-re-6/" rel="next" title="BUUCTF simple CPP">
-                <i class="fa fa-chevron-left"></i> BUUCTF simple CPP
+              <a href="/2020/09/05/buuctf-re-10/" rel="next" title="BUUCTF 安洵杯 crackMe">
+                <i class="fa fa-chevron-left"></i> BUUCTF 安洵杯 crackMe
               </a>
             
           </div>
@@ -423,10 +455,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/09/01/buuctf-re-8/" rel="prev" title="BUUCTF Overlong">
-                BUUCTF Overlong <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -485,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -592,6 +629,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA"><span class="nav-text">RSA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欧拉函数性质，欧拉定理"><span class="nav-text">欧拉函数性质，欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模反元素"><span class="nav-text">模反元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RC4流密码"><span class="nav-text">RC4流密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MD5-SHA系列"><span class="nav-text">MD5 &#x2F; SHA系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tea系列"><span class="nav-text">tea系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
 
@@ -776,9 +829,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2020/09/01/buuctf-re-7/';
-          this.page.identifier = '2020/09/01/buuctf-re-7/';
-          this.page.title = 'BUUCTF BabyBriver 设备驱动';
+          this.page.url = 'http://yoursite.com/2020/09/05/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/';
+          this.page.identifier = '2020/09/05/加密算法整理/';
+          this.page.title = 'Re常见加密算法';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pr0ject0ne.disqus.com/embed.js';
