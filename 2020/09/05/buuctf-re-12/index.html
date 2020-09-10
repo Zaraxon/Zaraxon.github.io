@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="动调观察输入输出以及关于C++对于函数名称的修饰">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF [2019红帽杯]childRE">
+<meta property="og:url" content="http://yoursite.com/2020/09/05/buuctf-re-12/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="动调观察输入输出以及关于C++对于函数名称的修饰">
+<meta property="og:image" content="https://www.superbed.cn/item/5f59ce9d160a154a67a3a42c">
+<meta property="og:image" content="https://www.superbed.cn/item/5f59cedc160a154a67a3c214">
+<meta property="og:image" content="https://www.superbed.cn/item/5f59d8a9160a154a67a7a26a">
+<meta property="og:image" content="c:%5CUsers%5C85085%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200910154704046.png">
+<meta property="og:image" content="https://www.superbed.cn/item/5f59dae7160a154a67a8640e">
+<meta property="article:published_time" content="2020-09-05T08:26:00.000Z">
+<meta property="article:modified_time" content="2020-09-10T07:54:48.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.superbed.cn/item/5f59ce9d160a154a67a3a42c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/05/buuctf-re-12/"/>
+
+
+
+
+
+  <title>BUUCTF [2019红帽杯]childRE | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUUCTF [2019红帽杯]childRE</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T16:26:00+08:00">
+                2020-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/05/buuctf-re-12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/09/05/buuctf-re-12/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  动调观察输入输出以及关于C++对于函数名称的修饰
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查壳不放了，运行一下：</p>
+<p><img src="https://www.superbed.cn/item/5f59ce9d160a154a67a3a42c" alt="img"></p>
+<p>卡死在这了</p>
+<p>看一下IDA，打开Strings Window</p>
+<p><img src="https://www.superbed.cn/item/5f59cedc160a154a67a3c214" alt="img"></p>
+<p>有好几个值得注意的地方，随便从哪个开始都可以啦，我习惯从flag开始倒着分析</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">signed</span> __int64 <span class="title">sub_140001610</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">signed</span> __int64 input_len; <span class="comment">// rax</span></span><br><span class="line">  _QWORD *v1; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">const</span> CHAR *v2; <span class="comment">// r11</span></span><br><span class="line">  __int64 v3; <span class="comment">// r10</span></span><br><span class="line">  __int64 v4; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">const</span> CHAR *v5; <span class="comment">// r10</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 v6; <span class="comment">// rcx</span></span><br><span class="line">  __int64 v7; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">signed</span> __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> j; <span class="comment">// ecx</span></span><br><span class="line">  __int64 i; <span class="comment">// r9</span></span><br><span class="line">  <span class="keyword">int</span> oS[i]; <span class="comment">// er10</span></span><br><span class="line">  __int64 v12; <span class="comment">// r8</span></span><br><span class="line">  __int128 input; <span class="comment">// [rsp+20h] [rbp-38h]</span></span><br><span class="line">  __int128 v14; <span class="comment">// [rsp+30h] [rbp-28h]</span></span><br><span class="line"></span><br><span class="line">  input = <span class="number">0</span>i64;</span><br><span class="line">  v14 = <span class="number">0</span>i64;</span><br><span class="line">  sub_140001080(<span class="string">"%s"</span>, &amp;input);</span><br><span class="line">  input_len = <span class="number">-1</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++input_len;</span><br><span class="line">  <span class="keyword">while</span> ( *((_BYTE *)&amp;input + input_len) );</span><br><span class="line">  <span class="keyword">if</span> ( input_len != <span class="number">31</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">      Sleep(<span class="number">0x3E8</span>u);</span><br><span class="line">  &#125;</span><br><span class="line">  v1 = sub_140001280(&amp;input);</span><br><span class="line">  v2 = name;</span><br><span class="line">  <span class="keyword">if</span> ( v1 )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_1400015C0((<span class="keyword">unsigned</span> __int8 *)v1[<span class="number">1</span>]);</span><br><span class="line">    sub_1400015C0(*(<span class="keyword">unsigned</span> __int8 **)(v3 + <span class="number">16</span>));</span><br><span class="line">    v4 = dword_1400057E0;</span><br><span class="line">    v2[v4] = *v5;</span><br><span class="line">    dword_1400057E0 = v4 + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  UnDecorateSymbolName(v2, outputString, <span class="number">0x100</span>u, <span class="number">0</span>);</span><br><span class="line">  v6 = <span class="number">-1</span>i64;</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    ++v6;</span><br><span class="line">  <span class="keyword">while</span> ( outputString[v6] );</span><br><span class="line">  <span class="keyword">if</span> ( v6 == <span class="number">62</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    i = <span class="number">0</span>i64;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      oS[i] = outputString[i];</span><br><span class="line">      v12 = oS[i] % <span class="number">23</span>;</span><br><span class="line">      <span class="keyword">if</span> ( a1234567890Qwer[v12] != *(_BYTE *)(i + <span class="number">5368722552</span>i64) )<span class="comment">// 140003478</span></span><br><span class="line">        _exit(j);</span><br><span class="line">      <span class="keyword">if</span> ( a1234567890Qwer[oS[i] / <span class="number">23</span>] != *(_BYTE *)(i + <span class="number">5368722488</span>i64) )<span class="comment">// 140003438</span></span><br><span class="line">        _exit(j * j);</span><br><span class="line">      ++j;</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( j &lt; <span class="number">0x3E</span> );</span><br><span class="line">    sub_140001020(<span class="string">"flag&#123;MD5(your input)&#125;\n"</span>, oS[i] / <span class="number">23</span>, v12, i);</span><br><span class="line">    result = <span class="number">0</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    v7 = sub_1400018A0(<span class="built_in">std</span>::<span class="built_in">cout</span>);</span><br><span class="line">    <span class="built_in">std</span>::basic_ostream&lt;<span class="keyword">char</span>,<span class="built_in">std</span>::char_traits&lt;<span class="keyword">char</span>&gt;&gt;::<span class="keyword">operator</span>&lt;&lt;(v7, sub_140001A60);</span><br><span class="line">    result = <span class="number">0xFFFFFFFF</span>i64;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然我改过了名字，但sub_140001080基本就是跟scanf一个作用应该没跑</p>
+<p>接下来看到要求输入长度是31</p>
+<p>v1为input经过了某些变换得到的东西，v2被赋值为name，点进去啥也没有</p>
+<p>在if(v1)里面有些操作，点进去，呕，退出来</p>
+<p>接下来百度一下UnDecorateSymbolName干啥用的，Microsoft Doc说是用于将编译后的函数名还原为源码中的变量名的，由于v2我们不知道咋回事，那么就等着后面分析那个outputString的时候看看吧</p>
+<p>v6时outputString的长度，从后面得知是62</p>
+<p>最后一处判断在do while循环里面，简单看一下可以知道就是对outputString的每个值查表一一对应，从中可以得知每个值对23取模和整除23的值，也就得到了outputString的每个值。</p>
+<p>写个脚本逆一下找到源码中的函数名：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[] = <span class="string">"1234567890-=!@#$%^&amp;*()_+qwertyuiop[]QWERTYUIOP&#123;&#125;asdfghjkl;\'ASDFGHJKL:\"ZXCVBNM&lt;&gt;\?zxcvbnm,./"</span>;</span><br><span class="line">	<span class="keyword">char</span> s1[] = <span class="string">"55565653255552225565565555243466334653663544426565555525555222"</span>;</span><br><span class="line">	<span class="keyword">char</span> s2[] = <span class="string">"(_@4620!08!6_0*0442!@186%%0@3=66!!974*3234=&amp;0^3&amp;1@=&amp;0908!6_0*&amp;"</span>;</span><br><span class="line">	<span class="keyword">int</span> slen = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">62</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; slen; j++) </span><br><span class="line">			<span class="keyword">if</span> (s[j] == s1[i]) &#123;</span><br><span class="line">				a = j;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; slen; j++) </span><br><span class="line">			<span class="keyword">if</span> (s[j] == s2[i]) &#123;</span><br><span class="line">				b = j;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">char</span> ch = a * <span class="number">23</span> + b;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, ch);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行结果：</span></span><br><span class="line"><span class="comment">private: char * __thiscall R0Pxx::My_Aut0_PWN(unsigned char *)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>这里正好我对C/C++对函数的修饰规则有一点点了解</p>
+<p>（即，在编译过程中，编译器会根据函数的类型，函数名，防控方式（私有，共有，保护等），调用约定，参数表等生成一个新的函数名），</p>
+<p>只要上网百度一下具体操作就可以了</p>
+<p>具体修饰规则我会在另一篇博客详细说明（其实就是看别人的博客搬一搬，但网上有两个不同的个版本，有一个是错的，所以就搬一个正确的）这里是thiscall调用，生成的名字为：</p>
+<p>?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z</p>
+<p>巧了，长度正好31</p>
+<p>那么我们这里是不是可以大胆猜测，对于输入部分一直到生成v2，程序只是进行了简单的移位变换或者甚至什么都没做？</p>
+<p>动调一下试试（x64dbg+ScllycaHide）：</p>
+<p>具体步骤为：</p>
+<p>1.右键，搜索所有字符转引用，找到flag处</p>
+<p>2.网上寻找Sleep函数处，在“v2 = name”对应的地方下断获取v2对应的地址（在R11中）：</p>
+<p><img src="https://www.superbed.cn/item/5f59d8a9160a154a67a7a26a" alt="img"></p>
+<p>3.在if(v2 == 62)处下断，观察变化后的字符串：</p>
+<p>（上图中我失误了，应该输入不重复的东西才方便观察，下面我重新输入了一次：0123456789ABCDEFGHIJKLMNOPQRSTU）</p>
+<p>变化后：</p>
+<p><img src="C:%5CUsers%5C85085%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200910154704046.png" alt="image-20200910154704046"></p>
+<p>如果不放心可以稍微写脚本检测一下或者多进行几次输入以确保是简单的移位变换</p>
+<p>乱序经移位变成有序，写一个脚本还原为乱序（即正确输入）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[] = <span class="string">"0123456789ABCDEFGHIJKLMNOPQRSTU"</span>;</span><br><span class="line">	<span class="keyword">char</span> d[] = <span class="string">"FG7HI83JK9LMA41NOBPQC5RSDTUE620"</span>;</span><br><span class="line">	<span class="keyword">char</span> after[] = <span class="string">"?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z"</span>;</span><br><span class="line">	<span class="keyword">char</span> before[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;; </span><br><span class="line">	<span class="keyword">int</span> retable[<span class="number">101</span>] = &#123;<span class="number">-1</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">31</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(d[i] == s[j]) &#123;</span><br><span class="line">				retable[j] = i;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, after[retable[i]]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行结果</span></span><br><span class="line"><span class="comment">Z0@tRAEyuP@xAAA?M_A0_WNPx@@EPDP</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>拿着跑一次试试：</p>
+<p><img src="https://www.superbed.cn/item/5f59dae7160a154a67a8640e" alt="img"></p>
+<p>拿去md5（32位小写）一下得到flag：</p>
+<p>flag{63b148e750fed3a33419168ac58083f5}</p>
+<p><strong>总结</strong></p>
+<p>一路做下来感觉难度不大，基本就是很常规的思路一路走下去就可以了</p>
+<p>唯一的技巧是通过合理的猜测和动调省去了大量的分析，得知那一大堆操作其实就是简单的移位变换</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/03/buuctf-re-9/" rel="next" title="BUUCTF 红帽杯 xx">
+                <i class="fa fa-chevron-left"></i> BUUCTF 红帽杯 xx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/05/buuctf-re-11/" rel="prev" title="BUUCTF 2020网鼎杯 青龙组reverse：signal">
+                BUUCTF 2020网鼎杯 青龙组reverse：signal <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pr0ject0ne.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/09/05/buuctf-re-12/';
+          this.page.identifier = '2020/09/05/buuctf-re-12/';
+          this.page.title = 'BUUCTF [2019红帽杯]childRE';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pr0ject0ne.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
