@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Windows," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="从IDT到顶层异常处理程序（顶层异常处理没写完）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下的异常处理(1)">
+<meta property="og:url" content="http://yoursite.com/2020/09/19/Windows%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="从IDT到顶层异常处理程序（顶层异常处理没写完）">
+<meta property="article:published_time" content="2020-09-19T06:11:00.000Z">
+<meta property="article:modified_time" content="2020-09-27T06:06:53.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/19/Windows异常处理/"/>
+
+
+
+
+
+  <title>Windows下的异常处理(1) | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/19/Windows%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Windows下的异常处理(1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-19T14:11:00+08:00">
+                2020-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/19/Windows%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/09/19/Windows异常处理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  从IDT到顶层异常处理程序（顶层异常处理没写完）
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.在引发一个硬件异常时，CPU根据中断类型号在中断描述符表中寻找对应的处理函数并执行</p>
+<p><strong>IDT中断描述符表</strong></p>
+<p>​    位置由专门的IDTR寄存器存储</p>
+<p>​    Interrupt Descriptor Table是一张位于物理内存中的线性表，每项 8字节（32位模式）/ 64字节（64位模式）。每一项都是一个门结构（任务门/陷阱门/中断门）</p>
+<p>2.</p>
+<p>​    CPU找到的异常处理函数会将异常信息包装成两个结构，</p>
+<p>​        第一个为<strong>EXCEPTION_RECORD</strong>，记录了异常发生的地址，类型和处理状态</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_RECORD</span> &#123;</span></span><br><span class="line">    NTSTATUS ExceptionCode; <span class="comment">//异常代码</span></span><br><span class="line">    ULONG ExceptionFlags; <span class="comment">//异常标志，代表异常被处理的状态</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_RECORD</span> *<span class="title">ExceptionRecord</span>;</span> <span class="comment">//指向下一个该结构</span></span><br><span class="line">    PVOID ExceptionAddress; <span class="comment">//异常发生的地址</span></span><br><span class="line">    ULONG NumberParameters; <span class="comment">//附加信息数目</span></span><br><span class="line">    ULONG_PTR ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS]; <span class="comment">//附加信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二个为<strong>_KTRAP_FRAME</strong>（陷阱帧）一般供操作系统自己调用。在需要将控制权交给用户注册的异常处理程序时会将此结构转换成<strong>_CONTEXT</strong>结构供用户调用，它包含了异常发生时寄存器的完整映像</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">CONTEXT</span> &#123;</span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">//标识哪些成员是有效的</span></span><br><span class="line">    DWORD ContextFlags;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">//调试寄存器 </span></span><br><span class="line">    DWORD   Dr0;</span><br><span class="line">    DWORD   Dr1;</span><br><span class="line">    DWORD   Dr2;</span><br><span class="line">    DWORD   Dr3;</span><br><span class="line">    DWORD   Dr6;</span><br><span class="line">    DWORD   Dr7;</span><br><span class="line">  </span><br><span class="line">    FLOATING_SAVE_AREA FloatSave;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//以下4行在ContextFlags中包含CONTEXT_SEGMENTS时有效</span></span><br><span class="line">    DWORD   SegGs;</span><br><span class="line">    DWORD   SegFs;</span><br><span class="line">    DWORD   SegEs;</span><br><span class="line">    DWORD   SegDs;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//以下6行在ContextFlags中包含CONTEXT_INTEGER时有效</span></span><br><span class="line">    DWORD   Edi;</span><br><span class="line">    DWORD   Esi;</span><br><span class="line">    DWORD   Ebx;</span><br><span class="line">    DWORD   Edx;</span><br><span class="line">    DWORD   Ecx;</span><br><span class="line">    DWORD   Eax;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 以下6行在ContextFlags中包含CONTEXT_CONTROL时有效</span></span><br><span class="line">    DWORD   Ebp;</span><br><span class="line">    DWORD   Eip;</span><br><span class="line">    DWORD   SegCs;              <span class="comment">// MUST BE SANITIZED</span></span><br><span class="line">    DWORD   EFlags;             <span class="comment">// MUST BE SANITIZED</span></span><br><span class="line">    DWORD   Esp;</span><br><span class="line">    DWORD   SegSs;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//在ContextFlags中包含CONTEXT_EXTENDED_REGISTERS时有效.</span></span><br><span class="line">  	<span class="comment">//形式和内容由进程指定</span></span><br><span class="line">    BYTE    ExtendedRegisters[MAXIMUM_SUPPORTED_EXTENSION];</span><br><span class="line">  </span><br><span class="line">&#125; CONTEXT;</span><br></pre></td></tr></table></figure>
+
+<p>注意到陷阱帧结构中包含了8个Debug寄存器，硬件断点存储在Dr0 ~ Dr3中，<strong>如果下了硬件断点将会被在此处检测到</strong></p>
+<p>3.包装完毕后会进一步调用<strong>KiDispatchException</strong>来分发异常</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VOID <span class="title">KiDispatch</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	IN PEXCEPTION_RECORD ExceptionRecord; <span class="comment">//异常结构信息</span></span></span></span><br><span class="line"><span class="function"><span class="params">    IN PKEXEPTION_FRAME ExceptionFrame; <span class="comment">//对于NT386总是未使用</span></span></span></span><br><span class="line"><span class="function"><span class="params">    IN KPROCESSOR_MODE PreviousMode; <span class="comment">//代表用户态还是内核态</span></span></span></span><br><span class="line"><span class="function"><span class="params">    IN BOOLEAN FirstChance; <span class="comment">//是否是第一次处理该异常</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意到参数PreviousMode，代表是用户态还是内核态，下面分别介绍</p>
+<p><strong>内核态异常分发</strong></p>
+<p>​    第一次异常分发首先检测内核调试器的存在（注明第一次分发），如果不存在或者内核调试器选择忽略则调用nt!RtlDispatchException来调用用户注册的结构化异常处理(SEH)来处理该异常，如果nt!RtlDispatchException没有处理该异常则进行第二次分发（注明第二次分发），如果还是没有被处理则调用KeBugCheckEx产生错误码KERNEL_MODE_EXCEPTION_NOT_HANDLED（俗称蓝屏）</p>
+<p>​    如果内核调试器存在，则将控制权交给内核调试器，由用户对调试器异常处理的设置选择是否忽略异常，如果调试器正确处理了异常则返回异常发生处继续执行</p>
+<p><strong>用户态异常分发</strong></p>
+<p>​    首先同样是检测（用户态）调试器，如果存在则交给调试器处理。如果不存在，则在栈上放置<strong>_EXCEPTION_RECORD</strong>和<strong>_CONTEXT</strong>两个结构，并且将控制权交给nt!KiUserDispatchException，由它调用nt!RtlUserDispatchException进行用户态的异常处理（SEH结构化异常处理和VEH向量化异常处理）</p>
+<p><strong>SEH</strong>部分</p>
+<p>线程信息块(Thread Information Block)，位于TEB（线程环境块）头部</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">NT_TIB</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_REGISTRATION_RECORD</span> * <span class="title">ExceptionList</span>;</span> <span class="comment">//异常处理程序的链表</span></span><br><span class="line">    PVOID StackBase; <span class="comment">//当前线程栈底</span></span><br><span class="line">    PVOID StackLimit; <span class="comment">//当前线程栈顶</span></span><br><span class="line">    PVOID SubSystemTib;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        	PVOID FiberData;</span><br><span class="line">        	ULONG Version;</span><br><span class="line">	&#125;;</span><br><span class="line">    PVOID ArbitraryUserPoiter;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">NT_TIB</span> * <span class="title">Self</span>;</span></span><br><span class="line">&#125;NT_TIB;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_REGISTRATION_RECORD</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_REGISTRATION_RECORD</span> *<span class="title">Next</span>;</span> <span class="comment">//指向下一个异常处理结构的指针</span></span><br><span class="line">    PEXCEPTION_ROUTINE Handler; <span class="comment">//异常处理函数的地址</span></span><br><span class="line">&#125;EXCEPTION_REGISTRATION_RECORD;</span><br></pre></td></tr></table></figure>
+
+<p>x86平台下，TEB由fs : [0]所指向。（内核态指向KPCBR处理器控制块头部，也是有一个TEB结构）</p>
+<p>x64平台下，TEB由gs: [0]所指向。</p>
+<p>为了让用户态程序能够访问异常相关数据，操作系统会在用户态栈上放一个EXCEPTION_RECORD和CONTEXT结构并且放一个EXCEPTION_POINTERS结构用于访问它们（看起来是相邻放置的）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">EXCEPTION_POINTERS</span> &#123;</span></span><br><span class="line">    PEXCEPTION_RECORD ExceptionRecord;  <span class="comment">//指向EXCEPTION_RECORD结构</span></span><br><span class="line">    PCONTEXT ContextRecord; <span class="comment">//指向CONTEXT结构</span></span><br><span class="line">&#125;EXCEPTION_POINTERS, *PEXCEPTION_POINTERS;</span><br></pre></td></tr></table></figure>
+
+<p><strong>异常处理函数的注册</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assume fs:nothing</span><br><span class="line">	push offset SEHandler</span><br><span class="line">	push fs:[0]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，注册实际上就是依次推入一个头节点地址作为Next和一个异常处理回调函数的地址，他们共同组成了一个_EXCEPTION_REGISTRATION_RECORD节点，再将fs:[0]指向头节点</p>
+<p><strong>异常处理函数的卸载</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pop dword ptr fs:[0]</span><br><span class="line">add esp, 4 ;平栈</span><br></pre></td></tr></table></figure>
+
+<p>这一部分加密与解密上似乎截错了代码部分（截了pop dword ptr fs:[0]和上一条指令）</p>
+<p>最后一个节点是0xFFFFFFFF也就是<strong>顶层异常处理函数</strong>，由操作系统安装的默认异常处理程序，如果用户没有安装异常处理程序或者用户安装的所有异常处理程序都无法处理，那么最后由顶层异常处理函数，这部分将在后面继续讨论</p>
+<p><strong>关于nt!RtlDispatchException的详细过程</strong></p>
+<p>注：这部分里作者似乎对于传进去的指针pExcptRec和不知道哪来的变量ExceptionRecord有点搞混，我按照自己的理解在不改变作者思路的情况下进行了一点点修正，如仍有错误还请不吝赐教</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXCEPTION_NONCONTINUABLE 0x1<span class="comment">//不可继续执行 </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	EXCEPTION_UNWINDING 0x2<span class="comment">//正在进行栈展开</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	EXCEPTION_EXIT_UNWINDING 0x4<span class="comment">//正在推出栈展开</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	EXCEPTION_STACK_INVALID 0x8 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NESTED_CALL 0x10<span class="comment">//嵌套异常处理函数调用</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TARGET_UNWIND 0x20<span class="comment">//目标帧展开</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> COLLIED_UNWIND 0x40<span class="comment">//冲突异常处理函数调用</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//MmExcutionOptionFlags on Windows7</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MEM_EXECUTE_OPTION_DISABLE_EXCEPTIONCHAIN_VALIDATION 0X40 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ProcessInformationClass的一部分</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ProcessExcuteFlags 34</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">DISPATCHER_CONTEXT</span> &#123;</span></span><br><span class="line">    PEXECEPTION_REGISTARTION_RECORD RegistrationRecord;</span><br><span class="line">&#125;DISPATCHER_CONTEXT;</span><br><span class="line"></span><br><span class="line"><span class="function">BOOLEAN __stdcall <span class="title">RtlDispatchException</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	PEXCEPTION_RECORD pExcptRec,</span></span></span><br><span class="line"><span class="function"><span class="params">    CONTEXT *pContext</span></span></span><br><span class="line"><span class="function"><span class="params">)</span> </span>&#123;</span><br><span class="line">    BOOLEAN Completion;</span><br><span class="line">    PEXCETION_RECORD pExcptRec;</span><br><span class="line">    EXCEPTION_REGISTRATION_RECORD *RegistrationPointerForCheck;</span><br><span class="line">    EXCEPTION_REGISTRATION_RECORD *RegistrationPointer;</span><br><span class="line">    EXCEPTION_REGISTRATION_RECORD *NestedRegistration;</span><br><span class="line">    EXCEPTION_DISPOSITION Disposition;</span><br><span class="line">    EXCEPTION_RECORD ExceptionRecord1;</span><br><span class="line">    DISPATCHER_CONTEXT DispatcherContext;</span><br><span class="line">    ULONG ProcessExcutionOption;</span><br><span class="line">	ULONG StackBase, StackLimit;</span><br><span class="line">    NTSTATUS status;</span><br><span class="line">    </span><br><span class="line">    Completion = FALSE;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (RtilCallVectoredExceptionHandler(pExcptRec, pContext)) &#123;</span><br><span class="line">        <span class="comment">//先调用VEH处理例程(Windows XP及以后)</span></span><br><span class="line">        Completion = TRUE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        RtlGetStackLimit(&amp;StackLimit, &amp;StackBase);</span><br><span class="line">        ProcessExcutionOption = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//从fs:[0]读取SEH链的头节点</span></span><br><span class="line">        RegistrationPointerForCheck = RtlGetRegistrationHead();</span><br><span class="line">        IsSEHOPEnable = TRUE;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/* SEHOP验证部分 OverwrittenProtection覆写保护机制 */</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//查询ProcessExcuteFlags获取是否进行SEHOP验证</span></span><br><span class="line">        status = ZwQueryInformationProcess(NtCurrentProcess(), ProcessExcuteFlags, </span><br><span class="line">                                          &amp;ProcessExcutionOption, <span class="keyword">sizeof</span>(ULONG), <span class="literal">NULL</span>);</span><br><span class="line">        <span class="keyword">if</span> (NT_SUCCESS(status) <span class="comment">/*查询失败*/</span>&amp;&amp; </span><br><span class="line">           	(ProcessExcutionOption &amp; MEM_EXECUTE_OPTION_DISABLE_EXCEPTIONCHAIN_VALIDATION)<span class="comment">/*确实禁用了SEHOP*/</span>) &#123;</span><br><span class="line">            <span class="comment">//不进行SEHOP验证</span></span><br><span class="line">            IsSEHOPEnalble = FALSE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//1.开始SEHOP验证，验证用户安装的异常处理程序的有效性</span></span><br><span class="line">            <span class="keyword">while</span> (RegistrationPointerForCheck != <span class="number">-1</span>) &#123; <span class="comment">//不是SEH最后一个节点</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="comment">/*如果SEH节点不在栈中*/</span></span><br><span class="line">                    (ULONG)RegistrationPointerForCheck  &lt; StackLimit || </span><br><span class="line">                    (ULONG)RegistrationPointerForCheck  + <span class="number">8</span> &gt; StackBase ||</span><br><span class="line">                    <span class="comment">/*如果SEH节点没有按照ULONG对齐*/</span></span><br><span class="line">                    (ULONG)RegistrationPointerForCheck &amp; <span class="number">3</span> ||</span><br><span class="line">                    <span class="comment">/*Handler在栈中*/</span></span><br><span class="line">                    (ULONG)RegistrationPointerForCheck-&gt;Handler &lt; StackLimit &amp;&amp;</span><br><span class="line">                    (ULONG)RegistrationPointerForCheck-&gt;Hanlder &gt;= StackBase </span><br><span class="line">                	) &#123;</span><br><span class="line">                    pExcept-&gt;ExceptionFlags |= EXCEPTION_STACK_INVALID;</span><br><span class="line">                    <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">                &#125;</span><br><span class="line">                RegistrationPointerForCheck = RegistrationPointerForCheck-&gt;Next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//2.接下来验证顶层异常处理节点</span></span><br><span class="line">        <span class="keyword">if</span>(</span><br><span class="line">            <span class="comment">/* 0x200 为 RtlExceptionAttached 标志位 */</span></span><br><span class="line">            <span class="comment">/*个人理解：这里的逻辑是，在安装了顶层异常处理程序的情况下（无论是用户还是默认的），那么如果查询到顶层Handler的和之前注册的不一样，那么认为SEH链无效*/</span></span><br><span class="line">            (NtCurrentTeb()-&gt;SameTebFlags &amp; <span class="number">0x200</span>)</span><br><span class="line">            &amp;&amp; (RegistrationPointerForCheck-&gt;Handler != FinalExceptionHandler)</span><br><span class="line">        	<span class="comment">/*这里很奇怪，我不知道这个FinalExceptionHandler是哪里来的，书中这个变量没有在任何部分定义过*/</span></span><br><span class="line">        	) &#123;</span><br><span class="line">            <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/* SEHOP验证部分结束 */</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">/*开始异常分发*/</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取SEH头节点</span></span><br><span class="line">        RegistrationPointer = RtlGetRegistrationHead();</span><br><span class="line">        NestedRegistrationPointer = <span class="literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (TRUE) &#123;</span><br><span class="line">            <span class="keyword">if</span> (RegistrationPointer == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="comment">//遍历结束</span></span><br><span class="line">                <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (!IsSEHOPEnabled) &#123;</span><br><span class="line">                <span class="comment">//这里很迷惑，进行了跟SEHOP完全相同的验证流程</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!RtlIsValidHandler(RegistrationPointer-&gt;Handler, ProcessExcuteOption)) &#123;</span><br><span class="line">               	<span class="comment">//RtlIsValidHandler即SafeSEH 用于验证Handler的有效性    </span></span><br><span class="line">                pExcept-&gt;ExceptionFlags |= EXCEPTION_STACK_INVALID;</span><br><span class="line">                <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (NestedRegistration == RegistrationPointer) &#123;</span><br><span class="line">                <span class="comment">//不是很懂，但不很重要</span></span><br><span class="line">                pExcept-&gt;ExceptionFlags &amp;= (~EXCEPTION_NESTED_CALL);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//终于到了执行SEH的部分</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//Disposition保存了SEHandler的返回值，代表了SEHandler的执行情况</span></span><br><span class="line">            Disposition = RtlExceptionHandlerForException(</span><br><span class="line">            			pExcept,</span><br><span class="line">                		RegistrationPointer,</span><br><span class="line">                		pContext,</span><br><span class="line">                		&amp;DispatcherContext,</span><br><span class="line">                		RegistrationPointer-&gt;Handler;</span><br><span class="line">            			);</span><br><span class="line">            <span class="keyword">switch</span>(Disposition)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">case</span> ExceptionContinueExcution : </span><br><span class="line">                    <span class="comment">//应当结束异常处理（成功或无法继续）</span></span><br><span class="line">                    <span class="keyword">if</span> ((pExcptRec-&gt;ExceptionFlags &amp; EXCEPTION_NONCONTINUABLE) != <span class="number">0</span>) &#123;</span><br><span class="line">                    	<span class="comment">//无法继续，将ExeptionRecord1的异常类型（ExceptionCode）设置为STATUS_NONCONTINUEABLE_EXCEPTION</span></span><br><span class="line">                        <span class="comment">//并用它主动引发一个新的异常来结束进程</span></span><br><span class="line">                        <span class="comment">//这里也写的很迷，我根据自己的理解和RaiseException函数原型进行了（说得通的一点点小）修改</span></span><br><span class="line">                        <span class="comment">//但思路还是很清晰的</span></span><br><span class="line">                        ExceptionRecord1-&gt;ExceptionCode = STATUS_NONCONTINUEABLE_EXCEPTION;</span><br><span class="line">                        ExceptionRecord1-&gt;ExceptionFlags = EXCEPTION_NON_CONTINUEABLE;</span><br><span class="line">                        ExceptionRecord1-&gt;NumParameters = <span class="number">0</span>;</span><br><span class="line">                        RasieException(&amp;ExceptionRecord1);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        Completion = TRUE;</span><br><span class="line">                        <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">case</span> ExceptionContinueSearch :</span><br><span class="line">                	<span class="comment">//异常处理失败</span></span><br><span class="line">                    <span class="keyword">if</span> (pExcptRec-&gt;ExceptionFlags &amp; EXCEPTION_STACK_INVALID) &#123;</span><br><span class="line">                        <span class="keyword">goto</span> DispatchExit;</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">case</span> ExceptionNestedException :</span><br><span class="line">                    <span class="comment">//内嵌异常，设置标志位便于处理</span></span><br><span class="line">                    pExcptRec-&gt;ExceptionFlags &amp;= EXCEPTION_NESTED_CALL;</span><br><span class="line">                	<span class="keyword">if</span> (DispatcherContext.RegistrationPointer &gt; NestedRegistration) &#123;</span><br><span class="line">                        NestedRegistration = DispatcherContext.RegistrationPointer;</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">default</span> :</span><br><span class="line">                    <span class="comment">//不应当返回这三个值以外的值，如果返回则引发新的异常</span></span><br><span class="line">                    <span class="comment">//类似case1的不可继续，设置flags为STATUS_INVALID_DISPOSITION和Code为NON_CONTINUABLE并主动引发异常</span></span><br><span class="line">            &#125;</span><br><span class="line">            RegistrationPointer = RegistrationPointer-&gt;Next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    DispatchExit:</span><br><span class="line">    	RtlCallVectoredContinueHandlers(pExcptRec, pContext);</span><br><span class="line">    <span class="keyword">return</span> Completion;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于回调函数</strong></p>
+<p>​    回调函数部分，书中主要讲解了参数和返回值类型，即上文中的switch的部分：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">EXCEPTION_DISPOSITION __cdecl _except_handler (</span><br><span class="line">	struct _EXCEPTION_RECORD *ExceptionRecord,</span><br><span class="line">    <span class="keyword">void</span> *EstablisherFrame,</span><br><span class="line">    struct _CONTEXT* *ContextRecord,</span><br><span class="line">    <span class="keyword">void</span> * DispatchContext</span><br><span class="line">)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> _EXCEPTION_DISPOSITION&#123;</span><br><span class="line">    ExceptionContinueExcution, <span class="comment">//0</span></span><br><span class="line">    ExceptionContinueSearch, <span class="comment">//1</span></span><br><span class="line">    ExceptionNestedException, <span class="comment">//2</span></span><br><span class="line">    ExceptionColliedUnWind <span class="comment">//3 恢复事故现场失败</span></span><br><span class="line">&#125;EXCEPTION_DISPOSITION;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>关于栈展开</strong></p>
+<p>来看这样一个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">EXCEPTION_DISPOSITION Handler3 &#123;</span><br><span class="line">    <span class="comment">/*do something*/</span></span><br><span class="line">    <span class="comment">/*设置EIP为Safe，即处理完成后来到Safe继续执行*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*安装Handler3*/</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*发生异常*/</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*卸载Handler3*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*安装Handler2*/</span></span><br><span class="line">    func3();</span><br><span class="line">    <span class="comment">/*卸载Handler3*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*安装Handler1*/</span></span><br><span class="line">    fun2();</span><br><span class="line">    Safe:</span><br><span class="line">    <span class="comment">/*发生异常*/</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*卸载Handler3*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    func1();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（不会画图，只好发挥一下想象力吧）</p>
+<p>fs:[0]指向了一个Handler3-&gt;Handler2-&gt;Handler1-&gt;Unhandled这样一个SEH链，当func3发生异常，SEH的三个节点都在栈中，而Safe标号对应的安全ESP是在前两个节点的下面（为了转到安全处执行必须要保存安全的ESP），那么如果Safe之后再进行压栈操作，<strong>SEH链将被破坏，fs:[0]将会指向一个无效的结构</strong></p>
+<p>于是，我们需要栈展开来释放一些被fun123占用的资源，并且转储关键数据和保证SEH链的完整性（将fs:[0]指向Handler3），这部分我看的不是很懂，因为按书中的说法，这么做还是会可能覆盖掉handler3，但总之肯定是要重新设置Code和Flags然后依次调用各个回调函数，这部分微软提供了现成的函数<strong>RtlUnwind</strong></p>
+<p><strong>__try块：编译器对SEH的增强</strong></p>
+<p>这部分我打算只做简要说明</p>
+<p>各大主流编译器都对SEH进行了增强，不同编译器具体实现不同本书使用VC6.0演示</p>
+<p>编译器真正使用的是一个名为CPP_RECORD的结构，_EH3_EXCEPTION_REGISTRATION在原有_EXCEPTION_REGISTRATION之上扩充了4个新成员，包括一个Scopetable和一个Exception_Handler（名字叫_except_handler3）</p>
+<p>__try块不再赘述，对于except括号中的表达式，可以返回</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXCEPTION_EXECUTE_HANDLER <span class="comment">//1 执行下面的except</span></span><br><span class="line">EXCEPTION_CONTINUE_SEARCH <span class="comment">//0 搜索下一个SEH节点</span></span><br><span class="line">EXCEPTION_CONTINUE_EXECUTION <span class="comment">//-1 异常已修复，跳过except继续执行</span></span><br></pre></td></tr></table></figure>
+
+<p>对于嵌套的try块，并不是每个try都要做成一个节点。编译器使用Exception_Handler做了一层代理，并将所有Handler从里到外（指嵌套关系）依次放在Scopetable表的每个SCOPETABLE_ENTRY结构中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">SCOPETABLE_ENTRY</span> &#123;</span></span><br><span class="line">    DWORD EnclosingLevel; <span class="comment">// 上一层try块</span></span><br><span class="line">    PVOID FilterFunc; <span class="comment">// except小括号里的过滤函数</span></span><br><span class="line">    PVOID HandlerFunc; <span class="comment">// except中的内容</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">EH3_EXCEPTION_REGISTRATION</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">EH3_EXCEPTION_REGISTRATION</span> *<span class="title">Next</span>;</span></span><br><span class="line">    PVOID ExceptionHandler;</span><br><span class="line">    PSCOPETABLE_ENTRY Scopetable;</span><br><span class="line">    DWORD TryLevel;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CPP_RECORD</span> &#123;</span></span><br><span class="line">    DWORD old_esp;</span><br><span class="line">    EXCEPTION_POINTERS *exc_ptr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">EH3_EXCEPTION_REGISTRATION</span> <span class="title">registration</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>关于顶层异常处理</strong></p>
+<p>可以使用SetUnhandledExceptionFilter来自定义顶层异常处理程函数，并且用户设置的函数事实上是UnhandledeExceptionFilter的一个子程序调用</p>
+<p>Windows Vista之后，线程的实际入口点变成了ntdll!RtlUserThreadStart并且其直接跳转到ntdll!RtlUserThreadStart并调用RtlInitializeExceptionChain，该函数与SEHOP保护机制有关（SEHOP部分在之前Rtl分发函数中已经详细列出）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/17/buuctf-re-13/" rel="next" title="BUUCTF [网鼎杯 2020 青龙组]jocker">
+                <i class="fa fa-chevron-left"></i> BUUCTF [网鼎杯 2020 青龙组]jocker
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/27/buuctf-re-14/" rel="prev" title="BUUCTF [GUET-CTF2019]number_game">
+                BUUCTF [GUET-CTF2019]number_game <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pr0ject0ne.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/09/19/Windows%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/';
+          this.page.identifier = '2020/09/19/Windows异常处理/';
+          this.page.title = 'Windows下的异常处理(1)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pr0ject0ne.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
