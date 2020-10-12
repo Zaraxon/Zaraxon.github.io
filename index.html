@@ -280,6 +280,294 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/12/buuctf-re-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/12/buuctf-re-16/" itemprop="url">BUUCTF 反静态（花） 字符串处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-12T12:18:00+08:00">
+                2020-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/10/12/buuctf-re-16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/10/12/buuctf-re-16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          没看见经典re出密码感觉浑身舒适
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/10/12/buuctf-re-16/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/05/buuctf-re-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/05/buuctf-re-15/" itemprop="url">BUUCTF [FlareOn5]Ultimate Minesweeper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-05T14:40:10+08:00">
+                2020-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/10/05/buuctf-re-15/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/10/05/buuctf-re-15/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>是一个基于.NET平台的题，看起来没玩出什么花（如果玩出花了我必不会，C#完全没学过</p>
+<p>点开，是一个扫雷<img src="https://www.superbed.cn/item/5f7ac149160a154a679d885c" alt="img"></p>
+<p>随便试了几次都一次就点到雷了，猜测可能是要求顺序或者什么别的操作</p>
+<p>使用dnspy分析（没学过C#加第二次用dnspy所以极度不熟练）</p>
+<p>单开UltimateMinesweeper类，在资源里面翻了翻，找到了一些成功和失败的贴图，但dnspy好像没有交叉引用的功能所以没法直接找到调用者</p>
+<p>点进mainform函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public MainForm()</span><br><span class="line">&#123;</span><br><span class="line">	this.InitializeComponent();</span><br><span class="line">	this.MineField &#x3D; new MineField(MainForm.VALLOC_NODE_LIMIT);</span><br><span class="line">	this.AllocateMemory(this.MineField);</span><br><span class="line">	this.mineFieldControl.DataSource &#x3D; this.MineField;</span><br><span class="line">	this.mineFieldControl.SquareRevealed +&#x3D; this.SquareRevealedCallback;</span><br><span class="line">	this.mineFieldControl.FirstClick +&#x3D; this.FirstClickCallback;</span><br><span class="line">	this.stopwatch &#x3D; new Stopwatch();</span><br><span class="line">	this.FlagsRemaining &#x3D; this.MineField.TotalMines;</span><br><span class="line">	this.mineFieldControl.MineFlagged +&#x3D; this.MineFlaggedCallback;</span><br><span class="line">	this.RevealedCells &#x3D; new List&lt;uint&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    我也不知道啊C#怎么运作的，但大致看得出是AllocateMemory初始化了一下然后有个计时有个监控点击方块有个第一次点击（？）</p>
+<p>​    于是我就到各个函数一通乱翻</p>
+<p>​    其实真的没有必要，稍微想一下就应该知道这里目标很明确：第一步找到对雷区的初始化函数，先把游戏玩通了再说</p>
+<p>​    在乱翻的过程中我找到了GetKey函数，简单分析了一下是最后用准备好的种子生成随机数序列作为异或密钥解开密文</p>
+<p>​    找来找去最后（终于）找到初始化函数上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">private void AllocateMemory(MineField mf)</span><br><span class="line">&#123;</span><br><span class="line">	for (uint num &#x3D; 0U; num &lt; MainForm.VALLOC_NODE_LIMIT; num +&#x3D; 1U)</span><br><span class="line">	&#123;</span><br><span class="line">		for (uint num2 &#x3D; 0U; num2 &lt; MainForm.VALLOC_NODE_LIMIT; num2 +&#x3D; 1U)</span><br><span class="line">		&#123;</span><br><span class="line">			bool flag &#x3D; true;</span><br><span class="line">			uint r &#x3D; num + 1U;</span><br><span class="line">			uint c &#x3D; num2 + 1U;</span><br><span class="line">			if (this.VALLOC_TYPES.Contains(this.DeriveVallocType(r, c)))</span><br><span class="line">			&#123;</span><br><span class="line">				flag &#x3D; false;</span><br><span class="line">			&#125;</span><br><span class="line">			mf.GarbageCollect[(int)num2, (int)num] &#x3D; flag;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">private uint DeriveVallocType(uint r, uint c)</span><br><span class="line">&#123;</span><br><span class="line">	return ~(r * MainForm.VALLOC_NODE_LIMIT + c);</span><br><span class="line">&#125;</span><br><span class="line">private static uint VALLOC_NODE_LIMIT &#x3D; 30U;</span><br><span class="line">private static uint VALLOC_TYPE_HEADER_PAGE &#x3D; 4294966400U;</span><br><span class="line">private static uint VALLOC_TYPE_HEADER_POOL &#x3D; 4294966657U;</span><br><span class="line">private static uint VALLOC_TYPE_HEADER_RESERVED &#x3D; 4294967026U;</span><br><span class="line">private uint[] VALLOC_TYPES &#x3D; new uint[]</span><br><span class="line">&#123;</span><br><span class="line">	MainForm.VALLOC_TYPE_HEADER_PAGE,</span><br><span class="line">	MainForm.VALLOC_TYPE_HEADER_POOL,</span><br><span class="line">	MainForm.VALLOC_TYPE_HEADER_RESERVED</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>虽然我不知道Contains具体干嘛的，但顾名思义应该是看List里面有没有这个东西</p>
+<p>AllocateMemory逻辑就是，用ij两个索引生成一个数，在那三个数里面就没有雷</p>
+<p>写脚本爆破一下就好了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> nums[] = &#123;<span class="number">4294966400</span>, <span class="number">4294966657</span>, <span class="number">4294967026</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> i = <span class="number">1</span>; i &lt;= <span class="number">30</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">unsigned</span> j = <span class="number">1</span>; j &lt;= <span class="number">30</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">3</span>; k++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[k] == ~(i * <span class="number">30</span> + j)) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%u\n"</span>, i * <span class="number">30</span> + j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">i == 8 j == 29</span></span><br><span class="line"><span class="comment">i == 21 j == 8</span></span><br><span class="line"><span class="comment">i == 29 j == 25</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>玩一下就出来了<img src="https://www.superbed.cn/item/5f7ac747160a154a679f5382" alt="img"></p>
+<p><strong>总结</strong></p>
+<p>唯一可总结的就是不要盲目乱找，先想好哪里可能有flag</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/buuctf-re-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -820,7 +1108,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-10/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zaraxon">
@@ -839,7 +1127,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/05/buuctf-re-10/" itemprop="url">BUUCTF 安洵杯 crackMe</a></h1>
+                <a class="post-title-link" href="/2020/09/05/buuctf-re-11/" itemprop="url">BUUCTF 2020网鼎杯 青龙组reverse：signal</a></h1>
         
 
         <div class="post-meta">
@@ -870,9 +1158,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/05/buuctf-re-10/#comments" itemprop="discussionUrl">
+                <a href="/2020/09/05/buuctf-re-11/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/09/05/buuctf-re-10/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/09/05/buuctf-re-11/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -901,10 +1189,10 @@
 
       
         
-          难顶，这里主要卡在了编码和密码学上
+          虚拟机
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/05/buuctf-re-10/">
+            <a class="btn" href="/2020/09/05/buuctf-re-11/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1090,7 +1378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-11/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/buuctf-re-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zaraxon">
@@ -1109,7 +1397,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/05/buuctf-re-11/" itemprop="url">BUUCTF 2020网鼎杯 青龙组reverse：signal</a></h1>
+                <a class="post-title-link" href="/2020/09/05/buuctf-re-10/" itemprop="url">BUUCTF 安洵杯 crackMe</a></h1>
         
 
         <div class="post-meta">
@@ -1140,9 +1428,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/05/buuctf-re-11/#comments" itemprop="discussionUrl">
+                <a href="/2020/09/05/buuctf-re-10/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/09/05/buuctf-re-11/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/09/05/buuctf-re-10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1171,10 +1459,10 @@
 
       
         
-          虚拟机
+          难顶，这里主要卡在了编码和密码学上
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/05/buuctf-re-11/">
+            <a class="btn" href="/2020/09/05/buuctf-re-10/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1347,276 +1635,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/buuctf-re-8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zaraxon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="最终你来到了这里">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/01/buuctf-re-8/" itemprop="url">BUUCTF Overlong</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T16:54:00+08:00">
-                2020-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/01/buuctf-re-8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/09/01/buuctf-re-8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          花里胡哨
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/01/buuctf-re-8/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/buuctf-re-7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zaraxon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="最终你来到了这里">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/01/buuctf-re-7/" itemprop="url">BUUCTF BabyBriver 设备驱动</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T16:32:00+08:00">
-                2020-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/01/buuctf-re-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/09/01/buuctf-re-7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          我就是不知道它是那么对应的，那咋办嘛
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/01/buuctf-re-7/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1667,7 +1685,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1767,7 +1785,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
         </canvas>
     </div>
 </div>
