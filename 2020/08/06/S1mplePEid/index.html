@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/libliblib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/libliblib/pace/pace-theme-shop.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libliblib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Nunito:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libliblib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="SimplePEid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PE文件格式工具仿写">
+<meta property="og:url" content="http://yoursite.com/2020/08/06/S1mplePEid/index.html">
+<meta property="og:site_name" content="最终你来到了这里">
+<meta property="og:description" content="SimplePEid">
+<meta property="article:published_time" content="2020-08-06T07:47:00.000Z">
+<meta property="article:modified_time" content="2020-10-20T16:40:37.000Z">
+<meta property="article:author" content="Zaraxon">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/06/S1mplePEid/"/>
+
+
+
+
+
+  <title>PE文件格式工具仿写 | 最终你来到了这里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">最终你来到了这里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/S1mplePEid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zaraxon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="最终你来到了这里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PE文件格式工具仿写</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T15:47:00+08:00">
+                2020-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/06/S1mplePEid/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/08/06/S1mplePEid/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 被光顾
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  SimplePEid
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为编写PE文件格式分析工具的一点点参考，有些数据类型大小不一致</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winnt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ImageHlp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"Dbghelp.lib"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"imageHlp.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">MAP_FILE_SRTUCT</span> &#123;</span></span><br><span class="line">    HANDLE hFile; <span class="comment">//文件句柄</span></span><br><span class="line">    HANDLE hMapping; <span class="comment">//文件映像</span></span><br><span class="line">    HANDLE ImageBase; <span class="comment">//文件映像基址</span></span><br><span class="line">&#125; MAP_FILE_SRTUCT, *PMAP_FILE_HEADER;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_NT_HEADERS <span class="title">GetNtHeaders</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"><span class="function">PIMAGE_FILE_HEADER WINAPI <span class="title">GetFileHeader</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD <span class="title">RvaToOffset</span><span class="params">(LPVOID ImageBase, DWORD RVA)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        需要熟记的公式:RAW - PointerToData(PointerToSectionHead) = RVA - VirtualAddress(区块首地址的虚拟偏移)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = GetNtHeaders(ImageBase);<span class="comment">//之前验证过了所以不用重复验证</span></span><br><span class="line">    PIMAGE_FILE_HEADER pFH = GetFileHeader(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pFH) </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    DWORD NumberOfSections = pFH-&gt;NumberOfSections;</span><br><span class="line">    PIMAGE_SECTION_HEADER pSH = IMAGE_FIRST_SECTION(pNtH);    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; NumberOfSections; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (RVA &gt;= pSH-&gt;VirtualAddress &amp;&amp; RVA &lt; pSH-&gt;VirtualAddress + pSH-&gt;SizeOfRawData) &#123;</span><br><span class="line">            <span class="keyword">return</span> (DWORD)pSH-&gt;PointerToRawData + (DWORD)RVA - (DWORD)pSH-&gt;VirtualAddress;</span><br><span class="line">        &#125;</span><br><span class="line">        pSH++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">BOOL <span class="title">IsPEFile</span> <span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        判断是不是PE文件</span></span><br><span class="line"><span class="comment">        思路:</span></span><br><span class="line"><span class="comment">            1. 判断DOS文件头是不是"MZ"</span></span><br><span class="line"><span class="comment">            2. 判断PE文件头的Signature字段是不是PE文件标识符(0x00004550)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    PIMAGE_DOS_HEADER pDH = <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span> (!ImageBase) </span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    pDH = (PIMAGE_DOS_HEADER)ImageBase;</span><br><span class="line">    <span class="keyword">if</span> (pDH-&gt;e_magic != IMAGE_DOS_SIGNATURE)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    pNtH = (PIMAGE_NT_HEADERS) ((DWORD)pDH + pDH-&gt;e_lfanew);</span><br><span class="line">    <span class="keyword">if</span> (pNtH-&gt;Signature != IMAGE_NT_SIGNATURE)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_NT_HEADERS <span class="title">GetNtHeaders</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    PIMAGE_DOS_HEADER pDH = <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">    pDH = (PIMAGE_DOS_HEADER)ImageBase;</span><br><span class="line">    pNtH = (PIMAGE_NT_HEADERS)((DWORD)pDH + pDH-&gt;e_lfanew);</span><br><span class="line">    <span class="keyword">return</span> pNtH;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_FILE_HEADER WINAPI <span class="title">GetFileHeader</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = <span class="literal">NULL</span>;</span><br><span class="line">    pNtH = GetNtHeaders(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pNtH) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_FILE_HEADER pFileH = &amp;(pNtH-&gt;FileHeader);</span><br><span class="line">    <span class="keyword">return</span> pFileH;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_OPTIONAL_HEADER WINAPI <span class="title">GetOptionalHeader</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = <span class="literal">NULL</span>;</span><br><span class="line">    pNtH = GetNtHeaders(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pNtH) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_OPTIONAL_HEADER pOptionalH = &amp;(pNtH-&gt;OptionalHeader);</span><br><span class="line">    <span class="keyword">return</span> pOptionalH;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_DATA_DIRECTORY <span class="title">GetDataDirectory</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    PIMAGE_OPTIONAL_HEADER pOH = GetOptionalHeader(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pOH)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_DATA_DIRECTORY pDir;</span><br><span class="line">    pDir = pOH-&gt;DataDirectory;</span><br><span class="line">    <span class="keyword">return</span> pDir;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowDataDirectory</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t[ERROR][Not A Valid PE File]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;     </span><br><span class="line">    PIMAGE_DATA_DIRECTORY pDir = GetDataDirectory(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pDir) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[ERROR][Failed when trying to get DataDirectory]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[Data Directory]\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tExport Table :          |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">0</span>].VirtualAddress, pDir[<span class="number">0</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tInput Table :           |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">1</span>].VirtualAddress, pDir[<span class="number">1</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tResource Table :        |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">2</span>].VirtualAddress, pDir[<span class="number">2</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tException Table :       |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">3</span>].VirtualAddress, pDir[<span class="number">3</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSecurity Table :        |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">4</span>].VirtualAddress, pDir[<span class="number">4</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tBase Relocation Table : |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">5</span>].VirtualAddress, pDir[<span class="number">5</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tDebug :                 |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">6</span>].VirtualAddress, pDir[<span class="number">6</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tCopyright :             |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">7</span>].VirtualAddress, pDir[<span class="number">7</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tGlobal Ptr :            |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">8</span>].VirtualAddress, pDir[<span class="number">8</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tThread Local Storage :  |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">9</span>].VirtualAddress, pDir[<span class="number">9</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tLoad Configuration :    |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">10</span>].VirtualAddress, pDir[<span class="number">10</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tBound Import :          |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">11</span>].VirtualAddress, pDir[<span class="number">11</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tImport Address Table :  |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">12</span>].VirtualAddress, pDir[<span class="number">12</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tDelay Import :          |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">13</span>].VirtualAddress, pDir[<span class="number">13</span>].Size);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tCOM Descriptor :        |Virual Address: %.8x |Size : %.8x|\n"</span>,pDir[<span class="number">14</span>].VirtualAddress, pDir[<span class="number">14</span>].Size);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowFileHeaderInfo</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[FileHeader]\n"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t[ERROR][Not A Valid PE File]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    PIMAGE_FILE_HEADER pFH = GetFileHeader(ImageBase);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!pFH) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[ERROR][Failed to GetFileHeader]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tMachine : %.8x\n"</span>, pFH-&gt;Machine);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tNumberOfSections : %.8x\n"</span>,pFH-&gt;NumberOfSections);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tTimeDateStamps : %.8x\n"</span>,pFH-&gt;TimeDateStamp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tPointerToSymbolTable : %.8x\n"</span>,pFH-&gt;PointerToSymbolTable);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tNumberOfSymbols : %.8x\n"</span>,pFH-&gt;NumberOfSymbols);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSizeOfOptionalHeader : %.8x\n"</span>,pFH-&gt;SizeOfOptionalHeader);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tCharacteristics : %.8x\n"</span>, pFH-&gt;Characteristics);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowOptionalHeaderInfo</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[OptionalHeader]\n"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t[ERROR][Not A Valid PE File] \n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        PIMAGE_OPTIONAL_HEADER 默认是 PIMAGE_OPTIONAL_HEADER64</span></span><br><span class="line"><span class="comment">        64位机型比较难检测（需要再写一个函数枚举文件头Machine字段中所有64位选项）</span></span><br><span class="line"><span class="comment">        暂且记为TODO</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    PIMAGE_OPTIONAL_HEADER pOH = GetOptionalHeader(ImageBase);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tAddressOfEntryPoint : %.8x\n"</span>,pOH-&gt;AddressOfEntryPoint);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tBaseOfCode : %.8x\n"</span>,pOH-&gt;BaseOfCode);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSizeofCode : %.8x\n"</span>,pOH-&gt;SizeOfCode);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSizeOfInitializedData : %.8x\n"</span>,pOH-&gt;SizeOfInitializedData);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSizeOfUninitializedData : %.8x\n"</span>,pOH-&gt;SizeOfUninitializedData);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSizeOfImage : %.8x\n"</span>,pOH-&gt;SizeOfImage);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tSectionAlignment : %.8x\n"</span>,pOH-&gt;SectionAlignment);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tFileAlignment : %.8x\n"</span>,pOH-&gt;FileAlignment);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tNumberOfDataDirectory : %.8x\n"</span>,pOH-&gt;NumberOfRvaAndSizes);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tDataDirectory : %.8x\n"</span>,pOH-&gt;DataDirectory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_IMPORT_DESCRIPTOR <span class="title">GetFirstImportTable</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_DATA_DIRECTORY pDir = GetDataDirectory(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pDir) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_NT_HEADERS pNt = GetNtHeaders(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pNt)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//PIMAGE_IMPORT_DESCRIPTOR pImport = (PIMAGE_IMPORT_DESCRIPTOR)(pNt, (LPVOID)ImageBase, (ULONG)pDir[1].VirtualAddress);</span></span><br><span class="line">    PIMAGE_IMPORT_DESCRIPTOR pImport = (PIMAGE_IMPORT_DESCRIPTOR)((DWORD)ImageBase + RvaToOffset(ImageBase, pDir[<span class="number">1</span>].VirtualAddress));</span><br><span class="line">    <span class="keyword">return</span> pImport; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">ShowImportTableInfo</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[ImportTable]\n"</span>);</span><br><span class="line"></span><br><span class="line">    PIMAGE_IMPORT_DESCRIPTOR pImport = GetFirstImportTable(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pImport) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[ERROR][Failed when trying to get Import Table]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="comment">//printf("pImport : %.8x\n",pImport);</span></span><br><span class="line">    <span class="keyword">while</span>(pImport-&gt;FirstThunk) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[%s]\n"</span>,(<span class="keyword">char</span> *)((DWORD)ImageBase + RvaToOffset(ImageBase, pImport-&gt;Name)));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\tOriginalFirstThunk : %.8x\n"</span>,(DWORD)(pImport-&gt;OriginalFirstThunk));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\tTimeDateStamp      : %.8x\n"</span>,pImport-&gt;TimeDateStamp);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\tForwarderChain     : %.8x\n"</span>,pImport-&gt;ForwarderChain);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\tFirstThunk         : %.8x\n"</span>,pImport-&gt;FirstThunk); </span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\tFunctions : \n"</span>);</span><br><span class="line">        PDWORD64 PITD = (PDWORD64)((DWORD64)ImageBase + RvaToOffset(ImageBase, pImport-&gt;OriginalFirstThunk));</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(*PITD) &#123;</span><br><span class="line">            PIMAGE_IMPORT_BY_NAME INT = (PIMAGE_IMPORT_BY_NAME)*PITD;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">                不知道为什么Hint我打印不出来，在访问Hint成员的时候似乎引发了异常</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="built_in">printf</span>(</span><br><span class="line">                <span class="string">"\t\t[%2d]Name : %s\n"</span>,</span><br><span class="line">                i++,</span><br><span class="line">                (LPSTR)((DWORD64)ImageBase + RvaToOffset(ImageBase,(DWORD)(INT-&gt;Name))) </span><br><span class="line">            );</span><br><span class="line">            PITD++;</span><br><span class="line">        &#125;</span><br><span class="line">        pImport++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PIMAGE_EXPORT_DIRECTORY <span class="title">GetExportDirectory</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_DATA_DIRECTORY pDir = GetDataDirectory(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pDir) </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    PIMAGE_EXPORT_DIRECTORY pExport = (PIMAGE_EXPORT_DIRECTORY)((DWORD)ImageBase + RvaToOffset(ImageBase, pDir[<span class="number">0</span>].VirtualAddress));</span><br><span class="line">    <span class="keyword">return</span> pExport;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowExportTableInfo</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"[Export Table]\n"</span>);</span><br><span class="line">    PIMAGE_EXPORT_DIRECTORY EAT= GetExportDirectory(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!EAT) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[ERROR][Failed when trying to get Export Table]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tLibraryFileName : %s\n"</span>,(LPSTR)((DWORD)ImageBase + RvaToOffset(ImageBase,EAT-&gt;Name)));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tCharacteristics : %.8x\n"</span>,EAT-&gt;Characteristics);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tTimeDateStamp : %.8x\n"</span>,EAT-&gt;TimeDateStamp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tBase : %.8x\n"</span>,EAT-&gt;Base);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tNumberOfFunctions : %.8x\n"</span>,EAT-&gt;NumberOfFunctions);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tNumberOfNames : %.8x\n"</span>, EAT-&gt;NumberOfNames);</span><br><span class="line"></span><br><span class="line">    DWORD OffsetOfFunctionNamesTable = RvaToOffset(ImageBase, EAT-&gt;AddressOfNames);</span><br><span class="line">    DWORD OffsetOfFunctionAddressTable = RvaToOffset(ImageBase, EAT-&gt;AddressOfFunctions);</span><br><span class="line">    DWORD OffsetOfFunctionNamesOrdinalTable = RvaToOffset(ImageBase, EAT-&gt;AddressOfNameOrdinals);</span><br><span class="line">    PDWORD FunctionNamesTable = (PDWORD)((DWORD)ImageBase + OffsetOfFunctionNamesTable);</span><br><span class="line">    PDWORD FunctionAddressTable = (PDWORD)((DWORD)ImageBase + OffsetOfFunctionAddressTable);</span><br><span class="line">    PWORD FunctionNamesOrdinalTable = (PWORD)((DWORD)ImageBase + OffsetOfFunctionNamesOrdinalTable);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\tFunctions : \n"</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EAT-&gt;NumberOfNames; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(</span><br><span class="line">            <span class="string">"\t\t[%d]Name : %s | RVA : %.8x\n\n"</span></span><br><span class="line">            ,i</span><br><span class="line">            ,(LPSTR)((DWORD)ImageBase + RvaToOffset(ImageBase, FunctionNamesTable[i]))</span><br><span class="line">            ,FunctionAddressTable[FunctionNamesOrdinalTable[i] - (WORD)(EAT-&gt;Base)]</span><br><span class="line">            );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowSectionTable</span><span class="params">(LPVOID ImageBase)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        区块表紧跟Nt映像头，从文件头的NumberOfSections字段中得到数目</span></span><br><span class="line"><span class="comment">        使用IMAGE_FIRST_SECTION来得到第一个区块表的位置</span></span><br><span class="line"><span class="comment">        注意OptionalHeader的大小是可变的，大小由NumberOfRvaandSizes指定</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (!IsPEFile(ImageBase)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t[ERROR][Not A Valid PE File]\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    PIMAGE_NT_HEADERS pNtH = GetNtHeaders(ImageBase);<span class="comment">//之前验证过了所以不用重复验证</span></span><br><span class="line">    PIMAGE_FILE_HEADER pFH = GetFileHeader(ImageBase);</span><br><span class="line">    <span class="keyword">if</span> (!pFH) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"[ERROR][Failed when try to get NumberOfSections]\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    DWORD NumberOfSections = pFH-&gt;NumberOfSections;</span><br><span class="line">    PIMAGE_SECTION_HEADER pSH = IMAGE_FIRST_SECTION(pNtH);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Sections\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NumberOfSections; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t[%s]\n"</span>,pSH-&gt;Name);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t\tVirtualAddress : %.8x\n"</span>,pSH-&gt;VirtualAddress);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t\tRealAddress : %.8x\n"</span>, pSH-&gt;PointerToRawData);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t\tSizeOfRawData : %.8x\n"</span>,pSH-&gt;SizeOfRawData);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\t\tAttributes\n"</span>);</span><br><span class="line">        DWORD Characteristics = pSH-&gt;Characteristics;</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_CNT_CODE)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tCODE\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_CNT_INITIALIZED_DATA)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tINITIALIZED_DATA\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_CNT_UNINITIALIZED_DATA)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tUNINITIALIZED_DATA\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_MEM_DISCARDABLE)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tDISCARDABLE\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_MEM_READ) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tREAD\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_MEM_WRITE) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tWRITE\n"</span>);</span><br><span class="line">        <span class="keyword">if</span> (Characteristics &amp; IMAGE_SCN_MEM_EXECUTE) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\t\t\tEXECUTE\n"</span>);</span><br><span class="line">        pSH++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    MAP_FILE_SRTUCT mapFile_t;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"----------------------&lt;File : %s&gt;----------------------\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    mapFile_t.hFile = CreateFile(</span><br><span class="line">        (LPCTSTR)argv[<span class="number">1</span>]</span><br><span class="line">        ,GENERIC_READ | GENERIC_WRITE</span><br><span class="line">        ,<span class="number">0</span></span><br><span class="line">        ,<span class="literal">NULL</span></span><br><span class="line">        ,OPEN_EXISTING</span><br><span class="line">        ,FILE_ATTRIBUTE_NORMAL</span><br><span class="line">        ,<span class="literal">NULL</span></span><br><span class="line">        );</span><br><span class="line">    mapFile_t.hMapping = CreateFileMapping(mapFile_t.hFile,<span class="literal">NULL</span>,PAGE_READONLY,<span class="number">0</span>,<span class="number">0</span>,<span class="literal">NULL</span>);</span><br><span class="line">    mapFile_t.ImageBase = MapViewOfFile(mapFile_t.hMapping,FILE_MAP_READ,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    ShowFileHeaderInfo(mapFile_t.ImageBase);</span><br><span class="line">    ShowOptionalHeaderInfo(mapFile_t.ImageBase);</span><br><span class="line">    ShowSectionTable(mapFile_t.ImageBase);</span><br><span class="line">    ShowDataDirectory(mapFile_t.ImageBase);</span><br><span class="line">    ShowImportTableInfo(mapFile_t.ImageBase);</span><br><span class="line">    ShowExportTableInfo(mapFile_t.ImageBase);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"----------------------&lt;End Of %s&gt;-----------------------\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/re/" rel="tag"># re</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/06/buuctf-re-3/" rel="next" title="BUUCTF reverse NOP 代码段与数据段">
+                <i class="fa fa-chevron-left"></i> BUUCTF reverse NOP 代码段与数据段
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/06/Nu1LCTF-re-OhMyJulia/" rel="prev" title="Nu1LCTF Oh My Julia">
+                Nu1LCTF Oh My Julia <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zaraxon" />
+          <p class="site-author-name" itemprop="name">Zaraxon</p>
+           
+              <p class="site-description motion-element" itemprop="description">这逃过了时间那锐利双眼的法外之地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=850852945&website=www.oicqzone.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                    
+                      QQ
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaraxon" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rxzhang01@gmail.com || envelope" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Gmail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://dere.press" title="vv" target="_blank">vv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.0x3ff.com/" title="BigBrotherWang" target="_blank">BigBrotherWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xuyangyu233.github.io/" title="aoshu" target="_blank">aoshu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://tburl.in/tdCMrAXI" title="hyyyyds" target="_blank">hyyyyds</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDA-Pro-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" rel="tag">IDA Pro 权威指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re-for-beginners/" rel="tag">re for beginners</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%83%E4%B8%8D%E9%A6%99%E5%90%97/" rel="tag">它不香吗</a><span class="tag-list-count">2</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaraxon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人来过
+    </span>
+  
+
+  
+    <span class="site-pv">
+      有
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人看过这里
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/libliblib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/libliblib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pr0ject0ne.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/08/06/S1mplePEid/';
+          this.page.identifier = '2020/08/06/S1mplePEid/';
+          this.page.title = 'PE文件格式工具仿写';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pr0ject0ne.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+</body>
+</html>
